@@ -100,9 +100,10 @@ document.addEventListener('keydown', (e) => {
   }
 
   // Digits and ? jump straight to a command while the filter is empty.
-  const quick = input.value === '' && (/^[1-9]$/.test(e.key) || e.key === '?');
+  const quick = input.value === '' && (/^[0-9]$/.test(e.key) || e.key === '?');
   if (quick) {
-    const target = e.key === '?' ? rows.find((r) => idOf(r) === 'shortcuts') : rows[Number(e.key) - 1];
+    // 1-9 pick rows one to nine, 0 the tenth.
+    const target = e.key === '?' ? rows.find((r) => idOf(r) === 'shortcuts') : rows[(Number(e.key) + 9) % 10];
     if (target) {
       e.preventDefault();
       select(idOf(target), { user: true });

@@ -1,6 +1,6 @@
 ---
-import { existsSync } from 'node:fs';
 import { filesFor, checksumsUrl, type Platform, type Release } from '../lib/release';
+import { screenshot } from '../lib/screenshots';
 
 interface Props {
   id: Platform;
@@ -18,7 +18,7 @@ const sums = checksumsUrl(release);
 
 // Drop a real screenshot at public/screenshots/<platform>.png and it replaces the frame;
 // goop.png is the shared fallback for platforms without one.
-const shot = [`/screenshots/${id}.png`, '/screenshots/goop.png'].find((f) => existsSync(`public${f}`));
+const shot = screenshot(id) ?? screenshot('goop');
 ---
 
 <article id={id} class="panel" hidden={!active}>
@@ -43,7 +43,7 @@ const shot = [`/screenshots/${id}.png`, '/screenshots/goop.png'].find((f) => exi
   {
     shot ? (
       <figure class="shot has-img">
-        <img src={shot} alt={`Goop on ${name}`} loading="lazy" decoding="async" />
+        <img src={shot.src} width={shot.width} height={shot.height} alt={`Goop on ${name}`} loading="lazy" decoding="async" />
       </figure>
     ) : (
       <figure class="shot" aria-label="Screenshot placeholder">

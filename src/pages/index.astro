@@ -4,8 +4,10 @@ import { getRelease } from '../lib/release';
 import Kbd from '../components/Kbd.astro';
 import DownloadPanel from '../components/DownloadPanel.astro';
 import Ghost from '../components/Ghost.astro';
+import { allScreenshots } from '../lib/screenshots';
 
 const release = await getRelease();
+const screenshots = allScreenshots();
 
 const tagline = 'NIP-17 for nerds and their agents';
 const footnote = "Nerds don't have friends, let's be honest.";
@@ -17,6 +19,8 @@ const commands = [
   { id: 'macos', label: 'Download for macOS', alias: 'mac apple dmg' },
   { id: 'windows', label: 'Download for Windows', alias: 'win exe' },
   { id: 'linux', label: 'Download for Linux', alias: 'flatpak snap tarball' },
+  { id: 'screenshots', label: 'Screenshots', alias: 'pictures images look' },
+  { id: 'features', label: 'Features', alias: 'what can it do' },
   { id: 'shortcuts', label: 'Keyboard shortcuts', key: '?', alias: 'keys hotkeys' },
   { id: 'agents', label: 'Agents: let your bots DM you', alias: 'ai openclaw hermes nullclaw' },
   { id: 'guide', label: 'Usage guide', alias: 'help docs manual how to' },
@@ -44,6 +48,22 @@ const shortcuts: { keys: string[][]; does: string }[] = [
   { keys: [['Mod', 'Shift', 'G']], does: 'Gossip relays' },
   { keys: [['Mod', 'Comma']], does: 'Settings' },
   { keys: [['Enter'], ['Shift', 'Enter']], does: 'Send, or insert a newline' },
+];
+
+// From README.md and CHANGELOG.md; nothing here that Goop does not ship.
+const features = [
+  { name: 'Keyboard first', desc: 'every action has a shortcut, ? lists them' },
+  { name: 'NIP-17 only', desc: 'gift-wrapped DMs and groups, no NIP-04' },
+  { name: 'External signer', desc: 'Goop never holds your secret key' },
+  { name: 'Encrypted attachments', desc: 'per-file keys, sent only inside the message' },
+  { name: 'Search', desc: 'conversations, message contents, profiles, find in chat' },
+  { name: 'Tabs', desc: 'open several chats, close and restore them' },
+  { name: 'Pin and archive', desc: 'syncs with Amethyst and Nospeak' },
+  { name: 'Note to self', desc: 'your own inbox for links and drafts' },
+  { name: 'Delivery ticks', desc: 'relay acknowledgements, never read receipts' },
+  { name: 'Agents', desc: 'let OpenClaw and friends DM you over NIP-17' },
+  { name: 'Native', desc: 'Rust on GPUI for macOS, Windows, and Linux' },
+  { name: 'Free software', desc: 'GPL-3.0, fork of Coop' },
 ];
 
 const links = {
@@ -117,7 +137,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
             <li role="option" aria-selected={i === 0 ? 'true' : 'false'} class:list={['row', { active: i === 0 }]}>
               <a href={`#${c.id}`} data-id={c.id} data-alias={c.alias}>
                 <span class="label">{c.label}</span>
-                <Kbd k={c.key ?? String(i + 1)} />
+                <Kbd k={c.key ?? String((i + 1) % 10)} />
               </a>
             </li>
           ))}
@@ -143,6 +163,30 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
             The Snap is not in the store yet. Install with <span class="name">snap install --dangerous --classic goop*.snap</span>.
           </p>
         </DownloadPanel>
+
+        <article id="screenshots" class="panel" hidden>
+          <h1>Screenshots</h1>
+          <p class="tagline">Goop {release.version}. More to come.</p>
+          {screenshots.map((s) => (
+            <figure class="shot has-img">
+              <img src={s.src} width={s.width} height={s.height} alt={`Goop: ${s.caption}`} loading="lazy" decoding="async" />
+              <figcaption>{s.caption}</figcaption>
+            </figure>
+          ))}
+        </article>
+
+        <article id="features" class="panel" hidden>
+          <h1>Features</h1>
+          <p class="tagline">What Goop does, and what it leaves out.</p>
+          <ul class="files links features">
+            {features.map((f) => (
+              <li><span class="row-static"><span class="name">{f.name}</span><span class="desc">{f.desc}</span></span></li>
+            ))}
+          </ul>
+          <p class="more">
+            Not in Goop: NIP-04, plaintext fallbacks, read receipts, or a stored secret key. See the <a href={`${repo}/blob/master/CHANGELOG.md`}>changelog</a> for what changed in each release.
+          </p>
+        </article>
 
         <article id="shortcuts" class="panel" hidden>
           <h1>Keyboard shortcuts</h1>
@@ -334,8 +378,8 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     padding: 0;
   }
   .row {
-    height: 3.90625rem;
-    padding: 0.15625rem 0 0.1875rem;
+    height: 3.4375rem;
+    padding: 0.125rem 0;
   }
   .row a {
     display: flex;
@@ -431,7 +475,8 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   .files li {
     display: contents;
   }
-  .files a {
+  .files a,
+  .files .row-static {
     display: grid;
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
@@ -448,6 +493,24 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   }
   .files.links {
     grid-template-columns: 1fr auto;
+  }
+  .files .row-static {
+    color: var(--text);
+  }
+  .files.links a,
+  .files.links .row-static {
+    height: auto;
+    min-height: 3.125rem;
+    padding-block: 0.5rem;
+  }
+  .files.links .desc {
+    text-align: right;
+  }
+  .files.features {
+    grid-template-columns: max-content 1fr;
+  }
+  .files.features .desc {
+    text-align: left;
   }
   .files .desc {
     color: var(--lilac);
@@ -483,13 +546,17 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   .shot.has-img {
     display: block;
     height: auto;
-    aspect-ratio: 954 / 594;
   }
   .shot img {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+  }
+  .shot figcaption {
+    padding: 0.75rem 1rem;
+    border-top: var(--rule);
+    color: var(--lilac);
+    font-size: 1.125rem;
   }
   .dots {
     position: absolute;
@@ -633,7 +700,8 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       grid-template-columns: minmax(0, 1fr) max-content max-content;
       column-gap: 1.5ch;
     }
-    .files a {
+    .files a,
+    .files .row-static {
       font-size: 1.0625rem;
     }
     .files .name {
@@ -717,7 +785,8 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       font-size: 1.125rem;
       line-height: 1.3;
     }
-    .files a {
+    .files a,
+    .files .row-static {
       height: auto;
       min-height: 2.75rem;
       padding: 0.5rem;
