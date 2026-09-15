@@ -13,7 +13,7 @@ pnpm build     # static output in dist/
 pnpm preview
 ```
 
-Release data (version, files, sizes) is fetched from the GitHub API at build time, with a hardcoded fallback in `src/lib/release.ts`. Set `GITHUB_TOKEN` in the build environment to avoid the anonymous rate limit.
+Download links go through GitHub's `releases/latest/download/<file>` redirect, so they always serve the newest release without a rebuild. The version number and file sizes shown are fetched from the GitHub API at build time (hardcoded fallback in `src/lib/release.ts`) and can lag until the next deploy. Set `GITHUB_TOKEN` in the build environment to avoid the anonymous rate limit.
 
 ## Social preview
 

@@ -2,25 +2,28 @@ export type Asset = { name: string; size: number; url: string };
 export type Release = { version: string; publishedAt: string; url: string; assets: Asset[] };
 
 const REPO = 'dergigi/goop';
-const DL = `https://github.com/${REPO}/releases/download`;
+// Assets resolve through GitHub's "latest" redirect, so links never go stale
+// between builds. Version and sizes shown on the page are from build time.
+const LATEST = `https://github.com/${REPO}/releases/latest`;
+const download = (name: string) => `${LATEST}/download/${name}`;
 
 // Used when the GitHub API is unreachable at build time (rate limits, offline).
 const FALLBACK: Release = {
   version: '2.3.0',
   publishedAt: '2026-09-15T00:40:10Z',
-  url: `https://github.com/${REPO}/releases/tag/v2.3.0`,
+  url: LATEST,
   assets: [
-    { name: 'goop-linux-arm64.flatpak', size: 9089520, url: `${DL}/v2.3.0/goop-linux-arm64.flatpak` },
-    { name: 'goop-linux-arm64.snap', size: 14938112, url: `${DL}/v2.3.0/goop-linux-arm64.snap` },
-    { name: 'goop-linux-arm64.tar.gz', size: 25382174, url: `${DL}/v2.3.0/goop-linux-arm64.tar.gz` },
-    { name: 'goop-linux-x64.flatpak', size: 9339824, url: `${DL}/v2.3.0/goop-linux-x64.flatpak` },
-    { name: 'goop-linux-x64.snap', size: 15212544, url: `${DL}/v2.3.0/goop-linux-x64.snap` },
-    { name: 'goop-linux-x64.tar.gz', size: 26393742, url: `${DL}/v2.3.0/goop-linux-x64.tar.gz` },
-    { name: 'goop-macos-arm64.dmg', size: 8890892, url: `${DL}/v2.3.0/goop-macos-arm64.dmg` },
-    { name: 'goop-macos-x64.dmg', size: 9842482, url: `${DL}/v2.3.0/goop-macos-x64.dmg` },
-    { name: 'goop-windows-arm64.exe', size: 7134984, url: `${DL}/v2.3.0/goop-windows-arm64.exe` },
-    { name: 'goop-windows-x64.exe', size: 7559327, url: `${DL}/v2.3.0/goop-windows-x64.exe` },
-    { name: 'SHA256SUMS', size: 880, url: `${DL}/v2.3.0/SHA256SUMS` },
+    { name: 'goop-linux-arm64.flatpak', size: 9089520, url: download('goop-linux-arm64.flatpak') },
+    { name: 'goop-linux-arm64.snap', size: 14938112, url: download('goop-linux-arm64.snap') },
+    { name: 'goop-linux-arm64.tar.gz', size: 25382174, url: download('goop-linux-arm64.tar.gz') },
+    { name: 'goop-linux-x64.flatpak', size: 9339824, url: download('goop-linux-x64.flatpak') },
+    { name: 'goop-linux-x64.snap', size: 15212544, url: download('goop-linux-x64.snap') },
+    { name: 'goop-linux-x64.tar.gz', size: 26393742, url: download('goop-linux-x64.tar.gz') },
+    { name: 'goop-macos-arm64.dmg', size: 8890892, url: download('goop-macos-arm64.dmg') },
+    { name: 'goop-macos-x64.dmg', size: 9842482, url: download('goop-macos-x64.dmg') },
+    { name: 'goop-windows-arm64.exe', size: 7134984, url: download('goop-windows-arm64.exe') },
+    { name: 'goop-windows-x64.exe', size: 7559327, url: download('goop-windows-x64.exe') },
+    { name: 'SHA256SUMS', size: 880, url: download('SHA256SUMS') },
   ],
 };
 
@@ -40,8 +43,8 @@ export async function getRelease(): Promise<Release> {
     return {
       version: String(json.tag_name).replace(/^v/, ''),
       publishedAt: json.published_at,
-      url: json.html_url,
-      assets: json.assets.map((a: any) => ({ name: a.name, size: a.size, url: a.browser_download_url })),
+      url: LATEST,
+      assets: json.assets.map((a: any) => ({ name: a.name, size: a.size, url: download(a.name) })),
     };
   } catch (err) {
     console.warn(`[release] falling back to v${FALLBACK.version}:`, (err as Error).message);
