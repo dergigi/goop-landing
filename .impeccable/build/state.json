@@ -6,7 +6,7 @@
   "direction": "2e37f157",
   "breakpoint": "1280x720",
   "artifact": null,
-  "phase": "responsive",
+  "phase": "review",
   "phases": {
     "comps": {
       "status": "closed",
@@ -165,7 +165,7 @@
           "status-center": "drift",
           "status-right": "drift"
         },
-        "at": "2026-09-15T01:44:31.411Z"
+        "at": "2026-09-15T01:50:47.996Z"
       },
       "forced": null,
       "readingsSeen": {
@@ -174,7 +174,7 @@
         "text preview-tagline: ink is #f5f5f5 in the build, #e5c2ef in the comp; use the comp's colour": 1,
         "text signing-note: ink is #948894 in the build, #ebcbf0 in the comp; use the comp's colour": 1
       },
-      "records": 5,
+      "records": 6,
       "history": [
         {
           "at": "2026-09-15T01:37:04.252Z",
@@ -494,17 +494,24 @@
       "forced": null
     },
     "responsive": {
-      "status": "open",
+      "status": "closed",
       "openedAt": "2026-09-15T01:46:05.199Z",
-      "closedAt": null,
-      "attempts": 0,
+      "closedAt": "2026-09-15T01:51:03.654Z",
+      "attempts": 3,
       "notes": [],
-      "gate": null,
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "desktop 88% (match)",
+        "score": 0.8824,
+        "sideBySide": "/Users/gigi/Development/vibe/goop-landing/.impeccable/review/diff/desktop/side-by-side.png",
+        "at": "2026-09-15T01:51:03.654Z"
+      },
       "forced": null
     },
     "review": {
-      "status": "pending",
-      "openedAt": null,
+      "status": "open",
+      "openedAt": "2026-09-15T01:51:03.654Z",
       "closedAt": null,
       "attempts": 0,
       "notes": [],
