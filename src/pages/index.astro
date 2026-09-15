@@ -148,7 +148,11 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       <section class="preview">
         <DownloadPanel id="macos" name="macOS" {release} {tagline} {footnote} note="ad-hoc signed, not notarized" active>
           <p class="more">
-            First launch: macOS will say it cannot verify the developer. Right-click <span class="name">Goop.app</span>, choose Open, and confirm.
+            First launch: macOS will say it cannot verify the developer. Open System Settings › Privacy &amp; Security and click Open Anyway. Or, once <span class="name">Goop.app</span> is in Applications, clear the quarantine flag and skip the dialog:
+          </p>
+          <p class="cmd">
+            <code id="mac-xattr">xattr -dr com.apple.quarantine /Applications/Goop.app</code>
+            <button type="button" class="copy" data-copy="mac-xattr">copy</button>
           </p>
         </DownloadPanel>
 
@@ -220,7 +224,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           <div class="prompt">
             <div class="prompt-head">
               <span>OpenClaw, tested with Goop. Send this to your agent:</span>
-              <button type="button" data-copy="openclaw-prompt">copy</button>
+              <button type="button" class="copy" data-copy="openclaw-prompt">copy</button>
             </div>
             <pre id="openclaw-prompt">{openclawPrompt}</pre>
           </div>
@@ -645,7 +649,23 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     color: var(--lilac);
     font-size: 1.125rem;
   }
-  .prompt button {
+  .cmd {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0.75rem 0 0;
+    padding: 0.75rem 1rem;
+    border: var(--rule);
+    border-radius: 0.5rem;
+    color: var(--lilac);
+    font-size: 1.125rem;
+  }
+  .cmd code {
+    font: inherit;
+    overflow-wrap: anywhere;
+  }
+  .copy {
     padding: 0.25rem 0.75rem;
     border: var(--rule);
     border-radius: 0.375rem;
@@ -655,7 +675,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     font-size: 1.125rem;
     cursor: pointer;
   }
-  .prompt button:hover {
+  .copy:hover {
     background: var(--purple);
   }
   .prompt pre {
@@ -815,7 +835,8 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       font-size: 1rem;
     }
     .prompt-head,
-    .prompt button,
+    .copy,
+    .cmd,
     .prompt pre {
       font-size: 0.9375rem;
     }
