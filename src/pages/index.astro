@@ -12,15 +12,16 @@ const footnote = "Nerds don't have friends, let's be honest.";
 const guide = 'https://dergigi.com/goop/';
 const repo = 'https://github.com/dergigi/goop';
 
+// `alias` holds extra words the filter matches, so "help" finds the guide.
 const commands = [
-  { id: 'macos', label: 'Download for macOS' },
-  { id: 'windows', label: 'Download for Windows' },
-  { id: 'linux', label: 'Download for Linux' },
-  { id: 'shortcuts', label: 'Keyboard shortcuts', key: '?' },
-  { id: 'agents', label: 'Agents: let your bots DM you' },
-  { id: 'guide', label: 'Usage guide' },
-  { id: 'source', label: 'Source on GitHub' },
-  { id: 'nip17', label: 'What is NIP-17?' },
+  { id: 'macos', label: 'Download for macOS', alias: 'mac apple dmg' },
+  { id: 'windows', label: 'Download for Windows', alias: 'win exe' },
+  { id: 'linux', label: 'Download for Linux', alias: 'flatpak snap tarball' },
+  { id: 'shortcuts', label: 'Keyboard shortcuts', key: '?', alias: 'keys hotkeys' },
+  { id: 'agents', label: 'Agents: let your bots DM you', alias: 'ai openclaw hermes nullclaw' },
+  { id: 'guide', label: 'Usage guide', alias: 'help docs manual how to' },
+  { id: 'source', label: 'Source on GitHub', alias: 'code repo git changelog releases' },
+  { id: 'nip17', label: 'What is NIP-17?', alias: 'dm private messages encryption gift wrap' },
 ];
 
 // From the README. Mod is Cmd on macOS, Ctrl elsewhere.
@@ -114,7 +115,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
         <ul role="listbox" aria-label="Commands">
           {commands.map((c, i) => (
             <li role="option" aria-selected={i === 0 ? 'true' : 'false'} class:list={['row', { active: i === 0 }]}>
-              <a href={`#${c.id}`} data-id={c.id}>
+              <a href={`#${c.id}`} data-id={c.id} data-alias={c.alias}>
                 <span class="label">{c.label}</span>
                 <Kbd k={c.key ?? String(i + 1)} />
               </a>

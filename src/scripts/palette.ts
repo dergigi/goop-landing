@@ -33,18 +33,33 @@ function move(delta: number) {
 }
 
 // Subsequence match: "dlw" finds "Download for Windows".
-function matches(label: string, q: string) {
+function subsequence(text: string, q: string) {
   let i = 0;
-  for (const ch of label.toLowerCase()) if (ch === q[i]) i++;
+  for (const ch of text) if (ch === q[i]) i++;
   return i === q.length;
+}
+
+// 2: the label contains the query or an alias ("help") starts with it,
+// 1: the label matches as a subsequence, 0: no match.
+function score(row: HTMLLIElement, q: string) {
+  const a = row.querySelector('a')!;
+  const label = (a.textContent ?? '').toLowerCase();
+  const aliases = (a.dataset.alias ?? '').toLowerCase().split(' ');
+  if (label.includes(q) || aliases.some((w) => w.startsWith(q))) return 2;
+  return subsequence(label, q) ? 1 : 0;
 }
 
 function filter() {
   const q = input.value.trim().toLowerCase();
-  for (const r of rows) r.hidden = !matches(r.textContent ?? '', q);
+  const scores = new Map(rows.map((r) => [r, score(r, q)]));
+  for (const r of rows) r.hidden = scores.get(r) === 0;
   const list = visible();
   if (empty) empty.hidden = list.length > 0;
-  if (list.length && !list.includes(activeRow()!)) select(idOf(list[0]));
+  if (!list.length) return;
+  // Follow the best hit while typing; with an empty query keep the current row.
+  const best = list.reduce((a, b) => (scores.get(b)! > scores.get(a)! ? b : a));
+  const current = activeRow();
+  if (!current || !list.includes(current) || (q && scores.get(current)! < scores.get(best)!)) select(idOf(best));
 }
 
 // Monospace: the input is exactly as wide as its text, so the caret sits after it.
