@@ -16,9 +16,9 @@ const { id, name, release, tagline, footnote, note, active = false } = Astro.pro
 const files = filesFor(release, id);
 const sums = checksumsUrl(release);
 
-// Drop a real screenshot at public/screenshots/<platform>.png and it replaces the frame.
-const shot = `/screenshots/${id}.png`;
-const hasShot = existsSync(`public${shot}`);
+// Drop a real screenshot at public/screenshots/<platform>.png and it replaces the frame;
+// goop.png is the shared fallback for platforms without one.
+const shot = [`/screenshots/${id}.png`, '/screenshots/goop.png'].find((f) => existsSync(`public${f}`));
 ---
 
 <article id={id} class="panel" hidden={!active}>
@@ -41,7 +41,7 @@ const hasShot = existsSync(`public${shot}`);
     v{release.version} · {note} · <a href={sums}>SHA256SUMS</a>
   </p>
   {
-    hasShot ? (
+    shot ? (
       <figure class="shot has-img">
         <img src={shot} alt={`Goop on ${name}`} loading="lazy" decoding="async" />
       </figure>
