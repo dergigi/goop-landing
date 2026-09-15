@@ -1,43 +1,24 @@
-# Astro Starter Kit: Minimal
+# goop-landing
+
+Landing page for [Goop](https://github.com/dergigi/goop), a simple NIP-17 client that just works. Lives at [goop.dergigi.com](https://goop.dergigi.com).
+
+The page is a command palette: arrow keys, digits, `?` and `Esc` drive the list, typing filters it. Built with Astro, static output, no framework runtime.
+
+## Develop
 
 ```sh
-pnpm create astro@latest -- --template minimal
+pnpm install
+pnpm dev       # http://localhost:4321
+pnpm build     # static output in dist/
+pnpm preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Release data (version, files, sizes) is fetched from the GitHub API at build time, with a hardcoded fallback in `src/lib/release.ts`. Set `GITHUB_TOKEN` in the build environment to avoid the anonymous rate limit.
 
-## 🚀 Project Structure
+## Screenshots
 
-Inside of your Astro project, you'll see the following folders and files:
+Drop real app screenshots at `public/screenshots/macos.png`, `windows.png`, and `linux.png`. Each download panel shows its screenshot when the file exists and an outlined placeholder otherwise.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Design
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`PRODUCT.md` holds the product truth, `DESIGN.md` and `.impeccable/design.json` the design system as built. Both were produced with [impeccable](https://impeccable.style/).

@@ -71,7 +71,12 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Goop – {tagline}</title>
     <meta name="description" content={`Goop is a keyboard-first desktop client for NIP-17 private messages on Nostr. ${tagline} Free software for macOS, Windows, and Linux.`} />
-    <link rel="icon" href="/icon.png" type="image/png" />
+    <link rel="icon" href="/goop.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <meta property="og:title" content="Goop" />
+    <meta property="og:description" content={tagline} />
+    <meta property="og:image" content="/icon.png" />
     <link rel="preload" href="/fonts/cascadia-code-latin.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline>
       document.documentElement.dataset.os = /Mac|iPhone|iPad/.test(navigator.platform) ? 'mac' : 'other';
