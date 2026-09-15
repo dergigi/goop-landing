@@ -292,7 +292,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   /* Our own caret: shows the same whether or not the input has focus. */
   .caret {
     flex: none;
-    width: 0.09em;
+    width: max(2px, 0.09em);
     height: 1.1em;
     margin-left: 0.08em;
     background: var(--brand);
@@ -652,7 +652,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     .query {
       margin-left: 0.75rem;
     }
-    .query input,
+    .query,
     .row a,
     .no-match {
       font-size: 1.125rem;
