@@ -1,0 +1,2158 @@
+{
+  "tool": "comp-spec",
+  "version": 1,
+  "createdAt": "2026-09-15T01:19:27.808Z",
+  "comp": ".impeccable/mocks/comp-b-finder.png",
+  "warnings": [
+    "region input-bar: \"container\": true set in the regions file (the region-size refusal is overridden: one undivided element)",
+    "region ghost-icon: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region screenshot-frame: \"container\": true set in the regions file (the region-size refusal is overridden: one undivided element)"
+  ],
+  "uncoveredInkCells": [
+    "E1",
+    "F1",
+    "G1",
+    "H1",
+    "A2",
+    "B2",
+    "C2",
+    "E4",
+    "F4",
+    "G4",
+    "H4",
+    "I4",
+    "A6",
+    "B6",
+    "A7",
+    "B7",
+    "D7"
+  ],
+  "compSize": {
+    "width": 1280,
+    "height": 720
+  },
+  "aspect": 1.7778,
+  "orientation": "landscape",
+  "palette": [
+    {
+      "hex": "#080808",
+      "coverage": 0.9346
+    },
+    {
+      "hex": "#684198",
+      "coverage": 0.0255
+    },
+    {
+      "hex": "#f4f4f4",
+      "coverage": 0.0171
+    },
+    {
+      "hex": "#28122e",
+      "coverage": 0.0114
+    },
+    {
+      "hex": "#ba9dbe",
+      "coverage": 0.0114
+    }
+  ],
+  "bands": [
+    {
+      "y": 0.0139,
+      "strength": 0.6003
+    },
+    {
+      "y": 0.125,
+      "strength": 0.5344
+    },
+    {
+      "y": 0.1528,
+      "strength": 0.4421
+    },
+    {
+      "y": 0.1806,
+      "strength": 0.4024
+    },
+    {
+      "y": 0.2083,
+      "strength": 0.4035
+    },
+    {
+      "y": 0.25,
+      "strength": 0.2865
+    },
+    {
+      "y": 0.3056,
+      "strength": 0.2915
+    },
+    {
+      "y": 0.3333,
+      "strength": 0.4013
+    },
+    {
+      "y": 0.375,
+      "strength": 0.5164
+    },
+    {
+      "y": 0.4167,
+      "strength": 0.3057
+    },
+    {
+      "y": 0.4861,
+      "strength": 0.371
+    },
+    {
+      "y": 0.5139,
+      "strength": 0.293
+    },
+    {
+      "y": 0.9167,
+      "strength": 0.5309
+    },
+    {
+      "y": 0.9444,
+      "strength": 0.3738
+    },
+    {
+      "y": 0.9722,
+      "strength": 0.3168
+    }
+  ],
+  "regions": [
+    {
+      "id": "input-bar",
+      "kind": "chrome",
+      "note": "full-width input bar outlined with a 1px lilac border and rounded corners; holds the ghost icon, typed text, caret and the esc hint",
+      "grid": null,
+      "container": true,
+      "snap": false,
+      "box": {
+        "x": 0.0094,
+        "y": 0.0167,
+        "w": 0.9805,
+        "h": 0.1028
+      },
+      "px": {
+        "x": 12,
+        "y": 12,
+        "w": 1255,
+        "h": 74
+      },
+      "aspect": 16.9595,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.8927
+        },
+        {
+          "hex": "#ba99bb",
+          "coverage": 0.0432
+        },
+        {
+          "hex": "#1c0828",
+          "coverage": 0.0369
+        },
+        {
+          "hex": "#f4f4f4",
+          "coverage": 0.0209
+        },
+        {
+          "hex": "#626262",
+          "coverage": 0.0064
+        }
+      ],
+      "detail": {
+        "energy": 25.7337
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "ghost-icon",
+      "kind": "chrome",
+      "note": "the product's own logo glyph at icon size (about 48px), rendered from the brand SVG that ships with the app repo; two paths, white on the dark ground",
+      "grid": null,
+      "codeDrawn": true,
+      "snap": false,
+      "box": {
+        "x": 0.0297,
+        "y": 0.0292,
+        "w": 0.0289,
+        "h": 0.0819
+      },
+      "px": {
+        "x": 38,
+        "y": 21,
+        "w": 37,
+        "h": 59
+      },
+      "aspect": 0.6271,
+      "palette": [
+        {
+          "hex": "#090909",
+          "coverage": 0.4962
+        },
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.4423
+        },
+        {
+          "hex": "#cccccc",
+          "coverage": 0.0308
+        },
+        {
+          "hex": "#6b6b6b",
+          "coverage": 0.0231
+        },
+        {
+          "hex": "#989898",
+          "coverage": 0.0077
+        }
+      ],
+      "detail": {
+        "energy": 10.3123
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "input-text",
+      "kind": "text",
+      "note": "typed query 'goop' in white monospace with a text caret after it",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0867,
+        "y": 0.0403,
+        "w": 0.0672,
+        "h": 0.0556
+      },
+      "px": {
+        "x": 111,
+        "y": 29,
+        "w": 86,
+        "h": 40
+      },
+      "aspect": 2.15,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.7286
+        },
+        {
+          "hex": "#f1f1f1",
+          "coverage": 0.1558
+        },
+        {
+          "hex": "#696969",
+          "coverage": 0.0553
+        },
+        {
+          "hex": "#989899",
+          "coverage": 0.0377
+        },
+        {
+          "hex": "#c4c4c4",
+          "coverage": 0.0226
+        }
+      ],
+      "detail": {
+        "energy": 26.3862
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 5,
+          "capHeightPx": 16.3,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.9049,
+          "advTall": 0.9049,
+          "advX": null,
+          "gap": 0.2147,
+          "xRatio": 0.7732,
+          "stemW": 0.2349,
+          "contrast": 1.0999,
+          "serif": null,
+          "densTall": 0.5681,
+          "densX": null,
+          "weight": 0.5681
+        },
+        "widthClass": "wide",
+        "weightClass": "bold"
+      }
+    },
+    {
+      "id": "esc-hint",
+      "kind": "text",
+      "note": "small white monospace hint 'esc to clear' right-aligned in the input bar",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.85,
+        "y": 0.0542,
+        "w": 0.1164,
+        "h": 0.0278
+      },
+      "px": {
+        "x": 1088,
+        "y": 39,
+        "w": 149,
+        "h": 20
+      },
+      "aspect": 7.45,
+      "palette": [
+        {
+          "hex": "#090909",
+          "coverage": 0.7257
+        },
+        {
+          "hex": "#f4f4f4",
+          "coverage": 0.1343
+        },
+        {
+          "hex": "#353535",
+          "coverage": 0.0714
+        },
+        {
+          "hex": "#6a6a6a",
+          "coverage": 0.0457
+        },
+        {
+          "hex": "#acacac",
+          "coverage": 0.0229
+        }
+      ],
+      "detail": {
+        "energy": 66.5319
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 10,
+          "capHeightPx": 16.5,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6055,
+          "advTall": 0.5904,
+          "advX": 0.6206,
+          "gap": 0.1211,
+          "xRatio": 0.7162,
+          "stemW": 0.1665,
+          "contrast": 1.0916,
+          "serif": null,
+          "densTall": 0.414,
+          "densX": 0.5791,
+          "weight": 0.414
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "pane-divider",
+      "kind": "chrome",
+      "note": "1px lilac vertical rule separating the command list from the preview pane",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.4016,
+        "y": 0.1222,
+        "w": 0.0047,
+        "h": 0.7944
+      },
+      "px": {
+        "x": 514,
+        "y": 88,
+        "w": 6,
+        "h": 572
+      },
+      "aspect": 0.0105,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.5
+        },
+        {
+          "hex": "#97759b",
+          "coverage": 0.5
+        }
+      ],
+      "detail": {
+        "energy": 5.2313
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "active-row",
+      "kind": "control",
+      "note": "the highlighted first command row: solid purple fill with slightly rounded corners behind the label and keycap",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0148,
+        "y": 0.15,
+        "w": 0.3742,
+        "h": 0.0792
+      },
+      "px": {
+        "x": 19,
+        "y": 108,
+        "w": 479,
+        "h": 57
+      },
+      "aspect": 8.4035,
+      "palette": [
+        {
+          "hex": "#684198",
+          "coverage": 0.8939
+        },
+        {
+          "hex": "#f8f5f8",
+          "coverage": 0.0376
+        },
+        {
+          "hex": "#614281",
+          "coverage": 0.0288
+        },
+        {
+          "hex": "#e5c9f2",
+          "coverage": 0.0264
+        },
+        {
+          "hex": "#856aa1",
+          "coverage": 0.0132
+        }
+      ],
+      "detail": {
+        "energy": 27.0847
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "row-1-label",
+      "kind": "text",
+      "note": "white monospace 'Download for macOS' on the purple active row",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0281,
+        "y": 0.175,
+        "w": 0.1891,
+        "h": 0.0292
+      },
+      "px": {
+        "x": 36,
+        "y": 126,
+        "w": 242,
+        "h": 21
+      },
+      "aspect": 11.5238,
+      "palette": [
+        {
+          "hex": "#664294",
+          "coverage": 0.6474
+        },
+        {
+          "hex": "#f7f4f7",
+          "coverage": 0.2043
+        },
+        {
+          "hex": "#796194",
+          "coverage": 0.0651
+        },
+        {
+          "hex": "#a592bb",
+          "coverage": 0.0434
+        },
+        {
+          "hex": "#dfccf3",
+          "coverage": 0.0398
+        }
+      ],
+      "detail": {
+        "energy": 83.2505
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 16,
+          "capHeightPx": 17.5,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6288,
+          "advTall": 0.6431,
+          "advX": 0.6288,
+          "gap": 0.1143,
+          "xRatio": 0.7097,
+          "stemW": 0.1662,
+          "contrast": 1.0729,
+          "serif": 0.5494,
+          "densTall": 0.5216,
+          "densX": 0.579,
+          "weight": 0.5216
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "row-1-key",
+      "kind": "control",
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ 1'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.3305,
+        "y": 0.1597,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "px": {
+        "x": 423,
+        "y": 115,
+        "w": 64,
+        "h": 43
+      },
+      "aspect": 1.4884,
+      "palette": [
+        {
+          "hex": "#684294",
+          "coverage": 0.8111
+        },
+        {
+          "hex": "#b18ad6",
+          "coverage": 0.0619
+        },
+        {
+          "hex": "#d7b5f6",
+          "coverage": 0.0495
+        },
+        {
+          "hex": "#f8f4f8",
+          "coverage": 0.0402
+        },
+        {
+          "hex": "#9377ad",
+          "coverage": 0.0372
+        }
+      ],
+      "detail": {
+        "energy": 17.007
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "row-2-label",
+      "kind": "text",
+      "note": "white monospace 'Download for Windows'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0281,
+        "y": 0.2597,
+        "w": 0.2086,
+        "h": 0.0292
+      },
+      "px": {
+        "x": 36,
+        "y": 187,
+        "w": 267,
+        "h": 21
+      },
+      "aspect": 12.7143,
+      "palette": [
+        {
+          "hex": "#0a0a0a",
+          "coverage": 0.6726
+        },
+        {
+          "hex": "#f3f4f3",
+          "coverage": 0.2006
+        },
+        {
+          "hex": "#8f8f8f",
+          "coverage": 0.053
+        },
+        {
+          "hex": "#4d4d4d",
+          "coverage": 0.0514
+        },
+        {
+          "hex": "#c2c3c3",
+          "coverage": 0.0225
+        }
+      ],
+      "detail": {
+        "energy": 118.111
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 18,
+          "capHeightPx": 17.1,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6422,
+          "advTall": 0.613,
+          "advX": 0.6422,
+          "gap": 0.146,
+          "xRatio": 0.7247,
+          "stemW": 0.1698,
+          "contrast": 1.0713,
+          "serif": 1,
+          "densTall": 0.5314,
+          "densX": 0.59,
+          "weight": 0.5314
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "row-2-key",
+      "kind": "control",
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ 2'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.3305,
+        "y": 0.2458,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "px": {
+        "x": 423,
+        "y": 177,
+        "w": 64,
+        "h": 43
+      },
+      "aspect": 1.4884,
+      "palette": [
+        {
+          "hex": "#080809",
+          "coverage": 0.7508
+        },
+        {
+          "hex": "#a391ab",
+          "coverage": 0.0946
+        },
+        {
+          "hex": "#3e2a44",
+          "coverage": 0.0915
+        },
+        {
+          "hex": "#f5f5f5",
+          "coverage": 0.0347
+        },
+        {
+          "hex": "#6a6a6a",
+          "coverage": 0.0284
+        }
+      ],
+      "detail": {
+        "energy": 24.8629
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "row-3-label",
+      "kind": "text",
+      "note": "white monospace 'Download for Linux'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0281,
+        "y": 0.3472,
+        "w": 0.1852,
+        "h": 0.0292
+      },
+      "px": {
+        "x": 36,
+        "y": 250,
+        "w": 237,
+        "h": 21
+      },
+      "aspect": 11.2857,
+      "palette": [
+        {
+          "hex": "#090909",
+          "coverage": 0.7193
+        },
+        {
+          "hex": "#f4f4f4",
+          "coverage": 0.1835
+        },
+        {
+          "hex": "#bbbbbb",
+          "coverage": 0.0459
+        },
+        {
+          "hex": "#464646",
+          "coverage": 0.0275
+        },
+        {
+          "hex": "#8e8e8e",
+          "coverage": 0.0239
+        }
+      ],
+      "detail": {
+        "energy": 102.3474
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 16,
+          "capHeightPx": 17.6,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.5977,
+          "advTall": 0.5835,
+          "advX": 0.612,
+          "gap": 0.1423,
+          "xRatio": 0.7264,
+          "stemW": 0.1651,
+          "contrast": 1.0721,
+          "serif": null,
+          "densTall": 0.4195,
+          "densX": 0.5765,
+          "weight": 0.4195
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "row-3-key",
+      "kind": "control",
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ 3'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.3305,
+        "y": 0.3333,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "px": {
+        "x": 423,
+        "y": 240,
+        "w": 64,
+        "h": 43
+      },
+      "aspect": 1.4884,
+      "palette": [
+        {
+          "hex": "#09080b",
+          "coverage": 0.8006
+        },
+        {
+          "hex": "#302035",
+          "coverage": 0.0918
+        },
+        {
+          "hex": "#a38da6",
+          "coverage": 0.0411
+        },
+        {
+          "hex": "#f1eef1",
+          "coverage": 0.0411
+        },
+        {
+          "hex": "#b4b2b4",
+          "coverage": 0.0253
+        }
+      ],
+      "detail": {
+        "energy": 26.6767
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "row-4-label",
+      "kind": "text",
+      "note": "white monospace 'Keyboard shortcuts'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0281,
+        "y": 0.4347,
+        "w": 0.1867,
+        "h": 0.0333
+      },
+      "px": {
+        "x": 36,
+        "y": 313,
+        "w": 239,
+        "h": 24
+      },
+      "aspect": 9.9583,
+      "palette": [
+        {
+          "hex": "#0a0a0a",
+          "coverage": 0.7129
+        },
+        {
+          "hex": "#f2f2f2",
+          "coverage": 0.1675
+        },
+        {
+          "hex": "#434344",
+          "coverage": 0.051
+        },
+        {
+          "hex": "#6f6f70",
+          "coverage": 0.0351
+        },
+        {
+          "hex": "#949495",
+          "coverage": 0.0335
+        }
+      ],
+      "detail": {
+        "energy": 96.2086
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 17,
+          "capHeightPx": 17.1,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6141,
+          "advTall": 0.6287,
+          "advX": 0.6141,
+          "gap": 0.1462,
+          "xRatio": 0.7272,
+          "stemW": 0.1716,
+          "contrast": 1.1027,
+          "serif": 1.5467,
+          "densTall": 0.5105,
+          "densX": 0.5999,
+          "weight": 0.5105
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "row-4-key",
+      "kind": "control",
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '?'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.3305,
+        "y": 0.4194,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "px": {
+        "x": 423,
+        "y": 302,
+        "w": 64,
+        "h": 43
+      },
+      "aspect": 1.4884,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.805
+        },
+        {
+          "hex": "#b295b6",
+          "coverage": 0.0836
+        },
+        {
+          "hex": "#79687d",
+          "coverage": 0.0588
+        },
+        {
+          "hex": "#402c48",
+          "coverage": 0.0372
+        },
+        {
+          "hex": "#aba5ab",
+          "coverage": 0.0155
+        }
+      ],
+      "detail": {
+        "energy": 16.9412
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "row-5-label",
+      "kind": "text",
+      "note": "white monospace 'Agents: let your bots DM you'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0273,
+        "y": 0.5208,
+        "w": 0.2766,
+        "h": 0.0333
+      },
+      "px": {
+        "x": 35,
+        "y": 375,
+        "w": 354,
+        "h": 24
+      },
+      "aspect": 14.75,
+      "palette": [
+        {
+          "hex": "#0a0a0a",
+          "coverage": 0.7524
+        },
+        {
+          "hex": "#f3f3f3",
+          "coverage": 0.1477
+        },
+        {
+          "hex": "#b2b2b2",
+          "coverage": 0.0457
+        },
+        {
+          "hex": "#646464",
+          "coverage": 0.0287
+        },
+        {
+          "hex": "#3f3f3f",
+          "coverage": 0.0255
+        }
+      ],
+      "detail": {
+        "energy": 123.904
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 23,
+          "capHeightPx": 17,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.603,
+          "advTall": 0.6177,
+          "advX": 0.5883,
+          "gap": 0.1471,
+          "xRatio": 0.7261,
+          "stemW": 0.1668,
+          "contrast": 1.0496,
+          "serif": 0.6831,
+          "densTall": 0.4552,
+          "densX": 0.602,
+          "weight": 0.4552
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "row-5-key",
+      "kind": "control",
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ A'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.3305,
+        "y": 0.5055,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "px": {
+        "x": 423,
+        "y": 364,
+        "w": 64,
+        "h": 43
+      },
+      "aspect": 1.4884,
+      "palette": [
+        {
+          "hex": "#090809",
+          "coverage": 0.7677
+        },
+        {
+          "hex": "#b296b7",
+          "coverage": 0.0935
+        },
+        {
+          "hex": "#564656",
+          "coverage": 0.0645
+        },
+        {
+          "hex": "#f6f4f6",
+          "coverage": 0.0419
+        },
+        {
+          "hex": "#3d2a45",
+          "coverage": 0.0323
+        }
+      ],
+      "detail": {
+        "energy": 24.637
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "row-6-label",
+      "kind": "text",
+      "note": "white monospace 'Usage guide'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0281,
+        "y": 0.6056,
+        "w": 0.1109,
+        "h": 0.0347
+      },
+      "px": {
+        "x": 36,
+        "y": 436,
+        "w": 142,
+        "h": 25
+      },
+      "aspect": 5.68,
+      "palette": [
+        {
+          "hex": "#090909",
+          "coverage": 0.7425
+        },
+        {
+          "hex": "#f3f3f3",
+          "coverage": 0.1717
+        },
+        {
+          "hex": "#868686",
+          "coverage": 0.0394
+        },
+        {
+          "hex": "#535353",
+          "coverage": 0.0278
+        },
+        {
+          "hex": "#c0c0be",
+          "coverage": 0.0186
+        }
+      ],
+      "detail": {
+        "energy": 62.418
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 10,
+          "capHeightPx": 17.4,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6024,
+          "advTall": 0.5737,
+          "advX": 0.6024,
+          "gap": 0.1578,
+          "xRatio": 0.704,
+          "stemW": 0.1638,
+          "contrast": 1.0736,
+          "serif": null,
+          "densTall": 0.5388,
+          "densX": 0.623,
+          "weight": 0.5388
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "row-6-key",
+      "kind": "control",
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ /'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.3305,
+        "y": 0.5916,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "px": {
+        "x": 423,
+        "y": 426,
+        "w": 64,
+        "h": 43
+      },
+      "aspect": 1.4884,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.7722
+        },
+        {
+          "hex": "#9d85a1",
+          "coverage": 0.0949
+        },
+        {
+          "hex": "#d5b6da",
+          "coverage": 0.0601
+        },
+        {
+          "hex": "#3f2f44",
+          "coverage": 0.038
+        },
+        {
+          "hex": "#f8f7f8",
+          "coverage": 0.0348
+        }
+      ],
+      "detail": {
+        "energy": 22.1867
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "row-7-label",
+      "kind": "text",
+      "note": "white monospace 'Source on GitHub'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0281,
+        "y": 0.6986,
+        "w": 0.1602,
+        "h": 0.0292
+      },
+      "px": {
+        "x": 36,
+        "y": 503,
+        "w": 205,
+        "h": 21
+      },
+      "aspect": 9.7619,
+      "palette": [
+        {
+          "hex": "#090909",
+          "coverage": 0.6915
+        },
+        {
+          "hex": "#f3f3f4",
+          "coverage": 0.2029
+        },
+        {
+          "hex": "#525252",
+          "coverage": 0.0476
+        },
+        {
+          "hex": "#b1b1b1",
+          "coverage": 0.0331
+        },
+        {
+          "hex": "#858585",
+          "coverage": 0.0248
+        }
+      ],
+      "detail": {
+        "energy": 96.9065
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 14,
+          "capHeightPx": 17.1,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.5856,
+          "advTall": 0.6003,
+          "advX": 0.5856,
+          "gap": 0.1464,
+          "xRatio": 0.7252,
+          "stemW": 0.1654,
+          "contrast": 1.0461,
+          "serif": 0.4407,
+          "densTall": 0.5348,
+          "densX": 0.583,
+          "weight": 0.5348
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "row-7-key",
+      "kind": "control",
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ G'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.3305,
+        "y": 0.6791,
+        "w": 0.05,
+        "h": 0.0625
+      },
+      "px": {
+        "x": 423,
+        "y": 489,
+        "w": 64,
+        "h": 45
+      },
+      "aspect": 1.4222,
+      "palette": [
+        {
+          "hex": "#090809",
+          "coverage": 0.7597
+        },
+        {
+          "hex": "#b69fbc",
+          "coverage": 0.1006
+        },
+        {
+          "hex": "#736076",
+          "coverage": 0.0682
+        },
+        {
+          "hex": "#3d2d42",
+          "coverage": 0.0422
+        },
+        {
+          "hex": "#f4f4f4",
+          "coverage": 0.0292
+        }
+      ],
+      "detail": {
+        "energy": 26.2646
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "row-8-label",
+      "kind": "text",
+      "note": "white monospace 'What is NIP-17?'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0273,
+        "y": 0.7875,
+        "w": 0.1508,
+        "h": 0.0292
+      },
+      "px": {
+        "x": 35,
+        "y": 567,
+        "w": 193,
+        "h": 21
+      },
+      "aspect": 9.1905,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.698
+        },
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.2103
+        },
+        {
+          "hex": "#8d8e8e",
+          "coverage": 0.0425
+        },
+        {
+          "hex": "#c8c8c8",
+          "coverage": 0.0291
+        },
+        {
+          "hex": "#313131",
+          "coverage": 0.0201
+        }
+      ],
+      "detail": {
+        "energy": 82.4578
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 13,
+          "capHeightPx": 16.6,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6016,
+          "advTall": 0.6016,
+          "advX": 0.6167,
+          "gap": 0.1805,
+          "xRatio": 0.7428,
+          "stemW": 0.1753,
+          "contrast": 1.1036,
+          "serif": 0.4479,
+          "densTall": 0.5062,
+          "densX": 0.5956,
+          "weight": 0.5062
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "row-8-key",
+      "kind": "control",
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ N'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.3305,
+        "y": 0.7666,
+        "w": 0.05,
+        "h": 0.0625
+      },
+      "px": {
+        "x": 423,
+        "y": 552,
+        "w": 64,
+        "h": 45
+      },
+      "aspect": 1.4222,
+      "palette": [
+        {
+          "hex": "#080809",
+          "coverage": 0.7781
+        },
+        {
+          "hex": "#533a5a",
+          "coverage": 0.0695
+        },
+        {
+          "hex": "#d8b9d8",
+          "coverage": 0.0629
+        },
+        {
+          "hex": "#a288a5",
+          "coverage": 0.0464
+        },
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.043
+        }
+      ],
+      "detail": {
+        "energy": 23.678
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "preview-heading",
+      "kind": "text",
+      "note": "preview heading 'Download for macOS' in white, larger than the rows, the lead text of the preview pane",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.4313,
+        "y": 0.1681,
+        "w": 0.2805,
+        "h": 0.0403
+      },
+      "px": {
+        "x": 552,
+        "y": 121,
+        "w": 359,
+        "h": 29
+      },
+      "aspect": 12.3793,
+      "palette": [
+        {
+          "hex": "#090909",
+          "coverage": 0.628
+        },
+        {
+          "hex": "#f4f4f4",
+          "coverage": 0.2135
+        },
+        {
+          "hex": "#717171",
+          "coverage": 0.0651
+        },
+        {
+          "hex": "#363737",
+          "coverage": 0.0534
+        },
+        {
+          "hex": "#afafaf",
+          "coverage": 0.04
+        }
+      ],
+      "detail": {
+        "energy": 127.0066
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 16,
+          "capHeightPx": 25.5,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6275,
+          "advTall": 0.6275,
+          "advX": 0.6275,
+          "gap": 0.1176,
+          "xRatio": 0.7133,
+          "stemW": 0.1581,
+          "contrast": 1.059,
+          "serif": null,
+          "densTall": 0.502,
+          "densX": 0.5531,
+          "weight": 0.502
+        },
+        "widthClass": "normal",
+        "weightClass": "medium",
+        "chosen": {
+          "family": "Cascadia Code",
+          "weight": 400,
+          "fontSizePx": 34,
+          "source": "index",
+          "fp": {
+            "lines": 1,
+            "glyphs": 16,
+            "capHeightPx": 25.1,
+            "inkIsDark": true,
+            "allCaps": false,
+            "advance": 0.6385,
+            "advTall": 0.6584,
+            "advX": 0.6385,
+            "gap": 0.1197,
+            "xRatio": 0.7011,
+            "stemW": 0.1601,
+            "contrast": 1.0993,
+            "serif": 0.9902,
+            "densTall": 0.5119,
+            "densX": 0.5849,
+            "weight": 0.5119
+          },
+          "stamp": "ca3bb7ad16e1"
+        }
+      }
+    },
+    {
+      "id": "preview-tagline",
+      "kind": "text",
+      "note": "lilac monospace 'A simple NIP-17 client that just works.'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.4313,
+        "y": 0.2389,
+        "w": 0.3781,
+        "h": 0.0347
+      },
+      "px": {
+        "x": 552,
+        "y": 172,
+        "w": 484,
+        "h": 25
+      },
+      "aspect": 19.36,
+      "palette": [
+        {
+          "hex": "#080809",
+          "coverage": 0.798
+        },
+        {
+          "hex": "#e5c2ef",
+          "coverage": 0.0761
+        },
+        {
+          "hex": "#ac93b4",
+          "coverage": 0.0612
+        },
+        {
+          "hex": "#78627e",
+          "coverage": 0.0434
+        },
+        {
+          "hex": "#241231",
+          "coverage": 0.0213
+        }
+      ],
+      "detail": {
+        "energy": 88.0452
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 32,
+          "capHeightPx": 16.1,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6228,
+          "advTall": 0.6228,
+          "advX": 0.6228,
+          "gap": 0.1557,
+          "xRatio": 0.7343,
+          "stemW": 0.167,
+          "contrast": 1.0785,
+          "serif": 0.5688,
+          "densTall": 0.4431,
+          "densX": 0.6091,
+          "weight": 0.4431
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "file-rule-1",
+      "kind": "chrome",
+      "note": "1px lilac horizontal rule above the first file row",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.4266,
+        "y": 0.2986,
+        "w": 0.5453,
+        "h": 0.0028
+      },
+      "px": {
+        "x": 546,
+        "y": 215,
+        "w": 698,
+        "h": 2
+      },
+      "aspect": 349,
+      "palette": [
+        {
+          "hex": "#463648",
+          "coverage": 0.9957
+        },
+        {
+          "hex": "#281828",
+          "coverage": 0.0043
+        }
+      ],
+      "detail": {
+        "energy": 65.5346
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "file-row-1",
+      "kind": "text",
+      "note": "white monospace table row 'goop-macos-arm64.dmg   8.8 MB   Apple Silicon', a download link",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.4375,
+        "y": 0.3208,
+        "w": 0.4352,
+        "h": 0.0347
+      },
+      "px": {
+        "x": 560,
+        "y": 231,
+        "w": 557,
+        "h": 25
+      },
+      "aspect": 22.28,
+      "palette": [
+        {
+          "hex": "#090909",
+          "coverage": 0.7966
+        },
+        {
+          "hex": "#f2f2f2",
+          "coverage": 0.1194
+        },
+        {
+          "hex": "#9a9a9b",
+          "coverage": 0.0329
+        },
+        {
+          "hex": "#696969",
+          "coverage": 0.0268
+        },
+        {
+          "hex": "#c0c0c0",
+          "coverage": 0.0244
+        }
+      ],
+      "detail": {
+        "energy": 103.2182
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 35,
+          "capHeightPx": 16.4,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6241,
+          "advTall": 0.6089,
+          "advX": 0.6393,
+          "gap": 0.1218,
+          "xRatio": 0.7416,
+          "stemW": 0.1682,
+          "contrast": 1.057,
+          "serif": null,
+          "densTall": 0.4957,
+          "densX": 0.5959,
+          "weight": 0.4957
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "file-rule-2",
+      "kind": "chrome",
+      "note": "1px lilac horizontal rule between the file rows",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.4266,
+        "y": 0.3694,
+        "w": 0.5453,
+        "h": 0.0014
+      },
+      "px": {
+        "x": 546,
+        "y": 266,
+        "w": 698,
+        "h": 1
+      },
+      "aspect": 698,
+      "palette": [
+        {
+          "hex": "#957898",
+          "coverage": 0.9957
+        },
+        {
+          "hex": "#584858",
+          "coverage": 0.0043
+        }
+      ],
+      "detail": {
+        "energy": 0.976
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "file-row-2",
+      "kind": "text",
+      "note": "white monospace table row 'goop-macos-x64.dmg   9.7 MB   Intel', a download link",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.4375,
+        "y": 0.3903,
+        "w": 0.3594,
+        "h": 0.0333
+      },
+      "px": {
+        "x": 560,
+        "y": 281,
+        "w": 460,
+        "h": 24
+      },
+      "aspect": 19.1667,
+      "palette": [
+        {
+          "hex": "#090909",
+          "coverage": 0.8003
+        },
+        {
+          "hex": "#f3f3f3",
+          "coverage": 0.1031
+        },
+        {
+          "hex": "#8e8e8e",
+          "coverage": 0.052
+        },
+        {
+          "hex": "#606060",
+          "coverage": 0.0281
+        },
+        {
+          "hex": "#bebebe",
+          "coverage": 0.0165
+        }
+      ],
+      "detail": {
+        "energy": 104.4389
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 26,
+          "capHeightPx": 16.1,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.622,
+          "advTall": 0.622,
+          "advX": 0.6531,
+          "gap": 0.1555,
+          "xRatio": 0.7382,
+          "stemW": 0.175,
+          "contrast": 1.0697,
+          "serif": 0.3146,
+          "densTall": 0.5103,
+          "densX": 0.6116,
+          "weight": 0.5103
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "file-rule-3",
+      "kind": "chrome",
+      "note": "1px lilac horizontal rule below the second file row",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.4266,
+        "y": 0.4389,
+        "w": 0.5453,
+        "h": 0.0014
+      },
+      "px": {
+        "x": 546,
+        "y": 316,
+        "w": 698,
+        "h": 1
+      },
+      "aspect": 698,
+      "palette": [
+        {
+          "hex": "#ceb5d3",
+          "coverage": 0.9957
+        },
+        {
+          "hex": "#685878",
+          "coverage": 0.0043
+        }
+      ],
+      "detail": {
+        "energy": 1.1164
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "signing-note",
+      "kind": "text",
+      "note": "small lilac monospace 'v2.1.0 · ad-hoc signed, not notarized · SHA256SUMS'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.4289,
+        "y": 0.4611,
+        "w": 0.4297,
+        "h": 0.0306
+      },
+      "px": {
+        "x": 549,
+        "y": 332,
+        "w": 550,
+        "h": 22
+      },
+      "aspect": 25,
+      "palette": [
+        {
+          "hex": "#08080a",
+          "coverage": 0.7976
+        },
+        {
+          "hex": "#ebcbf0",
+          "coverage": 0.0874
+        },
+        {
+          "hex": "#392a3d",
+          "coverage": 0.0554
+        },
+        {
+          "hex": "#ba9dc0",
+          "coverage": 0.0298
+        },
+        {
+          "hex": "#725d79",
+          "coverage": 0.0298
+        }
+      ],
+      "detail": {
+        "energy": 89.4659
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 40,
+          "capHeightPx": 14.1,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6033,
+          "advTall": 0.6033,
+          "advX": 0.6033,
+          "gap": 0.142,
+          "xRatio": 0.7295,
+          "stemW": 0.1675,
+          "contrast": 1.0098,
+          "serif": 0.4007,
+          "densTall": 0.5212,
+          "densX": 0.5783,
+          "weight": 0.5212
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "screenshot-frame",
+      "kind": "chrome",
+      "note": "an outlined window frame, 1px lilac border with rounded corners, three small lilac window dots top-left, and the small lilac monospace placeholder label 'screenshot' centered; reserved for the real app screenshot the user will provide",
+      "grid": null,
+      "container": true,
+      "snap": false,
+      "box": {
+        "x": 0.4266,
+        "y": 0.5153,
+        "w": 0.5453,
+        "h": 0.3597
+      },
+      "px": {
+        "x": 546,
+        "y": 371,
+        "w": 698,
+        "h": 259
+      },
+      "aspect": 2.695,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.9708
+        },
+        {
+          "hex": "#b498b6",
+          "coverage": 0.0277
+        },
+        {
+          "hex": "#e8bff8",
+          "coverage": 0.0015
+        }
+      ],
+      "detail": {
+        "energy": 5.9898
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "status-rule",
+      "kind": "chrome",
+      "note": "1px lilac horizontal rule above the status bar",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0,
+        "y": 0.9181,
+        "w": 0.9992,
+        "h": 0.0014
+      },
+      "px": {
+        "x": 0,
+        "y": 661,
+        "w": 1279,
+        "h": 1
+      },
+      "aspect": 1279,
+      "palette": [
+        {
+          "hex": "#d0b8d8",
+          "coverage": 0.9977
+        },
+        {
+          "hex": "#e8b8f8",
+          "coverage": 0.0023
+        }
+      ],
+      "detail": {
+        "energy": 1.3137
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "status-left",
+      "kind": "text",
+      "note": "small lilac monospace 'goop v2.1.0'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.0187,
+        "y": 0.9431,
+        "w": 0.1008,
+        "h": 0.0306
+      },
+      "px": {
+        "x": 24,
+        "y": 679,
+        "w": 129,
+        "h": 22
+      },
+      "aspect": 5.8636,
+      "palette": [
+        {
+          "hex": "#080809",
+          "coverage": 0.7761
+        },
+        {
+          "hex": "#e9c6f3",
+          "coverage": 0.1224
+        },
+        {
+          "hex": "#a985ad",
+          "coverage": 0.0358
+        },
+        {
+          "hex": "#2f1b37",
+          "coverage": 0.0328
+        },
+        {
+          "hex": "#64516b",
+          "coverage": 0.0328
+        }
+      ],
+      "detail": {
+        "energy": 41.0116
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 8,
+          "capHeightPx": 15,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6008,
+          "advTall": 0.6008,
+          "advX": 0.6008,
+          "gap": 0.1669,
+          "xRatio": 0.7236,
+          "stemW": 0.1669,
+          "contrast": 0.9905,
+          "serif": null,
+          "densTall": 0.496,
+          "densX": 0.5896,
+          "weight": 0.496
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "status-center",
+      "kind": "text",
+      "note": "small lilac monospace 'NIP-17 · GPL-3.0 · macOS Windows Linux'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.3125,
+        "y": 0.9417,
+        "w": 0.3656,
+        "h": 0.0264
+      },
+      "px": {
+        "x": 400,
+        "y": 678,
+        "w": 468,
+        "h": 19
+      },
+      "aspect": 24.6316,
+      "palette": [
+        {
+          "hex": "#09080a",
+          "coverage": 0.7905
+        },
+        {
+          "hex": "#e1bfea",
+          "coverage": 0.0948
+        },
+        {
+          "hex": "#a78db0",
+          "coverage": 0.0408
+        },
+        {
+          "hex": "#584260",
+          "coverage": 0.0408
+        },
+        {
+          "hex": "#2c1a32",
+          "coverage": 0.0332
+        }
+      ],
+      "detail": {
+        "energy": 94.814
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 31,
+          "capHeightPx": 15,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.5986,
+          "advTall": 0.6318,
+          "advX": 0.5986,
+          "gap": 0.1995,
+          "xRatio": 0.7207,
+          "stemW": 0.1689,
+          "contrast": 1.0445,
+          "serif": 0.3028,
+          "densTall": 0.5058,
+          "densX": 0.5865,
+          "weight": 0.5058
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "status-right",
+      "kind": "text",
+      "note": "small lilac monospace '? for shortcuts'",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.8344,
+        "y": 0.9417,
+        "w": 0.1359,
+        "h": 0.0264
+      },
+      "px": {
+        "x": 1068,
+        "y": 678,
+        "w": 174,
+        "h": 19
+      },
+      "aspect": 9.1579,
+      "palette": [
+        {
+          "hex": "#09080a",
+          "coverage": 0.8016
+        },
+        {
+          "hex": "#e6c5ef",
+          "coverage": 0.0635
+        },
+        {
+          "hex": "#200f2c",
+          "coverage": 0.0556
+        },
+        {
+          "hex": "#a88aae",
+          "coverage": 0.0476
+        },
+        {
+          "hex": "#5b4763",
+          "coverage": 0.0317
+        }
+      ],
+      "detail": {
+        "energy": 62.2684
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 13,
+          "capHeightPx": 15.1,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6303,
+          "advTall": 0.6303,
+          "advX": 0.6137,
+          "gap": 0.1493,
+          "xRatio": 0.719,
+          "stemW": 0.1634,
+          "contrast": 1.036,
+          "serif": 0.4693,
+          "densTall": 0.4031,
+          "densX": 0.5605,
+          "weight": 0.4031
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    }
+  ]
+}

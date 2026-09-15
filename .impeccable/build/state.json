@@ -6,7 +6,7 @@
   "direction": "2e37f157",
   "breakpoint": "1280x720",
   "artifact": null,
-  "phase": "spec",
+  "phase": "hero",
   "phases": {
     "comps": {
       "status": "closed",
@@ -24,26 +24,36 @@
       "forced": null
     },
     "spec": {
-      "status": "open",
+      "status": "closed",
       "openedAt": "2026-09-15T01:14:16.214Z",
-      "closedAt": null,
-      "attempts": 0,
+      "closedAt": "2026-09-15T01:20:24.519Z",
+      "attempts": 1,
       "notes": [],
-      "gate": null,
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "35 regions, 0 plates, 18 text regions measured",
+        "at": "2026-09-15T01:20:24.518Z"
+      },
       "forced": null
     },
     "plates": {
-      "status": "pending",
-      "openedAt": null,
-      "closedAt": null,
-      "attempts": 0,
+      "status": "closed",
+      "openedAt": "2026-09-15T01:20:24.519Z",
+      "closedAt": "2026-09-15T01:20:30.662Z",
+      "attempts": 1,
       "notes": [],
-      "gate": null,
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no plates owed",
+        "at": "2026-09-15T01:20:30.662Z"
+      },
       "forced": null
     },
     "hero": {
-      "status": "pending",
-      "openedAt": null,
+      "status": "open",
+      "openedAt": "2026-09-15T01:20:30.662Z",
       "closedAt": null,
       "attempts": 0,
       "notes": [],
@@ -87,5 +97,6 @@
       "forced": null
     }
   },
-  "finish": null
+  "finish": null,
+  "plates": {}
 }

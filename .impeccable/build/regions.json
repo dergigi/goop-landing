@@ -1,0 +1,429 @@
+{
+  "regions": [
+    {
+      "id": "input-bar",
+      "kind": "chrome",
+      "box": {
+        "x": 0.0094,
+        "y": 0.0167,
+        "w": 0.9805,
+        "h": 0.1028
+      },
+      "note": "full-width input bar outlined with a 1px lilac border and rounded corners; holds the ghost icon, typed text, caret and the esc hint",
+      "snap": false,
+      "container": true
+    },
+    {
+      "id": "ghost-icon",
+      "kind": "chrome",
+      "box": {
+        "x": 0.0297,
+        "y": 0.0292,
+        "w": 0.0289,
+        "h": 0.0819
+      },
+      "note": "the product's own logo glyph at icon size (about 48px), rendered from the brand SVG that ships with the app repo; two paths, white on the dark ground",
+      "codeDrawn": true,
+      "snap": false
+    },
+    {
+      "id": "input-text",
+      "kind": "text",
+      "box": {
+        "x": 0.0867,
+        "y": 0.0403,
+        "w": 0.0672,
+        "h": 0.0556
+      },
+      "note": "typed query 'goop' in white monospace with a text caret after it",
+      "snap": false
+    },
+    {
+      "id": "esc-hint",
+      "kind": "text",
+      "box": {
+        "x": 0.85,
+        "y": 0.0542,
+        "w": 0.1164,
+        "h": 0.0278
+      },
+      "note": "small white monospace hint 'esc to clear' right-aligned in the input bar",
+      "snap": false
+    },
+    {
+      "id": "pane-divider",
+      "kind": "chrome",
+      "box": {
+        "x": 0.4016,
+        "y": 0.1222,
+        "w": 0.0047,
+        "h": 0.7944
+      },
+      "note": "1px lilac vertical rule separating the command list from the preview pane",
+      "snap": false
+    },
+    {
+      "id": "active-row",
+      "kind": "control",
+      "box": {
+        "x": 0.0148,
+        "y": 0.15,
+        "w": 0.3742,
+        "h": 0.0792
+      },
+      "note": "the highlighted first command row: solid purple fill with slightly rounded corners behind the label and keycap",
+      "snap": false
+    },
+    {
+      "id": "row-1-label",
+      "kind": "text",
+      "box": {
+        "x": 0.0281,
+        "y": 0.175,
+        "w": 0.1891,
+        "h": 0.0292
+      },
+      "note": "white monospace 'Download for macOS' on the purple active row",
+      "snap": false
+    },
+    {
+      "id": "row-1-key",
+      "kind": "control",
+      "box": {
+        "x": 0.3305,
+        "y": 0.1597,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ 1'",
+      "snap": false
+    },
+    {
+      "id": "row-2-label",
+      "kind": "text",
+      "box": {
+        "x": 0.0281,
+        "y": 0.2597,
+        "w": 0.2086,
+        "h": 0.0292
+      },
+      "note": "white monospace 'Download for Windows'",
+      "snap": false
+    },
+    {
+      "id": "row-2-key",
+      "kind": "control",
+      "box": {
+        "x": 0.3305,
+        "y": 0.2458,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ 2'",
+      "snap": false
+    },
+    {
+      "id": "row-3-label",
+      "kind": "text",
+      "box": {
+        "x": 0.0281,
+        "y": 0.3472,
+        "w": 0.1852,
+        "h": 0.0292
+      },
+      "note": "white monospace 'Download for Linux'",
+      "snap": false
+    },
+    {
+      "id": "row-3-key",
+      "kind": "control",
+      "box": {
+        "x": 0.3305,
+        "y": 0.3333,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ 3'",
+      "snap": false
+    },
+    {
+      "id": "row-4-label",
+      "kind": "text",
+      "box": {
+        "x": 0.0281,
+        "y": 0.4347,
+        "w": 0.1867,
+        "h": 0.0333
+      },
+      "note": "white monospace 'Keyboard shortcuts'",
+      "snap": false
+    },
+    {
+      "id": "row-4-key",
+      "kind": "control",
+      "box": {
+        "x": 0.3305,
+        "y": 0.4194,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '?'",
+      "snap": false
+    },
+    {
+      "id": "row-5-label",
+      "kind": "text",
+      "box": {
+        "x": 0.0273,
+        "y": 0.5208,
+        "w": 0.2766,
+        "h": 0.0333
+      },
+      "note": "white monospace 'Agents: let your bots DM you'",
+      "snap": false
+    },
+    {
+      "id": "row-5-key",
+      "kind": "control",
+      "box": {
+        "x": 0.3305,
+        "y": 0.5055,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ A'",
+      "snap": false
+    },
+    {
+      "id": "row-6-label",
+      "kind": "text",
+      "box": {
+        "x": 0.0281,
+        "y": 0.6056,
+        "w": 0.1109,
+        "h": 0.0347
+      },
+      "note": "white monospace 'Usage guide'",
+      "snap": false
+    },
+    {
+      "id": "row-6-key",
+      "kind": "control",
+      "box": {
+        "x": 0.3305,
+        "y": 0.5916,
+        "w": 0.05,
+        "h": 0.0598
+      },
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ /'",
+      "snap": false
+    },
+    {
+      "id": "row-7-label",
+      "kind": "text",
+      "box": {
+        "x": 0.0281,
+        "y": 0.6986,
+        "w": 0.1602,
+        "h": 0.0292
+      },
+      "note": "white monospace 'Source on GitHub'",
+      "snap": false
+    },
+    {
+      "id": "row-7-key",
+      "kind": "control",
+      "box": {
+        "x": 0.3305,
+        "y": 0.6791,
+        "w": 0.05,
+        "h": 0.0625
+      },
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ G'",
+      "snap": false
+    },
+    {
+      "id": "row-8-label",
+      "kind": "text",
+      "box": {
+        "x": 0.0273,
+        "y": 0.7875,
+        "w": 0.1508,
+        "h": 0.0292
+      },
+      "note": "white monospace 'What is NIP-17?'",
+      "snap": false
+    },
+    {
+      "id": "row-8-key",
+      "kind": "control",
+      "box": {
+        "x": 0.3305,
+        "y": 0.7666,
+        "w": 0.05,
+        "h": 0.0625
+      },
+      "note": "keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ N'",
+      "snap": false
+    },
+    {
+      "id": "preview-heading",
+      "kind": "text",
+      "box": {
+        "x": 0.4313,
+        "y": 0.1681,
+        "w": 0.2805,
+        "h": 0.0403
+      },
+      "note": "preview heading 'Download for macOS' in white, larger than the rows, the lead text of the preview pane",
+      "snap": false
+    },
+    {
+      "id": "preview-tagline",
+      "kind": "text",
+      "box": {
+        "x": 0.4313,
+        "y": 0.2389,
+        "w": 0.3781,
+        "h": 0.0347
+      },
+      "note": "lilac monospace 'A simple NIP-17 client that just works.'",
+      "snap": false
+    },
+    {
+      "id": "file-rule-1",
+      "kind": "chrome",
+      "box": {
+        "x": 0.4266,
+        "y": 0.2986,
+        "w": 0.5453,
+        "h": 0.0028
+      },
+      "note": "1px lilac horizontal rule above the first file row",
+      "snap": false
+    },
+    {
+      "id": "file-row-1",
+      "kind": "text",
+      "box": {
+        "x": 0.4375,
+        "y": 0.3208,
+        "w": 0.4352,
+        "h": 0.0347
+      },
+      "note": "white monospace table row 'goop-macos-arm64.dmg   8.8 MB   Apple Silicon', a download link",
+      "snap": false
+    },
+    {
+      "id": "file-rule-2",
+      "kind": "chrome",
+      "box": {
+        "x": 0.4266,
+        "y": 0.3694,
+        "w": 0.5453,
+        "h": 0.0014
+      },
+      "note": "1px lilac horizontal rule between the file rows",
+      "snap": false
+    },
+    {
+      "id": "file-row-2",
+      "kind": "text",
+      "box": {
+        "x": 0.4375,
+        "y": 0.3903,
+        "w": 0.3594,
+        "h": 0.0333
+      },
+      "note": "white monospace table row 'goop-macos-x64.dmg   9.7 MB   Intel', a download link",
+      "snap": false
+    },
+    {
+      "id": "file-rule-3",
+      "kind": "chrome",
+      "box": {
+        "x": 0.4266,
+        "y": 0.4389,
+        "w": 0.5453,
+        "h": 0.0014
+      },
+      "note": "1px lilac horizontal rule below the second file row",
+      "snap": false
+    },
+    {
+      "id": "signing-note",
+      "kind": "text",
+      "box": {
+        "x": 0.4289,
+        "y": 0.4611,
+        "w": 0.4297,
+        "h": 0.0306
+      },
+      "note": "small lilac monospace 'v2.1.0 · ad-hoc signed, not notarized · SHA256SUMS'",
+      "snap": false
+    },
+    {
+      "id": "screenshot-frame",
+      "kind": "chrome",
+      "box": {
+        "x": 0.4266,
+        "y": 0.5153,
+        "w": 0.5453,
+        "h": 0.3597
+      },
+      "note": "an outlined window frame, 1px lilac border with rounded corners, three small lilac window dots top-left, and the small lilac monospace placeholder label 'screenshot' centered; reserved for the real app screenshot the user will provide",
+      "snap": false,
+      "container": true
+    },
+    {
+      "id": "status-rule",
+      "kind": "chrome",
+      "box": {
+        "x": 0.0,
+        "y": 0.9181,
+        "w": 0.9992,
+        "h": 0.0014
+      },
+      "note": "1px lilac horizontal rule above the status bar",
+      "snap": false
+    },
+    {
+      "id": "status-left",
+      "kind": "text",
+      "box": {
+        "x": 0.0187,
+        "y": 0.9431,
+        "w": 0.1008,
+        "h": 0.0306
+      },
+      "note": "small lilac monospace 'goop v2.1.0'",
+      "snap": false
+    },
+    {
+      "id": "status-center",
+      "kind": "text",
+      "box": {
+        "x": 0.3125,
+        "y": 0.9417,
+        "w": 0.3656,
+        "h": 0.0264
+      },
+      "note": "small lilac monospace 'NIP-17 · GPL-3.0 · macOS Windows Linux'",
+      "snap": false
+    },
+    {
+      "id": "status-right",
+      "kind": "text",
+      "box": {
+        "x": 0.8344,
+        "y": 0.9417,
+        "w": 0.1359,
+        "h": 0.0264
+      },
+      "note": "small lilac monospace '? for shortcuts'",
+      "snap": false
+    }
+  ],
+  "allowUncovered": true,
+  "uncoveredNote": "Cells F1 G1 H1 A2 B2 C2 I4 A6 A7 checked: only JPEG ground noise (max luminance 17/255), no elements."
+}
