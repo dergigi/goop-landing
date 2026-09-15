@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Scaffold reference: comp-b-finder.png</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cascadia+Code:wght@400&display=swap">
+  <link rel="stylesheet" href="layout.css">
+  <style>html,body{margin:0}body{background:#080808}.region{box-sizing:border-box}.region.text p{white-space:pre-wrap}</style>
+</head>
+<body>
+<!-- Reference only. Every region sits at its measured box inside a comp-aspect frame. Take the boxes (layout.css), keep your own semantic structure. -->
+<main class="comp-frame" style="max-width:1280px">
+  <div class="r-input-bar region chrome" data-region="input-bar"><!-- full-width input bar outlined with a 1px lilac border and rounded corners; holds the ghost icon, typed text, caret and the esc hint --></div>
+  <div class="r-ghost-icon region chrome" data-region="ghost-icon"><!-- the product's own logo glyph at icon size (about 48px), rendered from the brand SVG that ships with the app repo; two paths, white on the dark ground --></div>
+  <div class="r-input-text region text" data-region="input-text"><!-- typed query 'goop' in white monospace with a text caret after it --><p style="font-size:var(--r-input-text-font);line-height:1.05;margin:0">input-text</p></div>
+  <div class="r-esc-hint region text" data-region="esc-hint"><!-- small white monospace hint 'esc to clear' right-aligned in the input bar --><p style="font-size:var(--r-esc-hint-font);line-height:1.05;margin:0">esc-hint</p></div>
+  <div class="r-pane-divider region chrome" data-region="pane-divider"><!-- 1px lilac vertical rule separating the command list from the preview pane --></div>
+  <div class="r-active-row region control" data-region="active-row"><!-- the highlighted first command row: solid purple fill with slightly rounded corners behind the label and keycap: rebuild the control's chrome from the crop (comp-spec.mjs --crop active-row); its ink box, border, fill, radius, and label size are the comp's --></div>
+  <div class="r-row-1-label region text" data-region="row-1-label"><!-- white monospace 'Download for macOS' on the purple active row --><p style="font-size:var(--r-row-1-label-font);line-height:1.05;margin:0">row-1-label</p></div>
+  <div class="r-row-1-key region control" data-region="row-1-key"><!-- keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ 1': rebuild the control's chrome from the crop (comp-spec.mjs --crop row-1-key); its ink box, border, fill, radius, and label size are the comp's --></div>
+  <div class="r-row-2-label region text" data-region="row-2-label"><!-- white monospace 'Download for Windows' --><p style="font-size:var(--r-row-2-label-font);line-height:1.05;margin:0">row-2-label</p></div>
+  <div class="r-row-2-key region control" data-region="row-2-key"><!-- keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ 2': rebuild the control's chrome from the crop (comp-spec.mjs --crop row-2-key); its ink box, border, fill, radius, and label size are the comp's --></div>
+  <div class="r-row-3-label region text" data-region="row-3-label"><!-- white monospace 'Download for Linux' --><p style="font-size:var(--r-row-3-label-font);line-height:1.05;margin:0">row-3-label</p></div>
+  <div class="r-row-3-key region control" data-region="row-3-key"><!-- keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ 3': rebuild the control's chrome from the crop (comp-spec.mjs --crop row-3-key); its ink box, border, fill, radius, and label size are the comp's --></div>
+  <div class="r-row-4-label region text" data-region="row-4-label"><!-- white monospace 'Keyboard shortcuts' --><p style="font-size:var(--r-row-4-label-font);line-height:1.05;margin:0">row-4-label</p></div>
+  <div class="r-row-4-key region control" data-region="row-4-key"><!-- keycap: small bordered box (1px lilac border, rounded) with white monospace '?': rebuild the control's chrome from the crop (comp-spec.mjs --crop row-4-key); its ink box, border, fill, radius, and label size are the comp's --></div>
+  <div class="r-row-5-label region text" data-region="row-5-label"><!-- white monospace 'Agents: let your bots DM you' --><p style="font-size:var(--r-row-5-label-font);line-height:1.05;margin:0">row-5-label</p></div>
+  <div class="r-row-5-key region control" data-region="row-5-key"><!-- keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ A': rebuild the control's chrome from the crop (comp-spec.mjs --crop row-5-key); its ink box, border, fill, radius, and label size are the comp's --></div>
+  <div class="r-row-6-label region text" data-region="row-6-label"><!-- white monospace 'Usage guide' --><p style="font-size:var(--r-row-6-label-font);line-height:1.05;margin:0">row-6-label</p></div>
+  <div class="r-row-6-key region control" data-region="row-6-key"><!-- keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ /': rebuild the control's chrome from the crop (comp-spec.mjs --crop row-6-key); its ink box, border, fill, radius, and label size are the comp's --></div>
+  <div class="r-row-7-label region text" data-region="row-7-label"><!-- white monospace 'Source on GitHub' --><p style="font-size:var(--r-row-7-label-font);line-height:1.05;margin:0">row-7-label</p></div>
+  <div class="r-row-7-key region control" data-region="row-7-key"><!-- keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ G': rebuild the control's chrome from the crop (comp-spec.mjs --crop row-7-key); its ink box, border, fill, radius, and label size are the comp's --></div>
+  <div class="r-row-8-label region text" data-region="row-8-label"><!-- white monospace 'What is NIP-17?' --><p style="font-size:var(--r-row-8-label-font);line-height:1.05;margin:0">row-8-label</p></div>
+  <div class="r-row-8-key region control" data-region="row-8-key"><!-- keycap: small bordered box (1px lilac border, rounded) with white monospace '⌘ N': rebuild the control's chrome from the crop (comp-spec.mjs --crop row-8-key); its ink box, border, fill, radius, and label size are the comp's --></div>
+  <div class="r-preview-heading region text" data-region="preview-heading"><!-- preview heading 'Download for macOS' in white, larger than the rows, the lead text of the preview pane --><p style="font-size:var(--r-preview-heading-font);font-family:var(--r-preview-heading-family),sans-serif;font-weight:var(--r-preview-heading-weight);line-height:1.05;margin:0">preview-heading</p></div>
+  <div class="r-preview-tagline region text" data-region="preview-tagline"><!-- lilac monospace 'A simple NIP-17 client that just works.' --><p style="font-size:var(--r-preview-tagline-font);line-height:1.05;margin:0">preview-tagline</p></div>
+  <div class="r-file-rule-1 region chrome" data-region="file-rule-1"><!-- 1px lilac horizontal rule above the first file row --></div>
+  <div class="r-file-row-1 region text" data-region="file-row-1"><!-- white monospace table row 'goop-macos-arm64.dmg   8.8 MB   Apple Silicon', a download link --><p style="font-size:var(--r-file-row-1-font);line-height:1.05;margin:0">file-row-1</p></div>
+  <div class="r-file-rule-2 region chrome" data-region="file-rule-2"><!-- 1px lilac horizontal rule between the file rows --></div>
+  <div class="r-file-row-2 region text" data-region="file-row-2"><!-- white monospace table row 'goop-macos-x64.dmg   9.7 MB   Intel', a download link --><p style="font-size:var(--r-file-row-2-font);line-height:1.05;margin:0">file-row-2</p></div>
+  <div class="r-file-rule-3 region chrome" data-region="file-rule-3"><!-- 1px lilac horizontal rule below the second file row --></div>
+  <div class="r-signing-note region text" data-region="signing-note"><!-- small lilac monospace 'v2.1.0 · ad-hoc signed, not notarized · SHA256SUMS' --><p style="font-size:var(--r-signing-note-font);line-height:1.05;margin:0">signing-note</p></div>
+  <div class="r-screenshot-frame region chrome" data-region="screenshot-frame"><!-- an outlined window frame, 1px lilac border with rounded corners, three small lilac window dots top-left, and the small lilac monospace placeholder label 'screenshot' centered; reserved for the real app screenshot the user will provide --></div>
+  <div class="r-status-rule region chrome" data-region="status-rule"><!-- 1px lilac horizontal rule above the status bar --></div>
+  <div class="r-status-left region text" data-region="status-left"><!-- small lilac monospace 'goop v2.1.0' --><p style="font-size:var(--r-status-left-font);line-height:1.05;margin:0">status-left</p></div>
+  <div class="r-status-center region text" data-region="status-center"><!-- small lilac monospace 'NIP-17 · GPL-3.0 · macOS Windows Linux' --><p style="font-size:var(--r-status-center-font);line-height:1.05;margin:0">status-center</p></div>
+  <div class="r-status-right region text" data-region="status-right"><!-- small lilac monospace '? for shortcuts' --><p style="font-size:var(--r-status-right-font);line-height:1.05;margin:0">status-right</p></div>
+</main>
+</body>
+</html>

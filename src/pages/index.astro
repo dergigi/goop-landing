@@ -1,17 +1,320 @@
 ---
+import '../styles/global.css';
+import { getRelease, filesFor, checksumsUrl } from '../lib/release';
 
+const release = await getRelease();
+const macos = filesFor(release, 'macos');
+const sums = checksumsUrl(release);
+
+const tagline = 'A simple NIP-17 client that just works.';
+
+const commands = [
+  { id: 'macos', label: 'Download for macOS', key: '1', cmd: true },
+  { id: 'windows', label: 'Download for Windows', key: '2', cmd: true },
+  { id: 'linux', label: 'Download for Linux', key: '3', cmd: true },
+  { id: 'shortcuts', label: 'Keyboard shortcuts', key: '?', cmd: false },
+  { id: 'agents', label: 'Agents: let your bots DM you', key: 'A', cmd: true },
+  { id: 'guide', label: 'Usage guide', key: '/', cmd: true },
+  { id: 'source', label: 'Source on GitHub', key: 'G', cmd: true },
+  { id: 'nip17', label: 'What is NIP-17?', key: 'N', cmd: true },
+];
 ---
 
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Goop – {tagline}</title>
+    <meta name="description" content={`Goop is a keyboard-first desktop client for NIP-17 private messages on Nostr. ${tagline} Free software for macOS, Windows, and Linux.`} />
+    <link rel="icon" href="/icon.png" type="image/png" />
+    <link rel="preload" href="/fonts/cascadia-code-latin.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <svg class="sr-only" aria-hidden="true" focusable="false">
+      <symbol id="i-cmd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 8h8v8H8z" />
+        <path d="M8 8V5a3 3 0 1 0-3 3h3M16 8V5a3 3 0 1 1 3 3h-3M8 16v3a3 3 0 1 1-3-3h3M16 16v3a3 3 0 1 0 3-3h-3" />
+      </symbol>
+    </svg>
+    <main class="palette" aria-label="Goop">
+      <header class="bar">
+        <svg class="ghost" viewBox="0 0 500 500" aria-hidden="true" focusable="false">
+          <g fill="currentColor" transform="translate(0 -28)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M120 210C120 110 190 50 255 52C335 54 400 115 392 205C388 245 372 270 370 300C368 330 380 355 378 390C376 425 335 428 330 392C327 365 340 345 332 320C324 300 300 300 292 320C285 340 290 385 278 415C270 445 220 445 212 415C204 385 216 355 208 335C200 305 170 300 165 325C160 350 172 372 168 395C164 425 125 425 122 393C119 360 135 340 130 300C126 265 120 245 120 210ZM183 185a24 24 0 1 0 48 0a24 24 0 1 0-48 0ZM269 185a24 24 0 1 0 48 0a24 24 0 1 0-48 0Z" />
+            <path d="M245 448C258 466 264 476 264 486A19 19 0 0 1 226 486C226 476 232 466 245 448Z" />
+          </g>
+        </svg>
+        <label class="query">
+          <span class="sr-only">Filter commands</span>
+          <input id="query" type="text" placeholder="goop" autocomplete="off" spellcheck="false" autofocus />
+        </label>
+        <span class="hint">esc to clear</span>
+      </header>
+
+      <nav class="commands" aria-label="Commands">
+        <ul role="listbox" aria-label="Commands">
+          {commands.map((c, i) => (
+            <li role="option" aria-selected={i === 0 ? 'true' : 'false'} class:list={['row', { active: i === 0 }]}>
+              <a href={`#${c.id}`} data-id={c.id}>
+                <span class="label">{c.label}</span>
+                <kbd>
+                  {c.cmd && <svg class="cmd" aria-label="Command" role="img"><use href="#i-cmd" /></svg>}
+                  {c.key}
+                </kbd>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <section class="preview" aria-live="polite">
+        <article id="macos" class="panel">
+          <h1>Download for macOS</h1>
+          <p class="tagline">{tagline}</p>
+          <ul class="files">
+            {macos.map((f) => (
+              <li>
+                <a href={f.url} download>
+                  <span class="name">{f.name}</span>
+                  <span class="size">{f.size}</span>
+                  <span class="arch">{f.arch}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p class="note">
+            v{release.version} · ad-hoc signed, not notarized · <a href={sums}>SHA256SUMS</a>
+          </p>
+          <figure class="shot" aria-label="Screenshot placeholder">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <figcaption>screenshot</figcaption>
+          </figure>
+        </article>
+      </section>
+
+      <footer class="status">
+        <span>goop v{release.version}</span>
+        <span>NIP-17 · GPL-3.0 · macOS Windows Linux</span>
+        <span>? for shortcuts</span>
+      </footer>
+    </main>
+  </body>
 </html>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .palette {
+    display: grid;
+    grid-template-columns: 40.3% 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      'bar bar'
+      'commands preview'
+      'status status';
+    height: 100dvh;
+    min-height: 720px;
+  }
+
+  /* Input bar */
+  .bar {
+    grid-area: bar;
+    display: flex;
+    align-items: center;
+    height: 74px;
+    margin: 12px 12px 0;
+    padding: 0 30px 0 15px;
+    border: var(--rule);
+    border-radius: var(--radius);
+  }
+  .ghost {
+    flex: none;
+    width: 56px;
+    height: 56px;
+    color: var(--text);
+  }
+  .query {
+    flex: 1;
+    display: flex;
+    margin-left: 22px;
+  }
+  .query input {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 23px;
+  }
+  .query input::placeholder {
+    color: var(--text);
+    opacity: 1;
+    font-weight: 700;
+  }
+  .query input:focus-visible {
+    outline: none;
+  }
+  .hint {
+    font-size: 23px;
+  }
+
+  /* Command list */
+  .commands {
+    grid-area: commands;
+    padding: 19px 18px 0 19px;
+    border-right: var(--rule);
+  }
+  .commands ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .row {
+    height: 62.5px;
+    padding: 2.5px 0 3px;
+  }
+  .row a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 13px 0 19px;
+    border-radius: 4px;
+    font-size: 23px;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .row .label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 12px;
+  }
+  .row.active a {
+    background: var(--purple);
+    color: #fff;
+  }
+  .row kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 61px;
+    height: 41px;
+    padding: 0 8px;
+    border: 2px solid color-mix(in oklab, var(--lilac) 82%, var(--brand));
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--lilac) 35%, transparent);
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .row.active kbd {
+    color: #f3dafe;
+    border-color: #f3dafe;
+    box-shadow: 0 0 0 1px color-mix(in oklab, #f3dafe 45%, transparent);
+  }
+  .row kbd .cmd {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+  }
+
+  /* Preview */
+  .preview {
+    grid-area: preview;
+    padding: 33px 36px 0 30px;
+    overflow: hidden;
+  }
+  .panel h1 {
+    margin: 0 0 0 8px;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .tagline {
+    margin: 19px 0 0 8px;
+    color: var(--lilac);
+    font-size: 23px;
+    line-height: 1;
+  }
+  .files {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    border-top: var(--rule);
+  }
+  .files li {
+    border-bottom: var(--rule);
+  }
+  .files a {
+    display: grid;
+    grid-template-columns: 20ch 6ch auto;
+    gap: 2.5ch;
+    align-items: center;
+    height: 50px;
+    padding: 0 16px;
+    font-size: 23px;
+  }
+  .files a:hover {
+    color: var(--lilac);
+  }
+  .note {
+    margin: 15px 0 0 5px;
+    color: var(--lilac);
+    font-size: 20px;
+    line-height: 1;
+  }
+  .note a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--lilac-dim);
+  }
+  .shot {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 259px;
+    margin: 18px 0 0;
+    border: var(--rule);
+    border-radius: 8px;
+    color: var(--lilac);
+    font-size: 20px;
+  }
+  .dots {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    display: flex;
+    gap: 8px;
+  }
+  .dots i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--lilac);
+  }
+
+  /* Status bar */
+  .status {
+    grid-area: status;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 58px;
+    padding: 0 40px 0 26px;
+    border-top: var(--rule);
+    color: var(--lilac);
+    font-size: 21px;
+  }
+  .status span:last-child {
+    text-align: right;
+  }
+</style>
