@@ -1,6 +1,6 @@
 # goop-landing
 
-Landing page for [Goop](https://github.com/dergigi/goop), NIP-17 for nerds (and their agents). Lives at [goop.dergigi.com](https://goop.dergigi.com).
+Landing page for [Goop](https://github.com/dergigi/goop), NIP-17 for nerds and their agents. Lives at [goop.dergigi.com](https://goop.dergigi.com).
 
 The page is a command palette: arrow keys, digits, `?` and `Esc` drive the list, typing filters it. Built with Astro, static output, no framework runtime.
 
