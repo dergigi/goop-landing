@@ -4,11 +4,20 @@ export type Screenshot = { src: string; width: number; height: number; caption: 
 
 const DIR = 'public/screenshots';
 
+// Gallery order and captions. Files not listed here come after, by filename.
 const CAPTIONS: Record<string, string> = {
-  goop: 'Welcome screen, macOS',
+  goop: 'Welcome screen',
+  'chat-agent': 'Chatting with an agent',
+  'chat-agent-light': 'Same chat, light theme',
+  'note-to-self-light': 'Note to self',
   macos: 'macOS',
   windows: 'Windows',
   linux: 'Linux',
+};
+const ORDER = Object.keys(CAPTIONS);
+const rank = (name: string) => {
+  const i = ORDER.indexOf(name);
+  return i === -1 ? ORDER.length : i;
 };
 
 // PNG header: width and height are big-endian uint32 at bytes 16 and 20.
@@ -27,6 +36,7 @@ export function allScreenshots(): Screenshot[] {
   if (!existsSync(DIR)) return [];
   return readdirSync(DIR)
     .filter((f) => f.endsWith('.png'))
-    .sort()
-    .map((f) => screenshot(f.slice(0, -4))!);
+    .map((f) => f.slice(0, -4))
+    .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b))
+    .map((name) => screenshot(name)!);
 }
