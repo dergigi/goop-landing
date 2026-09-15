@@ -18,7 +18,7 @@ const repo = 'https://github.com/dergigi/goop';
 const commands = [
   { id: 'screenshots', label: 'Screenshots', alias: 'pictures images look' },
   { id: 'features', label: 'Features', alias: 'what can it do' },
-  { id: 'macos', label: 'Download for macOS', alias: 'mac apple dmg' },
+  { id: 'macos', label: 'Download for macOS', alias: 'mac apple dmg brew homebrew cask' },
   { id: 'windows', label: 'Download for Windows', alias: 'win exe' },
   { id: 'linux', label: 'Download for Linux', alias: 'flatpak snap tarball' },
   { id: 'agents', label: 'Agents: let your bots DM you', alias: 'ai openclaw hermes nullclaw' },
@@ -151,6 +151,11 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
 
       <section class="preview">
         <DownloadPanel id="macos" name="macOS" {release} {tagline} {footnote} note="ad-hoc signed, not notarized" active={initial === 'macos'}>
+          <p class="more">Or with Homebrew, from the <a href="https://github.com/dergigi/homebrew-goop">dergigi/goop</a> tap:</p>
+          <p class="cmd">
+            <code id="mac-brew">brew install --cask dergigi/goop/goop</code>
+            <button type="button" class="copy" data-copy="mac-brew">copy</button>
+          </p>
           <p class="more">
             First launch: macOS will say it cannot verify the developer. Open System Settings › Privacy &amp; Security and click Open Anyway. Or, once <span class="name">Goop.app</span> is in Applications, clear the quarantine flag and skip the dialog:
           </p>
