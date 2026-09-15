@@ -55,18 +55,16 @@ const shortcuts: { keys: string[][]; does: string }[] = [
 
 // From README.md and CHANGELOG.md; nothing here that Goop does not ship.
 const features = [
-  { name: 'Keyboard first', desc: 'every action has a shortcut, ? lists them' },
-  { name: 'NIP-17 only', desc: 'gift-wrapped DMs and groups, no NIP-04' },
-  { name: 'External signer', desc: 'Goop never holds your secret key' },
-  { name: 'Encrypted attachments', desc: 'per-file keys, sent only inside the message' },
-  { name: 'Search', desc: 'conversations, message contents, profiles, find in chat' },
-  { name: 'Tabs', desc: 'open several chats, close and restore them' },
-  { name: 'Pin and archive', desc: 'syncs with Amethyst and Nospeak' },
-  { name: 'Note to self', desc: 'your own inbox for links and drafts' },
-  { name: 'Delivery ticks', desc: 'relay acknowledgements, never read receipts' },
-  { name: 'Agents', desc: 'let OpenClaw and friends DM you over NIP-17' },
-  { name: 'Native', desc: 'Rust on GPUI for macOS, Windows, and Linux' },
-  { name: 'Free software', desc: 'GPL-3.0, fork of Coop' },
+  { name: 'Keyboard first', desc: '? lists every shortcut' },
+  { name: 'NIP-17 only', desc: 'gift-wrapped DMs and groups' },
+  { name: 'External signer', desc: 'your key stays in your signer' },
+  { name: 'Encrypted attachments', desc: 'encrypted before upload' },
+  { name: 'Search', desc: 'chats, messages, profiles' },
+  { name: 'Tabs, pins, archive', desc: 'in sync with Amethyst and Nospeak' },
+  { name: 'Note to self', desc: 'an inbox for your own notes' },
+  { name: 'Agents', desc: 'OpenClaw can DM you' },
+  { name: 'Native', desc: 'Rust on GPUI, macOS Windows Linux' },
+  { name: 'Free software', desc: 'GPL-3.0' },
 ];
 
 const links = {
@@ -93,7 +91,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Goop – {tagline}.</title>
+    <title>Goop · {tagline}</title>
     <meta name="description" content={`Goop is a keyboard-first desktop client for NIP-17 private messages on Nostr. ${tagline}. Free software for macOS, Windows, and Linux.`} />
     <link rel="icon" href="/goop.svg" type="image/svg+xml" />
     <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
@@ -190,14 +188,14 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
 
         <article id="features" class="panel" hidden={initial !== 'features'}>
           <h1>Features</h1>
-          <p class="tagline">What Goop does, and what it leaves out.</p>
+          <p class="tagline">What Goop does.</p>
           <ul class="files links features">
             {features.map((f) => (
               <li><span class="row-static"><span class="name">{f.name}</span><span class="desc">{f.desc}</span></span></li>
             ))}
           </ul>
           <p class="more">
-            Not in Goop: NIP-04, plaintext fallbacks, read receipts, or a stored secret key. See the <a href={`${repo}/blob/master/CHANGELOG.md`}>changelog</a> for what changed in each release.
+            Goop skips NIP-04 and read receipts. The <a href={`${repo}/blob/master/CHANGELOG.md`}>changelog</a> has the details for each release.
           </p>
         </article>
 
@@ -244,14 +242,14 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
 
         <article id="guide" class="panel" hidden={initial !== 'guide'}>
           <h1>Usage guide</h1>
-          <p class="tagline">Setup, shortcuts, agents. All on one page.</p>
+          <p class="tagline">The manual, on one page.</p>
           <ul class="files links">
             <li><a href={guide}><span class="name">dergigi.com/goop</span><span class="desc">the usage guide</span></a></li>
             <li><a href={`${guide}#keyboard-shortcuts`}><span class="name">#keyboard-shortcuts</span><span class="desc">every key, on every platform</span></a></li>
             <li><a href={`${guide}#agent-guide`}><span class="name">#agent-guide</span><span class="desc">OpenClaw, Hermes, NullClaw</span></a></li>
           </ul>
           <p class="more">
-            Goop signs with an external signer and speaks NIP-17 only. No NIP-04, no plaintext fallback. If something is missing, <a href={`${repo}/issues`}>open an issue</a>.
+            If the guide leaves a question open, <a href={`${repo}/issues`}>open an issue</a>.
           </p>
         </article>
 
@@ -525,8 +523,13 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   .files.features {
     grid-template-columns: max-content 1fr;
   }
+  .files.features .row-static {
+    min-height: 2.5rem;
+    padding-block: 0.375rem;
+  }
   .files.features .desc {
     text-align: left;
+    font-size: 1.0625rem;
   }
   .files .desc {
     color: var(--lilac);
