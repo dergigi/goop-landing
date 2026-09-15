@@ -1,23 +1,67 @@
 ---
 import '../styles/global.css';
-import { getRelease, filesFor, checksumsUrl } from '../lib/release';
+import { getRelease } from '../lib/release';
+import Kbd from '../components/Kbd.astro';
+import DownloadPanel from '../components/DownloadPanel.astro';
 
 const release = await getRelease();
-const macos = filesFor(release, 'macos');
-const sums = checksumsUrl(release);
 
 const tagline = 'A simple NIP-17 client that just works.';
+const guide = 'https://dergigi.com/goop/';
+const repo = 'https://github.com/dergigi/goop';
 
 const commands = [
-  { id: 'macos', label: 'Download for macOS', key: '1', cmd: true },
-  { id: 'windows', label: 'Download for Windows', key: '2', cmd: true },
-  { id: 'linux', label: 'Download for Linux', key: '3', cmd: true },
-  { id: 'shortcuts', label: 'Keyboard shortcuts', key: '?', cmd: false },
-  { id: 'agents', label: 'Agents: let your bots DM you', key: 'A', cmd: true },
-  { id: 'guide', label: 'Usage guide', key: '/', cmd: true },
-  { id: 'source', label: 'Source on GitHub', key: 'G', cmd: true },
-  { id: 'nip17', label: 'What is NIP-17?', key: 'N', cmd: true },
+  { id: 'macos', label: 'Download for macOS' },
+  { id: 'windows', label: 'Download for Windows' },
+  { id: 'linux', label: 'Download for Linux' },
+  { id: 'shortcuts', label: 'Keyboard shortcuts' },
+  { id: 'agents', label: 'Agents: let your bots DM you' },
+  { id: 'guide', label: 'Usage guide' },
+  { id: 'source', label: 'Source on GitHub' },
+  { id: 'nip17', label: 'What is NIP-17?' },
 ];
+
+// From the README. Mod is Cmd on macOS, Ctrl elsewhere.
+const shortcuts: { keys: string[][]; does: string }[] = [
+  { keys: [['?']], does: 'Keyboard shortcuts, when you are not typing' },
+  { keys: [['Mod', 'K']], does: 'Search conversations and message contents' },
+  { keys: [['Mod', 'P']], does: 'Search profiles by name, address, or public key' },
+  { keys: [['Up'], ['Down'], ['Enter'], ['Esc']], does: 'Pick a result, open it, go back' },
+  { keys: [['Mod', 'F']], does: 'Find in the current chat' },
+  { keys: [['Mod', '1'], ['Mod', '2'], ['Mod', '3']], does: 'Inbox, Requests, message box' },
+  { keys: [['Mod', 'N'], ['Mod', 'T']], does: 'New chat' },
+  { keys: [['Mod', 'Shift', 'N']], does: 'New group' },
+  { keys: [['Mod', 'B']], does: 'Show or hide the sidebar' },
+  { keys: [['Mod', 'W'], ['Mod', 'Shift', 'T']], does: 'Close tab, restore a closed tab' },
+  { keys: [['Ctrl', 'Tab']], does: 'Next tab, on every platform' },
+  { keys: [['Mod', 'R']], does: 'Reload messaging and rescan history' },
+  { keys: [['Mod', 'Shift', 'C']], does: 'Contacts' },
+  { keys: [['Mod', 'Shift', 'P']], does: 'Your profile' },
+  { keys: [['Mod', 'Shift', 'M']], does: 'Messaging relays' },
+  { keys: [['Mod', 'Shift', 'G']], does: 'Gossip relays' },
+  { keys: [['Mod', 'Comma']], does: 'Settings' },
+  { keys: [['Enter'], ['Shift', 'Enter']], does: 'Send, or insert a newline' },
+];
+
+const links = {
+  source: [
+    { name: 'dergigi/goop', desc: 'source, issues, pull requests', url: repo },
+    { name: 'CHANGELOG.md', desc: 'what changed, release by release', url: `${repo}/blob/master/CHANGELOG.md` },
+    { name: 'Releases', desc: 'every build, with SHA256SUMS', url: `${repo}/releases` },
+    { name: 'reya/coop', desc: 'upstream, which Goop forks', url: 'https://git.reya.info/reya/coop' },
+  ],
+  nip17: [
+    { name: 'NIP-17', desc: 'Private Direct Messages', url: 'https://github.com/nostr-protocol/nips/blob/master/17.md' },
+    { name: 'NIP-59', desc: 'Gift Wrap', url: 'https://github.com/nostr-protocol/nips/blob/master/59.md' },
+    { name: 'NIP-44', desc: 'Encrypted Payloads', url: 'https://github.com/nostr-protocol/nips/blob/master/44.md' },
+    { name: 'WhiteNoise', desc: 'if NIP-17 is not enough for you', url: 'https://www.whitenoise.chat/' },
+  ],
+};
+
+const openclawPrompt = `Use clawhub.ai/dergigi/nihao to create a nostr identity for yourself &
+after that use github.com/fabianfabian/openclaw-nostr-nip17
+to set yourself up with NIP-17. DM me when you’re done.
+My nostr identity is PASTE_YOUR_NPUB_HERE`;
 ---
 
 <!doctype html>
@@ -29,6 +73,9 @@ const commands = [
     <meta name="description" content={`Goop is a keyboard-first desktop client for NIP-17 private messages on Nostr. ${tagline} Free software for macOS, Windows, and Linux.`} />
     <link rel="icon" href="/icon.png" type="image/png" />
     <link rel="preload" href="/fonts/cascadia-code-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline>
+      document.documentElement.dataset.os = /Mac|iPhone|iPad/.test(navigator.platform) ? 'mac' : 'other';
+    </script>
   </head>
   <body>
     <svg class="sr-only" aria-hidden="true" focusable="false">
@@ -58,51 +105,128 @@ const commands = [
             <li role="option" aria-selected={i === 0 ? 'true' : 'false'} class:list={['row', { active: i === 0 }]}>
               <a href={`#${c.id}`} data-id={c.id}>
                 <span class="label">{c.label}</span>
-                <kbd>
-                  {c.cmd && <svg class="cmd" aria-label="Command" role="img"><use href="#i-cmd" /></svg>}
-                  {c.key}
-                </kbd>
+                <Kbd k={String(i + 1)} />
               </a>
             </li>
           ))}
+          <li class="no-match" hidden>No matching command</li>
         </ul>
       </nav>
 
-      <section class="preview" aria-live="polite">
-        <article id="macos" class="panel">
-          <h1>Download for macOS</h1>
-          <p class="tagline">{tagline}</p>
-          <ul class="files">
-            {macos.map((f) => (
-              <li>
-                <a href={f.url} download>
-                  <span class="name">{f.name}</span>
-                  <span class="size">{f.size}</span>
-                  <span class="arch">{f.arch}</span>
-                </a>
+      <section class="preview">
+        <DownloadPanel id="macos" name="macOS" {release} {tagline} note="ad-hoc signed, not notarized" active>
+          <p class="more">
+            First launch: macOS will say it cannot verify the developer. Right-click <span class="name">Goop.app</span>, choose Open, and confirm.
+          </p>
+        </DownloadPanel>
+
+        <DownloadPanel id="windows" name="Windows" {release} {tagline} note="unsigned, SmartScreen will warn">
+          <p class="more">
+            First launch: SmartScreen shows “Windows protected your PC”. Pick More info, then Run anyway.
+          </p>
+        </DownloadPanel>
+
+        <DownloadPanel id="linux" name="Linux" {release} {tagline} note="Flatpak, Snap, or a plain tarball">
+          <p class="more">
+            The Snap is not in the store yet. Install with <span class="name">snap install --dangerous --classic goop*.snap</span>.
+          </p>
+        </DownloadPanel>
+
+        <article id="shortcuts" class="panel" hidden>
+          <h1>Keyboard shortcuts</h1>
+          <p class="tagline">Designed for people who love the keyboard.</p>
+          <ul class="files table">
+            {shortcuts.map((s) => (
+              <li class="shortcut">
+                <span class="keys">
+                  {s.keys.map((combo, i) => (
+                    <>
+                      {i > 0 && <span class="or" aria-label="or">/</span>}
+                      <span class="combo">{combo.map((k) => <Kbd k={k} />)}</span>
+                    </>
+                  ))}
+                </span>
+                <span class="does">{s.does}</span>
               </li>
             ))}
           </ul>
           <p class="note">
-            v{release.version} · ad-hoc signed, not notarized · <a href={sums}>SHA256SUMS</a>
+            Mod is <Kbd k="Mod" class="inline" /> on this machine. Press <Kbd k="?" class="inline" /> inside Goop for the full list.
           </p>
-          <figure class="shot" aria-label="Screenshot placeholder">
-            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <figcaption>screenshot</figcaption>
-          </figure>
+        </article>
+
+        <article id="agents" class="panel" hidden>
+          <h1>Agents: let your bots DM you</h1>
+          <p class="tagline">Get updates from your agents. Reply in Goop.</p>
+          <p class="more">
+            Each agent needs its own Nostr identity and a NIP-17 integration. Give it your public key (npub) as its contact, then accept its first message in Requests.
+          </p>
+          <div class="prompt">
+            <div class="prompt-head">
+              <span>OpenClaw, tested with Goop. Send this to your agent:</span>
+              <button type="button" data-copy="openclaw-prompt">copy</button>
+            </div>
+            <pre id="openclaw-prompt">{openclawPrompt}</pre>
+          </div>
+          <p class="more">
+            Replace <span class="name">PASTE_YOUR_NPUB_HERE</span> with your npub. Hermes and NullClaw have NIP-17 channels too, untested with Goop so far. <a href={`${guide}#agent-guide`}>Agent guide</a>
+          </p>
+        </article>
+
+        <article id="guide" class="panel" hidden>
+          <h1>Usage guide</h1>
+          <p class="tagline">Setup, shortcuts, agents. All on one page.</p>
+          <ul class="files links">
+            <li><a href={guide}><span class="name">dergigi.com/goop</span><span class="desc">the usage guide</span></a></li>
+            <li><a href={`${guide}#keyboard-shortcuts`}><span class="name">#keyboard-shortcuts</span><span class="desc">every key, on every platform</span></a></li>
+            <li><a href={`${guide}#agent-guide`}><span class="name">#agent-guide</span><span class="desc">OpenClaw, Hermes, NullClaw</span></a></li>
+          </ul>
+          <p class="more">
+            Goop signs with an external signer and speaks NIP-17 only. No NIP-04, no plaintext fallback. If something is missing, <a href={`${repo}/issues`}>open an issue</a>.
+          </p>
+        </article>
+
+        <article id="source" class="panel" hidden>
+          <h1>Source on GitHub</h1>
+          <p class="tagline">Rust on GPUI. GPL-3.0. Fork of Coop.</p>
+          <ul class="files links">
+            {links.source.map((l) => (
+              <li><a href={l.url}><span class="name">{l.name}</span><span class="desc">{l.desc}</span></a></li>
+            ))}
+          </ul>
+          <p class="more">
+            Goop follows Semantic Versioning and Keep a Changelog. Every release ships with a SHA256SUMS file, so you can check what you downloaded.
+          </p>
+        </article>
+
+        <article id="nip17" class="panel" hidden>
+          <h1>What is NIP-17?</h1>
+          <p class="tagline">Private direct messages on Nostr.</p>
+          <p class="more">
+            Your message is wrapped three times. The unsigned message (the rumor) is sealed with your key, then the seal is gift-wrapped with a throwaway key and a randomised timestamp. Relays see a random sender and a blob, nothing else.
+          </p>
+          <ul class="files links">
+            {links.nip17.map((l) => (
+              <li><a href={l.url}><span class="name">{l.name}</span><span class="desc">{l.desc}</span></a></li>
+            ))}
+          </ul>
+          <p class="more">
+            Attachments are encrypted per file before upload; the key travels only inside the message.
+          </p>
         </article>
       </section>
 
       <footer class="status">
-        <span>goop v{release.version}</span>
+        <a href={release.url}>goop v{release.version}</a>
         <span>NIP-17 · GPL-3.0 · macOS Windows Linux</span>
         <span>? for shortcuts</span>
       </footer>
     </main>
+    <script src="../scripts/palette.ts"></script>
   </body>
 </html>
 
-<style>
+<style is:global>
   .sr-only {
     position: absolute;
     width: 1px;
@@ -173,6 +297,7 @@ const commands = [
     grid-area: commands;
     padding: 19px 18px 0 19px;
     border-right: var(--rule);
+    overflow-y: auto;
   }
   .commands ul {
     list-style: none;
@@ -203,35 +328,33 @@ const commands = [
     background: var(--purple);
     color: #fff;
   }
-  .row kbd {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 61px;
-    height: 41px;
-    padding: 0 8px;
-    border: 2px solid color-mix(in oklab, var(--lilac) 82%, var(--brand));
-    border-radius: 8px;
-    box-shadow: 0 0 0 1px color-mix(in oklab, var(--lilac) 35%, transparent);
-    font-size: 20px;
-    font-weight: 700;
-  }
-  .row.active kbd {
+  .row.active .key {
     color: #f3dafe;
     border-color: #f3dafe;
     box-shadow: 0 0 0 1px color-mix(in oklab, #f3dafe 45%, transparent);
   }
-  .row kbd .cmd {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
+  .no-match {
+    padding: 18px 19px;
+    color: var(--lilac);
+    font-size: 23px;
   }
 
   /* Preview */
   .preview {
     grid-area: preview;
     padding: 33px 36px 0 30px;
-    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+  /* Without JS, the hash picks the panel. */
+  .preview:has(.panel:target) .panel:not(:target) {
+    display: none;
+  }
+  .panel[hidden]:target {
+    display: block;
+  }
+  .panel {
+    scroll-margin-top: 33px;
   }
   .panel h1 {
     margin: 0 0 0 8px;
@@ -263,6 +386,13 @@ const commands = [
     padding: 0 16px;
     font-size: 23px;
   }
+  .files.links a {
+    grid-template-columns: 1fr auto;
+  }
+  .files .desc {
+    color: var(--lilac);
+    font-size: 20px;
+  }
   .files a:hover {
     color: var(--lilac);
   }
@@ -272,7 +402,7 @@ const commands = [
     font-size: 20px;
     line-height: 1;
   }
-  .note a {
+  .panel a:not(.files a) {
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-color: var(--lilac-dim);
@@ -285,8 +415,17 @@ const commands = [
     margin: 18px 0 0;
     border: var(--rule);
     border-radius: 8px;
+    overflow: hidden;
     color: var(--lilac);
     font-size: 20px;
+  }
+  .shot.has-img {
+    height: auto;
+    display: block;
+  }
+  .shot img {
+    display: block;
+    width: 100%;
   }
   .dots {
     position: absolute;
@@ -300,6 +439,98 @@ const commands = [
     height: 10px;
     border-radius: 50%;
     background: var(--lilac);
+  }
+
+  /* Text beyond the comp: same voice, a size down. */
+  .more {
+    max-width: 62ch;
+    margin: 22px 0 0 8px;
+    font-size: 20px;
+    line-height: 1.45;
+  }
+  .more .name {
+    color: var(--lilac);
+  }
+  .panel > :last-child {
+    padding-bottom: 33px;
+  }
+
+  /* Shortcut table */
+  .table .shortcut {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 2.5ch;
+    align-items: center;
+    min-height: 50px;
+    padding: 6px 16px;
+    font-size: 20px;
+  }
+  .keys {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+  }
+  .combo {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .combo .key + .key::before {
+    content: '';
+  }
+  .or {
+    color: var(--lilac-faint);
+  }
+  .table .key {
+    font-size: 15px;
+  }
+  .key.inline {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  .note:has(.key) {
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+
+  /* Agent prompt */
+  .prompt {
+    margin: 22px 0 0;
+    border: var(--rule);
+    border-radius: 8px;
+  }
+  .prompt-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-bottom: var(--rule);
+    color: var(--lilac);
+    font-size: 18px;
+  }
+  .prompt button {
+    padding: 4px 12px;
+    border: var(--rule);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .prompt button:hover {
+    background: var(--purple);
+  }
+  .prompt pre {
+    margin: 0;
+    padding: 16px;
+    font: inherit;
+    font-size: 18px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
 
   /* Status bar */

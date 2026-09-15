@@ -1,0 +1,55 @@
+---
+import { existsSync } from 'node:fs';
+import { filesFor, checksumsUrl, type Platform, type Release } from '../lib/release';
+
+interface Props {
+  id: Platform;
+  name: string;
+  release: Release;
+  tagline: string;
+  note: string;
+  active?: boolean;
+}
+const { id, name, release, tagline, note, active = false } = Astro.props;
+
+const files = filesFor(release, id);
+const sums = checksumsUrl(release);
+
+// Drop a real screenshot at public/screenshots/<platform>.png and it replaces the frame.
+const shot = `/screenshots/${id}.png`;
+const hasShot = existsSync(`public${shot}`);
+---
+
+<article id={id} class="panel" hidden={!active}>
+  <h1>Download for {name}</h1>
+  <p class="tagline">{tagline}</p>
+  <ul class="files">
+    {
+      files.map((f) => (
+        <li>
+          <a href={f.url} download>
+            <span class="name">{f.name}</span>
+            <span class="size">{f.size}</span>
+            <span class="arch">{f.arch}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="note">
+    v{release.version} · {note} · <a href={sums}>SHA256SUMS</a>
+  </p>
+  {
+    hasShot ? (
+      <figure class="shot has-img">
+        <img src={shot} alt={`Goop on ${name}`} loading="lazy" decoding="async" />
+      </figure>
+    ) : (
+      <figure class="shot" aria-label="Screenshot placeholder">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <figcaption>screenshot</figcaption>
+      </figure>
+    )
+  }
+  <slot />
+</article>

@@ -58,24 +58,59 @@
       "attempts": 13,
       "notes": [],
       "gate": {
-        "ok": true,
-        "reasons": [],
-        "summary": "hero 90% (match)",
-        "score": 0.8971,
+        "ok": false,
+        "reasons": [
+          "control row-1-key drifts to 63% (structure 72%, color 60%): its chrome differs from the comp's; open .impeccable/review/diff/hero/regions/row-1-key.png and match the border, fill, radius, chevron or arrow, and label size",
+          "control row-8-key drifts to 64% (structure 62%, color 83%): its chrome differs from the comp's; open .impeccable/review/diff/hero/regions/row-8-key.png and match the border, fill, radius, chevron or arrow, and label size"
+        ],
+        "summary": "hero 89% (match)",
+        "score": 0.8864,
         "verdict": "match",
         "report": ".impeccable/review/diff/hero/report.json",
         "sideBySide": "/Users/gigi/Development/vibe/goop-landing/.impeccable/review/diff/hero/side-by-side.png",
         "worst": [
-          "input-text drift 65%",
-          "row-1-key drift 68%",
-          "row-8-key drift 69%"
+          "row-1-key drift 63%",
+          "row-8-key drift 64%",
+          "input-text drift 65%"
         ],
         "worstIds": [
-          "input-text",
           "row-1-key",
-          "row-8-key"
+          "row-8-key",
+          "input-text"
         ],
         "worstCrops": [
+          {
+            "id": "row-1-key",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.6325,
+              "structure": 0.7187,
+              "color": 0.5986,
+              "colorIntersection": 0.3685,
+              "paletteMatch": 0.7224,
+              "detail": 0.4978,
+              "detailRaw": 0.5186,
+              "detailAdded": 0.0417,
+              "bands": 0.88
+            },
+            "file": ".impeccable/review/diff/hero/regions/row-1-key.png"
+          },
+          {
+            "id": "row-8-key",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.6367,
+              "structure": 0.6203,
+              "color": 0.827,
+              "colorIntersection": 0.7161,
+              "paletteMatch": 0.8866,
+              "detail": 0.3405,
+              "detailRaw": 0.4186,
+              "detailAdded": 0.1563,
+              "bands": 0.56
+            },
+            "file": ".impeccable/review/diff/hero/regions/row-8-key.png"
+          },
           {
             "id": "input-text",
             "verdict": "drift",
@@ -91,38 +126,6 @@
               "bands": 0.72
             },
             "file": ".impeccable/review/diff/hero/regions/input-text.png"
-          },
-          {
-            "id": "row-1-key",
-            "verdict": "drift",
-            "score": {
-              "overall": 0.6753,
-              "structure": 0.7586,
-              "color": 0.588,
-              "colorIntersection": 0.3672,
-              "paletteMatch": 0.707,
-              "detail": 0.6407,
-              "detailRaw": 0.672,
-              "detailAdded": 0.0625,
-              "bands": 0.8133
-            },
-            "file": ".impeccable/review/diff/hero/regions/row-1-key.png"
-          },
-          {
-            "id": "row-8-key",
-            "verdict": "drift",
-            "score": {
-              "overall": 0.6863,
-              "structure": 0.6681,
-              "color": 0.832,
-              "colorIntersection": 0.7396,
-              "paletteMatch": 0.8818,
-              "detail": 0.472,
-              "detailRaw": 0.5762,
-              "detailAdded": 0.2083,
-              "bands": 0.6
-            },
-            "file": ".impeccable/review/diff/hero/regions/row-8-key.png"
           }
         ],
         "regionVerdicts": {
@@ -131,7 +134,7 @@
           "input-text": "drift",
           "esc-hint": "match",
           "pane-divider": "match",
-          "active-row": "match",
+          "active-row": "drift",
           "row-1-label": "match",
           "row-1-key": "drift",
           "row-2-label": "match",
@@ -139,7 +142,7 @@
           "row-3-label": "match",
           "row-3-key": "drift",
           "row-4-label": "match",
-          "row-4-key": "match",
+          "row-4-key": "drift",
           "row-5-label": "match",
           "row-5-key": "drift",
           "row-6-label": "match",
@@ -162,14 +165,16 @@
           "status-center": "drift",
           "status-right": "drift"
         },
-        "at": "2026-09-15T01:39:39.690Z"
+        "at": "2026-09-15T01:44:31.411Z"
       },
       "forced": null,
       "readingsSeen": {
         "text preview-tagline: ink is #f5f4f5 in the build, #e5c2ef in the comp; use the comp's colour": 1,
-        "text file-row-2: ink is #958696 in the build, #f3f3f3 in the comp; use the comp's colour": 1
+        "text file-row-2: ink is #958696 in the build, #f3f3f3 in the comp; use the comp's colour": 1,
+        "text preview-tagline: ink is #f5f5f5 in the build, #e5c2ef in the comp; use the comp's colour": 1,
+        "text signing-note: ink is #948894 in the build, #ebcbf0 in the comp; use the comp's colour": 1
       },
-      "records": 3,
+      "records": 5,
       "history": [
         {
           "at": "2026-09-15T01:37:04.252Z",
