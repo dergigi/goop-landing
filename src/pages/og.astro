@@ -1,0 +1,135 @@
+---
+// Social preview card. Rendered to public/og.png with `pnpm og` (see README).
+import '../styles/global.css';
+import Ghost from '../components/Ghost.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Goop og-image</title>
+  </head>
+  <body>
+    <main class="card">
+      <header class="bar">
+        <Ghost class="ghost" />
+        <span class="query">goop<span class="caret"></span></span>
+        <span class="hint">esc to clear</span>
+      </header>
+      <section class="body">
+        <p class="tagline">NIP-17 for nerds and their agents*</p>
+        <ul class="rows">
+          <li class="active"><span>Download for macOS</span><kbd>1</kbd></li>
+          <li><span>Download for Windows</span><kbd>2</kbd></li>
+          <li><span>Download for Linux</span><kbd>3</kbd></li>
+        </ul>
+      </section>
+      <footer class="status">
+        <span>goop.dergigi.com</span>
+        <span>NIP-17 · GPL-3.0 · macOS Windows Linux</span>
+      </footer>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  html {
+    font-size: 16px;
+  }
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+  }
+  .card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    width: 1200px;
+    height: 630px;
+    padding: 20px;
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    height: 96px;
+    padding: 0 36px 0 20px;
+    border: var(--rule);
+    border-radius: var(--radius);
+  }
+  .ghost {
+    width: 72px;
+    height: 72px;
+    color: var(--text);
+  }
+  .query {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 28px;
+    font-size: 44px;
+    font-weight: 600;
+  }
+  .caret {
+    width: 4px;
+    height: 1.1em;
+    margin-left: 4px;
+    background: var(--brand);
+  }
+  .hint {
+    color: var(--lilac);
+    font-size: 28px;
+  }
+  .body {
+    padding: 48px 24px 0;
+  }
+  .tagline {
+    margin: 0 0 40px 24px;
+    color: var(--lilac);
+    font-size: 40px;
+    line-height: 1;
+  }
+  .rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .rows li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 78px;
+    padding: 0 20px 0 24px;
+    border-radius: 6px;
+    font-size: 32px;
+  }
+  .rows .active {
+    background: var(--purple);
+    color: #fff;
+  }
+  kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 74px;
+    height: 50px;
+    padding: 0 10px;
+    border: 3px solid color-mix(in oklab, var(--lilac) 82%, var(--brand));
+    border-radius: 10px;
+    font-size: 26px;
+    font-weight: 700;
+  }
+  .active kbd {
+    color: #f3dafe;
+    border-color: #f3dafe;
+  }
+  .status {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 0;
+    border-top: var(--rule);
+    color: var(--lilac);
+    font-size: 26px;
+  }
+</style>

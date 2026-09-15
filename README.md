@@ -15,6 +15,10 @@ pnpm preview
 
 Release data (version, files, sizes) is fetched from the GitHub API at build time, with a hardcoded fallback in `src/lib/release.ts`. Set `GITHUB_TOKEN` in the build environment to avoid the anonymous rate limit.
 
+## Social preview
+
+`public/og.png` is rendered from the `/og` route. With the dev server running, `pnpm og` regenerates it.
+
 ## Screenshots
 
 Drop real app screenshots at `public/screenshots/macos.png`, `windows.png`, and `linux.png`. Each download panel shows its screenshot when the file exists and an outlined placeholder otherwise.

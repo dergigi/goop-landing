@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "og": "pnpm dlx playwright screenshot --viewport-size=1200,630 --wait-for-timeout=800 http://localhost:4321/og public/og.png"
   },
   "dependencies": {
     "astro": "^7.3.2"

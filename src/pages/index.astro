@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { getRelease } from '../lib/release';
 import Kbd from '../components/Kbd.astro';
 import DownloadPanel from '../components/DownloadPanel.astro';
+import Ghost from '../components/Ghost.astro';
 
 const release = await getRelease();
 
@@ -73,9 +74,19 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     <link rel="icon" href="/goop.svg" type="image/svg+xml" />
     <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
     <link rel="apple-touch-icon" href="/icon.png" />
+    <link rel="canonical" href={Astro.site} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.site} />
     <meta property="og:title" content="Goop" />
     <meta property="og:description" content={`${tagline}.`} />
-    <meta property="og:image" content="/icon.png" />
+    <meta property="og:image" content={new URL('/og.png', Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Goop command palette: goop, NIP-17 for nerds and their agents, Download for macOS, Windows, Linux" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Goop" />
+    <meta name="twitter:description" content={`${tagline}.`} />
+    <meta name="twitter:image" content={new URL('/og.png', Astro.site)} />
     <link rel="preload" href="/fonts/cascadia-code-latin.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline>
       document.documentElement.dataset.os = /Mac|iPhone|iPad/.test(navigator.platform) ? 'mac' : 'other';
@@ -90,12 +101,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     </svg>
     <main class="palette" aria-label="Goop">
       <header class="bar">
-        <svg class="ghost" viewBox="0 0 500 500" aria-hidden="true" focusable="false">
-          <g fill="currentColor" transform="translate(0 -28)">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M120 210C120 110 190 50 255 52C335 54 400 115 392 205C388 245 372 270 370 300C368 330 380 355 378 390C376 425 335 428 330 392C327 365 340 345 332 320C324 300 300 300 292 320C285 340 290 385 278 415C270 445 220 445 212 415C204 385 216 355 208 335C200 305 170 300 165 325C160 350 172 372 168 395C164 425 125 425 122 393C119 360 135 340 130 300C126 265 120 245 120 210ZM183 185a24 24 0 1 0 48 0a24 24 0 1 0-48 0ZM269 185a24 24 0 1 0 48 0a24 24 0 1 0-48 0Z" />
-            <path d="M245 448C258 466 264 476 264 486A19 19 0 0 1 226 486C226 476 232 466 245 448Z" />
-          </g>
-        </svg>
+        <Ghost class="ghost" />
         <label class="query">
           <span class="sr-only">Filter commands</span>
           <input id="query" type="text" placeholder="goop" autocomplete="off" spellcheck="false" autofocus />
