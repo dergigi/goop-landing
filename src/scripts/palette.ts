@@ -115,13 +115,16 @@ document.addEventListener('keydown', (e) => {
   if (!inInput && e.key.length === 1) input.focus();
 });
 
-for (const r of rows) {
-  r.querySelector('a')!.addEventListener('click', (e) => {
-    e.preventDefault();
-    select(idOf(r), { user: true });
-    if (!stacked.matches) input.focus();
-  });
-}
+// Any in-page link to a panel (command rows, footer) switches the palette.
+document.addEventListener('click', (e) => {
+  const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
+  if (!a) return;
+  const id = a.hash.slice(1);
+  if (!panels.some((p) => p.id === id)) return;
+  e.preventDefault();
+  select(id, { user: true });
+  if (!stacked.matches) input.focus();
+});
 
 for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-copy]')) {
   btn.addEventListener('click', async () => {

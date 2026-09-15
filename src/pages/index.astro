@@ -279,8 +279,10 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
 
       <footer class="status">
         <a href={release.url}>goop v{release.version}</a>
-        <span>NIP-17 · GPL-3.0 · macOS Windows Linux</span>
-        <span>? for shortcuts</span>
+        <span>
+          <a href={links.nip17[0].url}>NIP-17</a> · <a href={`${repo}/blob/master/LICENSE`}>GPL-3.0</a> · <a href="#macos">macOS</a> <a href="#windows">Windows</a> <a href="#linux">Linux</a>
+        </span>
+        <a class="hint-link" href="#shortcuts">? for shortcuts</a>
       </footer>
     </main>
     <script src="../scripts/palette.ts"></script>
@@ -702,7 +704,10 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     color: var(--lilac);
     font-size: 1.3125rem;
   }
-  .status span:last-child {
+  .status a:hover {
+    color: var(--text);
+  }
+  .status .hint-link {
     text-align: right;
   }
 
@@ -851,7 +856,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       padding: 0.75rem 1rem;
       font-size: 0.875rem;
     }
-    .status span:last-child {
+    .status .hint-link {
       display: none;
     }
   }
