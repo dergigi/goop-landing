@@ -60,72 +60,73 @@
       "gate": {
         "ok": false,
         "reasons": [
-          "control row-1-key drifts to 63% (structure 72%, color 60%): its chrome differs from the comp's; open .impeccable/review/diff/hero/regions/row-1-key.png and match the border, fill, radius, chevron or arrow, and label size",
-          "control row-8-key drifts to 64% (structure 62%, color 83%): its chrome differs from the comp's; open .impeccable/review/diff/hero/regions/row-8-key.png and match the border, fill, radius, chevron or arrow, and label size"
+          "control row-1-key drifts to 65% (structure 74%, color 62%): its chrome differs from the comp's; open .impeccable/review/diff/hero/regions/row-1-key.png and match the border, fill, radius, chevron or arrow, and label size",
+          "control row-7-key drifts to 65% (structure 60%, color 83%): its chrome differs from the comp's; open .impeccable/review/diff/hero/regions/row-7-key.png and match the border, fill, radius, chevron or arrow, and label size",
+          "control row-8-key drifts to 63% (structure 61%, color 83%): its chrome differs from the comp's; open .impeccable/review/diff/hero/regions/row-8-key.png and match the border, fill, radius, chevron or arrow, and label size"
         ],
         "summary": "hero 89% (match)",
-        "score": 0.8864,
+        "score": 0.8907,
         "verdict": "match",
         "report": ".impeccable/review/diff/hero/report.json",
         "sideBySide": "/Users/gigi/Development/vibe/goop-landing/.impeccable/review/diff/hero/side-by-side.png",
         "worst": [
-          "row-1-key drift 63%",
-          "row-8-key drift 64%",
-          "input-text drift 65%"
+          "row-8-key drift 63%",
+          "row-7-key drift 65%",
+          "row-1-key drift 65%"
         ],
         "worstIds": [
-          "row-1-key",
           "row-8-key",
-          "input-text"
+          "row-7-key",
+          "row-1-key"
         ],
         "worstCrops": [
-          {
-            "id": "row-1-key",
-            "verdict": "drift",
-            "score": {
-              "overall": 0.6325,
-              "structure": 0.7187,
-              "color": 0.5986,
-              "colorIntersection": 0.3685,
-              "paletteMatch": 0.7224,
-              "detail": 0.4978,
-              "detailRaw": 0.5186,
-              "detailAdded": 0.0417,
-              "bands": 0.88
-            },
-            "file": ".impeccable/review/diff/hero/regions/row-1-key.png"
-          },
           {
             "id": "row-8-key",
             "verdict": "drift",
             "score": {
-              "overall": 0.6367,
-              "structure": 0.6203,
-              "color": 0.827,
-              "colorIntersection": 0.7161,
-              "paletteMatch": 0.8866,
-              "detail": 0.3405,
-              "detailRaw": 0.4186,
+              "overall": 0.6336,
+              "structure": 0.6081,
+              "color": 0.8314,
+              "colorIntersection": 0.7057,
+              "paletteMatch": 0.899,
+              "detail": 0.3451,
+              "detailRaw": 0.4232,
               "detailAdded": 0.1563,
-              "bands": 0.56
+              "bands": 0.48
             },
             "file": ".impeccable/review/diff/hero/regions/row-8-key.png"
           },
           {
-            "id": "input-text",
+            "id": "row-7-key",
             "verdict": "drift",
             "score": {
-              "overall": 0.6507,
-              "structure": 0.5926,
-              "color": 0.9214,
-              "colorIntersection": 0.8517,
-              "paletteMatch": 0.9588,
-              "detail": 0.3471,
-              "detailRaw": 0.3628,
-              "detailAdded": 0.0313,
-              "bands": 0.72
+              "overall": 0.6474,
+              "structure": 0.5955,
+              "color": 0.8341,
+              "colorIntersection": 0.7396,
+              "paletteMatch": 0.8849,
+              "detail": 0.4378,
+              "detailRaw": 0.469,
+              "detailAdded": 0.0625,
+              "bands": 0.8
             },
-            "file": ".impeccable/review/diff/hero/regions/input-text.png"
+            "file": ".impeccable/review/diff/hero/regions/row-7-key.png"
+          },
+          {
+            "id": "row-1-key",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.6497,
+              "structure": 0.7389,
+              "color": 0.6221,
+              "colorIntersection": 0.3672,
+              "paletteMatch": 0.7594,
+              "detail": 0.4974,
+              "detailRaw": 0.5182,
+              "detailAdded": 0.0417,
+              "bands": 0.88
+            },
+            "file": ".impeccable/review/diff/hero/regions/row-1-key.png"
           }
         ],
         "regionVerdicts": {
@@ -142,7 +143,7 @@
           "row-3-label": "match",
           "row-3-key": "drift",
           "row-4-label": "match",
-          "row-4-key": "drift",
+          "row-4-key": "match",
           "row-5-label": "match",
           "row-5-key": "drift",
           "row-6-label": "match",
@@ -153,19 +154,19 @@
           "row-8-key": "drift",
           "preview-heading": "drift",
           "preview-tagline": "drift",
-          "file-rule-1": "match",
-          "file-row-1": "match",
-          "file-rule-2": "match",
+          "file-rule-1": "drift",
+          "file-row-1": "drift",
+          "file-rule-2": "drift",
           "file-row-2": "drift",
           "file-rule-3": "drift",
-          "signing-note": "drift",
-          "screenshot-frame": "match",
+          "signing-note": "match",
+          "screenshot-frame": "drift",
           "status-rule": "drift",
           "status-left": "drift",
           "status-center": "drift",
           "status-right": "drift"
         },
-        "at": "2026-09-15T01:50:47.996Z"
+        "at": "2026-09-15T02:00:09.130Z"
       },
       "forced": null,
       "readingsSeen": {
@@ -174,7 +175,7 @@
         "text preview-tagline: ink is #f5f5f5 in the build, #e5c2ef in the comp; use the comp's colour": 1,
         "text signing-note: ink is #948894 in the build, #ebcbf0 in the comp; use the comp's colour": 1
       },
-      "records": 6,
+      "records": 8,
       "history": [
         {
           "at": "2026-09-15T01:37:04.252Z",

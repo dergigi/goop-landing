@@ -47,7 +47,13 @@ function filter() {
   if (list.length && !list.includes(activeRow()!)) select(idOf(list[0]));
 }
 
-input.addEventListener('input', filter);
+// Monospace: the input is exactly as wide as its text, so the caret sits after it.
+const fit = () => (input.style.width = `${Math.max(input.value.length, input.placeholder.length)}ch`);
+fit();
+input.addEventListener('input', () => {
+  fit();
+  filter();
+});
 
 document.addEventListener('keydown', (e) => {
   if (e.metaKey || e.ctrlKey || e.altKey) return;

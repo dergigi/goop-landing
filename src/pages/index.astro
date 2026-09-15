@@ -14,7 +14,7 @@ const commands = [
   { id: 'macos', label: 'Download for macOS' },
   { id: 'windows', label: 'Download for Windows' },
   { id: 'linux', label: 'Download for Linux' },
-  { id: 'shortcuts', label: 'Keyboard shortcuts' },
+  { id: 'shortcuts', label: 'Keyboard shortcuts', key: '?' },
   { id: 'agents', label: 'Agents: let your bots DM you' },
   { id: 'guide', label: 'Usage guide' },
   { id: 'source', label: 'Source on GitHub' },
@@ -95,6 +95,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
         <label class="query">
           <span class="sr-only">Filter commands</span>
           <input id="query" type="text" placeholder="goop" autocomplete="off" spellcheck="false" autofocus />
+          <span class="caret" aria-hidden="true"></span>
         </label>
         <span class="hint">esc to clear</span>
       </header>
@@ -105,7 +106,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
             <li role="option" aria-selected={i === 0 ? 'true' : 'false'} class:list={['row', { active: i === 0 }]}>
               <a href={`#${c.id}`} data-id={c.id}>
                 <span class="label">{c.label}</span>
-                <Kbd k={String(i + 1)} />
+                <Kbd k={c.key ?? String(i + 1)} />
               </a>
             </li>
           ))}
@@ -268,23 +269,39 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   .query {
     flex: 1;
     display: flex;
+    align-items: center;
     margin-left: 1.375rem;
+    font-size: 2.125rem;
+    font-weight: 600;
   }
   .query input {
-    width: 100%;
+    width: 4ch; /* palette.ts grows this with the value */
+    max-width: 100%;
     margin: 0;
     padding: 0;
     border: 0;
     background: transparent;
     color: var(--text);
     font: inherit;
-    font-size: 1.4375rem;
-    caret-color: var(--brand);
+    caret-color: transparent;
   }
   .query input::placeholder {
     color: var(--text);
     opacity: 1;
-    font-weight: 700;
+  }
+  /* Our own caret: shows the same whether or not the input has focus. */
+  .caret {
+    flex: none;
+    width: 0.09em;
+    height: 1.1em;
+    margin-left: 0.08em;
+    background: var(--brand);
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
   }
   .query input:focus-visible {
     outline: none;
@@ -332,7 +349,6 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   .row.active .key {
     color: #f3dafe;
     border-color: #f3dafe;
-    box-shadow: 0 0 0 1px color-mix(in oklab, #f3dafe 45%, transparent);
   }
   .no-match {
     padding: 1.125rem 1.1875rem;
@@ -346,6 +362,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     padding: 2.0625rem 2.25rem 0 1.875rem;
     overflow-y: auto;
     scrollbar-gutter: stable;
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 2.5rem), transparent);
   }
   /* Without JS, the hash picks the panel. */
   .preview:has(.panel:target) .panel:not(:target) {
@@ -365,14 +382,15 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .panel {
+    .panel,
+    .caret {
       animation: none;
     }
   }
   .panel h1 {
     margin: 0 0 0 0.5rem;
     font-size: 2.125rem;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 1;
   }
   .tagline {
@@ -382,24 +400,33 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     line-height: 1;
   }
   .files {
+    display: grid;
+    grid-template-columns: minmax(20ch, max-content) max-content auto;
+    column-gap: 2.5ch;
     list-style: none;
     margin: 1.25rem 0 0;
     padding: 0;
     border-top: var(--rule);
   }
   .files li {
-    border-bottom: var(--rule);
+    display: contents;
   }
   .files a {
     display: grid;
-    grid-template-columns: 20ch 6ch auto;
-    gap: 2.5ch;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
     align-items: center;
     height: 3.125rem;
     padding: 0 1rem;
+    border-bottom: var(--rule);
     font-size: 1.4375rem;
   }
-  .files.links a {
+  .files .name,
+  .files .size,
+  .files .arch {
+    white-space: nowrap;
+  }
+  .files.links {
     grid-template-columns: 1fr auto;
   }
   .files .desc {
@@ -469,8 +496,12 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   }
 
   /* Shortcut table */
+  .files.table {
+    display: block;
+  }
   .table .shortcut {
     display: grid;
+    border-bottom: var(--rule);
     grid-template-columns: max-content 1fr;
     gap: 2.5ch;
     align-items: center;
@@ -574,15 +605,16 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     .tagline {
       font-size: 1.1875rem;
     }
+    .files {
+      grid-template-columns: minmax(0, 1fr) max-content max-content;
+      column-gap: 1.5ch;
+    }
     .files a {
-      grid-template-columns: minmax(0, 1fr) 6ch 13ch;
-      gap: 1.5ch;
       font-size: 1.0625rem;
     }
     .files .name {
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
     }
     .files .arch {
       white-space: nowrap;
@@ -592,6 +624,12 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     }
     .panel h1 {
       font-size: 1.875rem;
+    }
+  }
+
+  @media (pointer: coarse) {
+    .row .key {
+      display: none;
     }
   }
 
@@ -702,10 +740,9 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   }
 
   @media (max-width: 480px) {
-    .files a,
-    .files.links a {
+    .files {
       grid-template-columns: 1fr auto;
-      gap: 0.125rem 1ch;
+      column-gap: 1ch;
     }
     .files .name {
       grid-column: 1 / -1;
@@ -715,7 +752,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     .files .arch {
       text-align: right;
     }
-    .files.links a {
+    .files.links {
       grid-template-columns: 1fr;
     }
   }

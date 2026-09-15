@@ -28,7 +28,7 @@ Goop is a desktop client for NIP-17 private messaging on Nostr. It exists so tha
 
 - Native desktop app, no web or mobile version.
 - Downloads per platform from GitHub Releases: macOS (.dmg, arm64 and x64), Windows (.exe, arm64 and x64), Linux (.tar.gz, .flatpak, .snap, arm64 and x64). `SHA256SUMS` published with every release.
-- Releases follow Semantic Versioning and Keep a Changelog. Latest release at the time of writing: v2.1.0 (2026-09-14); CHANGELOG.md already lists 2.2.0.
+- Releases follow Semantic Versioning and Keep a Changelog. Releases come fast (2.1.0 to 2.3.0 within two days in September 2026); the page reads the latest release from the GitHub API at build time, never hardcodes it.
 - Usage guide (keyboard shortcuts, agent setup) lives at https://dergigi.com/goop/ and must remain the canonical docs destination.
 - Source: https://github.com/dergigi/goop. Upstream: https://git.reya.info/reya/coop.
 
@@ -69,6 +69,7 @@ Terminology: NIP-17, gift wrap, npub, relay, signer, bunker, Blossom, Inbox, Req
 
 - README.md and CHANGELOG.md in https://github.com/dergigi/goop (feature list, shortcuts, limitations).
 - GitHub Releases API for the latest version, assets, and sizes.
+- The usage guide at https://dergigi.com/goop/ (docs/index.md in the repo): agent guide marks OpenClaw as tested with Goop, Hermes and NullClaw as untested; NIP-17 keyboard shortcuts; the OpenClaw prompt verbatim.
 - Brand SVG and app icons (PNG, ICNS, ICO) in the goop repo.
 - Real app screenshots: none in the repo yet. The user will provide them; the page must have a clear slot for them and must not fake a screenshot as if it were real.
 - No testimonials, user counts, or press. Do not invent any.
