@@ -50,6 +50,8 @@ function filter() {
 // Monospace: the input is exactly as wide as its text, so the caret sits after it.
 const fit = () => (input.style.width = `${Math.max(input.value.length, input.placeholder.length)}ch`);
 fit();
+// ch is measured on the fallback font until Cascadia arrives.
+document.fonts.ready.then(fit);
 input.addEventListener('input', () => {
   fit();
   filter();
