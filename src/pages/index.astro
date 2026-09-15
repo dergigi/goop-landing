@@ -561,4 +561,162 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   .status span:last-child {
     text-align: right;
   }
+
+  /* Narrow desktops: keep every label on one line. */
+  @media (max-width: 1100px) {
+    .palette {
+      grid-template-columns: 44% 1fr;
+    }
+    .row a {
+      font-size: 17px;
+    }
+    .files a,
+    .tagline {
+      font-size: 19px;
+    }
+    .files a {
+      grid-template-columns: minmax(0, 1fr) 6ch 13ch;
+      gap: 1.5ch;
+      font-size: 17px;
+    }
+    .files .name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .files .arch {
+      white-space: nowrap;
+    }
+    .note {
+      line-height: 1.4;
+    }
+    .panel h1 {
+      font-size: 30px;
+    }
+  }
+
+  /* Phones and small tablets: one column, list first, preview below. */
+  @media (max-width: 980px) {
+    .palette {
+      display: block;
+      height: auto;
+      min-height: 100dvh;
+    }
+    .bar {
+      height: 60px;
+      margin: 8px 8px 0;
+      padding: 0 16px 0 10px;
+    }
+    .ghost {
+      width: 40px;
+      height: 40px;
+    }
+    .query {
+      margin-left: 12px;
+    }
+    .query input,
+    .row a,
+    .no-match {
+      font-size: 18px;
+    }
+    .hint {
+      display: none;
+    }
+    .commands {
+      padding: 8px 8px 8px;
+      border-right: 0;
+      border-bottom: var(--rule);
+      overflow: visible;
+    }
+    .row {
+      height: 48px;
+      padding: 2px 0;
+    }
+    .row a {
+      padding: 0 8px 0 12px;
+    }
+    .row .key {
+      font-size: 15px;
+    }
+    .preview {
+      padding: 24px 16px 0;
+      overflow: visible;
+      scrollbar-gutter: auto;
+    }
+    .panel {
+      scroll-margin-top: 16px;
+    }
+    .panel h1 {
+      margin-left: 0;
+      font-size: 26px;
+    }
+    .tagline {
+      margin: 12px 0 0;
+      font-size: 18px;
+      line-height: 1.3;
+    }
+    .files a {
+      height: auto;
+      min-height: 44px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    .files .size,
+    .files .arch,
+    .files .desc {
+      color: var(--lilac);
+      font-size: 14px;
+    }
+    .note,
+    .more {
+      margin-left: 0;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+    .shot {
+      height: 200px;
+    }
+    .table .shortcut {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 10px 8px;
+      font-size: 16px;
+    }
+    .prompt-head,
+    .prompt button,
+    .prompt pre {
+      font-size: 15px;
+    }
+    .status {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px 16px;
+      height: auto;
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+    .status span:last-child {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .files a,
+    .files.links a {
+      grid-template-columns: 1fr auto;
+      gap: 2px 1ch;
+    }
+    .files .name {
+      grid-column: 1 / -1;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .files .arch {
+      text-align: right;
+    }
+    .files.links a {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

@@ -7,7 +7,9 @@ const idOf = (row: HTMLLIElement) => row.querySelector('a')!.dataset.id!;
 const visible = () => rows.filter((r) => !r.hidden);
 const activeRow = () => rows.find((r) => r.classList.contains('active'));
 
-function select(id: string, { focusPanel = false } = {}) {
+const stacked = matchMedia('(max-width: 980px)');
+
+function select(id: string, { focusPanel = false, user = false } = {}) {
   for (const r of rows) {
     const on = idOf(r) === id;
     r.classList.toggle('active', on);
@@ -15,7 +17,10 @@ function select(id: string, { focusPanel = false } = {}) {
     if (on) r.scrollIntoView({ block: 'nearest' });
   }
   for (const p of panels) p.hidden = p.id !== id;
-  document.querySelector('.preview')!.scrollTop = 0;
+  const preview = document.querySelector<HTMLElement>('.preview')!;
+  preview.scrollTop = 0;
+  // One column: bring the panel into view when the visitor picks a command.
+  if (user && stacked.matches) preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
   history.replaceState(null, '', `#${id}`);
   if (focusPanel) document.getElementById(id)?.querySelector<HTMLElement>('a, button')?.focus();
 }
@@ -24,7 +29,7 @@ function move(delta: number) {
   const list = visible();
   if (!list.length) return;
   const i = list.indexOf(activeRow()!);
-  select(idOf(list[(i + delta + list.length) % list.length]));
+  select(idOf(list[(i + delta + list.length) % list.length]), { user: true });
 }
 
 // Subsequence match: "dlw" finds "Download for Windows".
@@ -77,7 +82,7 @@ document.addEventListener('keydown', (e) => {
     const target = e.key === '?' ? rows.find((r) => idOf(r) === 'shortcuts') : rows[Number(e.key) - 1];
     if (target) {
       e.preventDefault();
-      select(idOf(target));
+      select(idOf(target), { user: true });
       return;
     }
   }
@@ -89,8 +94,8 @@ document.addEventListener('keydown', (e) => {
 for (const r of rows) {
   r.querySelector('a')!.addEventListener('click', (e) => {
     e.preventDefault();
-    select(idOf(r));
-    input.focus();
+    select(idOf(r), { user: true });
+    if (!stacked.matches) input.focus();
   });
 }
 

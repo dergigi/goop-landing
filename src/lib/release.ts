@@ -6,28 +6,34 @@ const DL = `https://github.com/${REPO}/releases/download`;
 
 // Used when the GitHub API is unreachable at build time (rate limits, offline).
 const FALLBACK: Release = {
-  version: '2.1.0',
-  publishedAt: '2026-09-14T21:36:28Z',
-  url: `https://github.com/${REPO}/releases/tag/v2.1.0`,
+  version: '2.3.0',
+  publishedAt: '2026-09-15T00:40:10Z',
+  url: `https://github.com/${REPO}/releases/tag/v2.3.0`,
   assets: [
-    { name: 'goop-macos-arm64.dmg', size: 8810452, url: `${DL}/v2.1.0/goop-macos-arm64.dmg` },
-    { name: 'goop-macos-x64.dmg', size: 9746343, url: `${DL}/v2.1.0/goop-macos-x64.dmg` },
-    { name: 'goop-windows-arm64.exe', size: 7078188, url: `${DL}/v2.1.0/goop-windows-arm64.exe` },
-    { name: 'goop-windows-x64.exe', size: 7495912, url: `${DL}/v2.1.0/goop-windows-x64.exe` },
-    { name: 'goop-linux-arm64.flatpak', size: 9026088, url: `${DL}/v2.1.0/goop-linux-arm64.flatpak` },
-    { name: 'goop-linux-arm64.snap', size: 14848000, url: `${DL}/v2.1.0/goop-linux-arm64.snap` },
-    { name: 'goop-linux-arm64.tar.gz', size: 25214892, url: `${DL}/v2.1.0/goop-linux-arm64.tar.gz` },
-    { name: 'goop-linux-x64.flatpak', size: 9269104, url: `${DL}/v2.1.0/goop-linux-x64.flatpak` },
-    { name: 'goop-linux-x64.snap', size: 15093760, url: `${DL}/v2.1.0/goop-linux-x64.snap` },
-    { name: 'goop-linux-x64.tar.gz', size: 26195202, url: `${DL}/v2.1.0/goop-linux-x64.tar.gz` },
-    { name: 'SHA256SUMS', size: 880, url: `${DL}/v2.1.0/SHA256SUMS` },
+    { name: 'goop-linux-arm64.flatpak', size: 9089520, url: `${DL}/v2.3.0/goop-linux-arm64.flatpak` },
+    { name: 'goop-linux-arm64.snap', size: 14938112, url: `${DL}/v2.3.0/goop-linux-arm64.snap` },
+    { name: 'goop-linux-arm64.tar.gz', size: 25382174, url: `${DL}/v2.3.0/goop-linux-arm64.tar.gz` },
+    { name: 'goop-linux-x64.flatpak', size: 9339824, url: `${DL}/v2.3.0/goop-linux-x64.flatpak` },
+    { name: 'goop-linux-x64.snap', size: 15212544, url: `${DL}/v2.3.0/goop-linux-x64.snap` },
+    { name: 'goop-linux-x64.tar.gz', size: 26393742, url: `${DL}/v2.3.0/goop-linux-x64.tar.gz` },
+    { name: 'goop-macos-arm64.dmg', size: 8890892, url: `${DL}/v2.3.0/goop-macos-arm64.dmg` },
+    { name: 'goop-macos-x64.dmg', size: 9842482, url: `${DL}/v2.3.0/goop-macos-x64.dmg` },
+    { name: 'goop-windows-arm64.exe', size: 7134984, url: `${DL}/v2.3.0/goop-windows-arm64.exe` },
+    { name: 'goop-windows-x64.exe', size: 7559327, url: `${DL}/v2.3.0/goop-windows-x64.exe` },
+    { name: 'SHA256SUMS', size: 880, url: `${DL}/v2.3.0/SHA256SUMS` },
   ],
 };
 
 export async function getRelease(): Promise<Release> {
+  const token = process.env.GITHUB_TOKEN;
   try {
     const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, {
-      headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'goop-landing' },
+      headers: {
+        Accept: 'application/vnd.github+json',
+        'User-Agent': 'goop-landing',
+        // Optional: lifts the 60 requests/hour anonymous limit on CI and Vercel.
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
     });
     if (!res.ok) throw new Error(`GitHub API ${res.status}`);
     const json = await res.json();

@@ -6,7 +6,7 @@
   "direction": "2e37f157",
   "breakpoint": "1280x720",
   "artifact": null,
-  "phase": "motion",
+  "phase": "responsive",
   "phases": {
     "comps": {
       "status": "closed",
@@ -480,17 +480,22 @@
       "forced": null
     },
     "motion": {
-      "status": "open",
+      "status": "closed",
       "openedAt": "2026-09-15T01:45:41.935Z",
-      "closedAt": null,
-      "attempts": 0,
+      "closedAt": "2026-09-15T01:46:05.199Z",
+      "attempts": 1,
       "notes": [],
-      "gate": null,
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-09-15T01:46:05.199Z"
+      },
       "forced": null
     },
     "responsive": {
-      "status": "pending",
-      "openedAt": null,
+      "status": "open",
+      "openedAt": "2026-09-15T01:46:05.199Z",
       "closedAt": null,
       "attempts": 0,
       "notes": [],
