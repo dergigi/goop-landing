@@ -6,7 +6,7 @@
   "direction": "2e37f157",
   "breakpoint": "1280x720",
   "artifact": null,
-  "phase": "sections",
+  "phase": "motion",
   "phases": {
     "comps": {
       "status": "closed",
@@ -461,17 +461,27 @@
       ]
     },
     "sections": {
-      "status": "open",
+      "status": "closed",
       "openedAt": "2026-09-15T01:39:39.690Z",
-      "closedAt": null,
-      "attempts": 0,
-      "notes": [],
-      "gate": null,
+      "closedAt": "2026-09-15T01:45:41.934Z",
+      "attempts": 1,
+      "notes": [
+        {
+          "at": "2026-09-15T01:45:41.921Z",
+          "text": "Keycap hints changed from the comp's ⌘1/⌘N style to plain 1-8: a browser cannot intercept ⌘+digit, so the comp's hints would have promised keys that do not work. Everything else in the hero is verbatim."
+        }
+      ],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-09-15T01:45:41.934Z"
+      },
       "forced": null
     },
     "motion": {
-      "status": "pending",
-      "openedAt": null,
+      "status": "open",
+      "openedAt": "2026-09-15T01:45:41.935Z",
       "closedAt": null,
       "attempts": 0,
       "notes": [],

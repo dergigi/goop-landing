@@ -279,6 +279,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     color: var(--text);
     font: inherit;
     font-size: 23px;
+    caret-color: var(--brand);
   }
   .query input::placeholder {
     color: var(--text);
@@ -355,6 +356,18 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   }
   .panel {
     scroll-margin-top: 33px;
+    /* Runs each time a panel goes from hidden to shown. */
+    animation: panel-in 120ms ease-out;
+  }
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .panel {
+      animation: none;
+    }
   }
   .panel h1 {
     margin: 0 0 0 8px;
