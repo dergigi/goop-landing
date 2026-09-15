@@ -1,0 +1,8 @@
+{
+  "tool": "cursor GenerateImage",
+  "aspect": "16:9",
+  "surface": "src/pages/index.astro",
+  "direction": "2e37f157",
+  "approved": false,
+  "prompt": "High-fidelity website landing page design mockup, desktop browser viewport, for a desktop messaging app named GOOP. Flat dark ink background (#120D1A). Editorial split. LEFT HALF: 'GOOP' enormous in pale lilac (#EAD5F9) grotesk capitals over a large white dripping-ghost logo hard-cropped by the bottom edge. Above GOOP 'A simple NIP-17 client that just works.' and beneath 'Native desktop app for macOS, Windows and Linux. Built in Rust.' in monospace. RIGHT HALF: a command palette dialog with a 1px lilac border, input with typed text 'dow', result rows with keycap hints, first row highlighted purple (#8E4EC6). Under the dialog 'Press ⌘ K or ? anywhere on this page'. Bottom: editor-style status bar 'v2.1.0' / 'NIP-17 · GPL-3.0 · free software' / 'github.com/dergigi/goop'."
+}

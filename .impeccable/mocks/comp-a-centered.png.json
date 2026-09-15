@@ -1,0 +1,8 @@
+{
+  "tool": "cursor GenerateImage",
+  "aspect": "16:9",
+  "surface": "src/pages/index.astro",
+  "direction": "2e37f157",
+  "approved": false,
+  "prompt": "High-fidelity website landing page design mockup, desktop browser viewport, for a desktop app named GOOP. Dark ink background (#120D1A), flat, no gradients, no glow. Top-left: a small white dripping-ghost logo next to the lowercase word 'goop'. Centered in the upper third: 'GOOP' in large white grotesk capitals and beneath it 'A simple NIP-17 client that just works.' in pale lilac (#EAD5F9). The dominant element, centered, is one large command palette dialog about half the page width: a rounded rectangle with a 1px lilac border. Its top row is a text input with a search icon, the typed text 'download' and a text caret. Beneath it result rows with keycap hints: 'Download for macOS ⌘ 1', 'Download for Windows ⌘ 2', 'Download for Linux ⌘ 3', 'Keyboard shortcuts ?', 'Usage guide ⌘ /', 'Source on GitHub ⌘ G'. The first row is highlighted with solid purple (#8E4EC6). Below the dialog 'Press ? anywhere on this page'. Footer 'v2.1.0 · GPL-3.0 · macOS · Windows · Linux'."
+}
