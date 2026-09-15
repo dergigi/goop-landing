@@ -22,13 +22,13 @@ Goop is a desktop client for NIP-17 private messaging on Nostr. It exists so tha
 
 ## Positioning
 
-"NIP-17 for nerds and their agents." Goop is Gigi's fork of Coop, built in Rust on GPUI (the same UI framework as the Zed editor). Every action has a keyboard shortcut and shortcuts are discoverable in the app. Messaging goes through NIP-17 gift wraps only; NIP-04 is not supported. Identity login requires an external signer, so Goop never holds a plain secret key.
+"A native NIP-17 client for you and your agents." Goop is Gigi's fork of Coop, built in Rust on GPUI (the same UI framework as the Zed editor). Every action has a keyboard shortcut and shortcuts are discoverable in the app. Messaging goes through NIP-17 gift wraps only; NIP-04 is not supported. Identity login requires an external signer, so Goop never holds a plain secret key.
 
 ## Operating Context
 
 - Native desktop app, no web or mobile version.
 - Downloads per platform from GitHub Releases: macOS (.dmg, arm64 and x64), Windows (.exe, arm64 and x64), Linux (.tar.gz, .flatpak, .snap, arm64 and x64). `SHA256SUMS` published with every release.
-- Releases follow Semantic Versioning and Keep a Changelog. Releases come fast (2.1.0 to 2.5.0 within two days in September 2026); the page reads the latest release from the GitHub API at build time, never hardcodes it.
+- Releases follow Semantic Versioning and Keep a Changelog. The page reads the latest release from the GitHub API at build time, with a verified release snapshot as a fallback when the API is unavailable.
 - Usage guide (keyboard shortcuts, agent setup) lives at https://dergigi.com/goop/ and must remain the canonical docs destination.
 - Source: https://github.com/dergigi/goop. Upstream: https://git.reya.info/reya/coop.
 
@@ -60,7 +60,7 @@ Terminology: NIP-17, gift wrap, npub, relay, signer, bunker, Blossom, Inbox, Req
 
 - Name: Goop. Lowercase in URLs, capitalized in prose.
 - Mark: a dripping purple ghost blob (`assets/brand/goop.svg` in the goop repo; app icon is the white mark on purple `#8E4EC6`, rounded square). Light variant uses `#8145B5` on `#EAD5F9`.
-- Tagline: "NIP-17 for nerds and their agents*", where the asterisk footnotes "Nerds don't have friends, let's be honest." It is a joke; keep it dry, never explain it.
+- Tagline: "A native NIP-17 client for you and your agents."
 - Voice: plain, direct, technical when needed, no hype. The README and changelog state limitations openly; the landing page keeps that honesty.
 - Licensed GPL-3.0. Free software, no pricing, no accounts.
 - Docs point to WhiteNoise as the alternative when NIP-17 is not enough. Keep that generosity.

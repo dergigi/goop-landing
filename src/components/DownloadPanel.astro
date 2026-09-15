@@ -7,11 +7,10 @@ interface Props {
   name: string;
   release: Release;
   tagline: string;
-  footnote: string;
   note: string;
   active?: boolean;
 }
-const { id, name, release, tagline, footnote, note, active = false } = Astro.props;
+const { id, name, release, tagline, note, active = false } = Astro.props;
 
 const files = filesFor(release, id);
 const sums = checksumsUrl(release);
@@ -23,7 +22,7 @@ const shot = screenshot(id) ?? screenshot('goop');
 
 <article id={id} class="panel" hidden={!active}>
   <h1>Download for {name}</h1>
-  <p class="tagline">{tagline}<a class="fn" href={`#fn-${id}`} title={footnote} aria-label="footnote">*</a></p>
+  <p class="tagline">{tagline}</p>
   <ul class="files">
     {
       files.map((f) => (
@@ -53,5 +52,4 @@ const shot = screenshot(id) ?? screenshot('goop');
     )
   }
   <slot />
-  <p class="footnote" id={`fn-${id}`}>* {footnote}</p>
 </article>

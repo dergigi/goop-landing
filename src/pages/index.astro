@@ -9,10 +9,9 @@ import { allScreenshots } from '../lib/screenshots';
 const release = await getRelease();
 const screenshots = allScreenshots();
 
-const tagline = 'NIP-17 for nerds and their agents';
-const footnote = "Nerds don't have friends, let's be honest.";
+const tagline = 'A native NIP-17 client for you and your agents.';
 // Shared by the meta description and the social cards; kept under 125 characters.
-const description = `${tagline}. A keyboard-first Nostr DM client, free software for macOS, Windows and Linux.`;
+const description = `${tagline} Free software for macOS, Windows, and Linux.`;
 const guide = 'https://dergigi.com/goop/';
 const repo = 'https://github.com/dergigi/goop';
 
@@ -48,7 +47,7 @@ const primary = picks.map((p) => {
   return { ...p, main: pick(p.file) ?? files[0], alt: pick(p.alt) };
 });
 
-// From the README. Mod is Cmd on macOS, Ctrl elsewhere.
+// Matches the app’s shortcuts. Mod is Cmd on macOS, Ctrl elsewhere.
 const shortcuts: { keys: string[][]; does: string }[] = [
   { keys: [['?']], does: 'Keyboard shortcuts, when you are not typing' },
   { keys: [['Mod', 'K']], does: 'Search conversations and message contents' },
@@ -58,6 +57,7 @@ const shortcuts: { keys: string[][]; does: string }[] = [
   { keys: [['Mod', '1'], ['Mod', '2'], ['Mod', '3']], does: 'Inbox, Requests, message box' },
   { keys: [['Mod', 'N'], ['Mod', 'T']], does: 'New chat' },
   { keys: [['Mod', 'Shift', 'N']], does: 'New group' },
+  { keys: [['Mod', 'Shift', 'S']], does: 'Note to self' },
   { keys: [['Mod', 'B']], does: 'Show or hide the sidebar' },
   { keys: [['Mod', 'W'], ['Mod', 'Shift', 'T']], does: 'Close tab, restore a closed tab' },
   { keys: [['Ctrl', 'Tab']], does: 'Next tab, on every platform' },
@@ -77,8 +77,10 @@ const features = [
   { name: 'External signer', desc: 'your key stays in your signer' },
   { name: 'Encrypted attachments', desc: 'encrypted before upload' },
   { name: 'Search', desc: 'chats, messages, profiles' },
-  { name: 'Tabs, pins, archive', desc: 'in sync with Amethyst and Nospeak' },
-  { name: 'Note to self', desc: 'an inbox for your own notes' },
+  { name: 'Tabs, pins, archive', desc: 'Amethyst pins, Nospeak archives' },
+  { name: 'Unread controls', desc: 'counts, mark read or unread' },
+  { name: 'Profiles', desc: 'view, chat, and search in the sidepane' },
+  { name: 'Note to self', desc: 'a private chat for your own notes' },
   { name: 'Agents', desc: 'OpenClaw can DM you' },
   { name: 'Native', desc: 'Rust on GPUI, macOS Windows Linux' },
   { name: 'Free software', desc: 'GPL-3.0' },
@@ -122,7 +124,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     <meta property="og:image" content={new URL('/og.png', Astro.site)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="The Goop command palette: goop, NIP-17 for nerds and their agents, Get Goop, Features, Download for macOS" />
+    <meta property="og:image:alt" content="The Goop command palette: goop, A native NIP-17 client for you and your agents. Get Goop, Features, Download for macOS" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Get Goop" />
     <meta name="twitter:description" content={description} />
@@ -172,7 +174,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       </nav>
 
       <section class="preview">
-        <DownloadPanel id="macos" name="macOS" {release} {tagline} {footnote} note="ad-hoc signed, not notarized" active={initial === 'macos'}>
+        <DownloadPanel id="macos" name="macOS" {release} {tagline} note="ad-hoc signed, not notarized" active={initial === 'macos'}>
           <p class="more">Or with Homebrew, from the <a href="https://github.com/dergigi/homebrew-goop">dergigi/goop</a> tap:</p>
           <p class="shell">
             <code id="mac-brew">brew install --cask dergigi/goop/goop</code>
@@ -187,13 +189,13 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           </p>
         </DownloadPanel>
 
-        <DownloadPanel id="windows" name="Windows" {release} {tagline} {footnote} note="unsigned, SmartScreen will warn" active={initial === 'windows'}>
+        <DownloadPanel id="windows" name="Windows" {release} {tagline} note="unsigned, SmartScreen will warn" active={initial === 'windows'}>
           <p class="more">
             First launch: SmartScreen shows “Windows protected your PC”. Pick More info, then Run anyway.
           </p>
         </DownloadPanel>
 
-        <DownloadPanel id="linux" name="Linux" {release} {tagline} {footnote} note="Flatpak, Snap, or a plain tarball" active={initial === 'linux'}>
+        <DownloadPanel id="linux" name="Linux" {release} {tagline} note="Flatpak, Snap, or a plain tarball" active={initial === 'linux'}>
           <p class="more">
             The Snap is not in the store yet. Install with <span class="name">snap install --dangerous --classic goop*.snap</span>.
           </p>
@@ -201,7 +203,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
 
         <article id="get" class="panel" hidden={initial !== 'get'}>
           <h1>Get Goop</h1>
-          <p class="tagline">{tagline}<a class="fn" href="#fn-get" title={footnote} aria-label="footnote">*</a></p>
+          <p class="tagline">{tagline}</p>
           {primary.map((p) => (
             <div class="get" data-os={p.id}>
               <a class="button" href={p.main.url} download>
@@ -223,7 +225,6 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
               <figcaption>{s.caption}</figcaption>
             </figure>
           ))}
-          <p class="footnote" id="fn-get">* {footnote}</p>
         </article>
 
         <article id="features" class="panel" hidden={initial !== 'features'}>
@@ -506,16 +507,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     margin: 1.1875rem 0 0 0.5rem;
     color: var(--lilac);
     font-size: 1.4375rem;
-    line-height: 1;
-  }
-  .panel .tagline .fn {
-    color: var(--text);
-    text-decoration: none;
-  }
-  .footnote {
-    margin: 1.375rem 0 0 0.5rem;
-    color: var(--lilac);
-    font-size: 1.125rem;
+    line-height: 1.4;
   }
   .files {
     display: grid;
@@ -931,8 +923,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       font-size: 0.875rem;
     }
     .note,
-    .more,
-    .footnote {
+    .more {
       margin-left: 0;
       font-size: 1rem;
       line-height: 1.45;
