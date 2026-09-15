@@ -150,14 +150,14 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       <section class="preview">
         <DownloadPanel id="macos" name="macOS" {release} {tagline} {footnote} note="ad-hoc signed, not notarized" active={initial === 'macos'}>
           <p class="more">Or with Homebrew, from the <a href="https://github.com/dergigi/homebrew-goop">dergigi/goop</a> tap:</p>
-          <p class="cmd">
+          <p class="shell">
             <code id="mac-brew">brew install --cask dergigi/goop/goop</code>
             <button type="button" class="copy" data-copy="mac-brew">copy</button>
           </p>
           <p class="more">
             First launch: macOS will say it cannot verify the developer. Open System Settings › Privacy &amp; Security and click Open Anyway. Or, once <span class="name">Goop.app</span> is in Applications, clear the quarantine flag and skip the dialog:
           </p>
-          <p class="cmd">
+          <p class="shell">
             <code id="mac-xattr">xattr -dr com.apple.quarantine /Applications/Goop.app</code>
             <button type="button" class="copy" data-copy="mac-xattr">copy</button>
           </p>
@@ -664,7 +664,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     color: var(--lilac);
     font-size: 1.125rem;
   }
-  .cmd {
+  .shell {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -676,7 +676,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     color: var(--lilac);
     font-size: 1.125rem;
   }
-  .cmd code {
+  .shell code {
     font: inherit;
     overflow-wrap: anywhere;
   }
@@ -854,7 +854,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     }
     .prompt-head,
     .copy,
-    .cmd,
+    .shell,
     .prompt pre {
       font-size: 0.9375rem;
     }
