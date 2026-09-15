@@ -16,17 +16,20 @@ const repo = 'https://github.com/dergigi/goop';
 
 // `alias` holds extra words the filter matches, so "help" finds the guide.
 const commands = [
+  { id: 'screenshots', label: 'Screenshots', alias: 'pictures images look' },
+  { id: 'features', label: 'Features', alias: 'what can it do' },
   { id: 'macos', label: 'Download for macOS', alias: 'mac apple dmg' },
   { id: 'windows', label: 'Download for Windows', alias: 'win exe' },
   { id: 'linux', label: 'Download for Linux', alias: 'flatpak snap tarball' },
-  { id: 'screenshots', label: 'Screenshots', alias: 'pictures images look' },
-  { id: 'features', label: 'Features', alias: 'what can it do' },
   { id: 'agents', label: 'Agents: let your bots DM you', alias: 'ai openclaw hermes nullclaw' },
   { id: 'guide', label: 'Usage guide', alias: 'help docs manual how to' },
   { id: 'source', label: 'Source on GitHub', alias: 'code repo git changelog releases' },
   { id: 'nip17', label: 'What is NIP-17?', alias: 'dm private messages encryption gift wrap' },
   { id: 'shortcuts', label: 'Keyboard shortcuts', key: '?', alias: 'keys hotkeys' },
 ];
+
+// The first row is highlighted on load, so its panel is the one shown.
+const initial = commands[0].id;
 
 // From the README. Mod is Cmd on macOS, Ctrl elsewhere.
 const shortcuts: { keys: string[][]; does: string }[] = [
@@ -147,7 +150,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       </nav>
 
       <section class="preview">
-        <DownloadPanel id="macos" name="macOS" {release} {tagline} {footnote} note="ad-hoc signed, not notarized" active>
+        <DownloadPanel id="macos" name="macOS" {release} {tagline} {footnote} note="ad-hoc signed, not notarized" active={initial === 'macos'}>
           <p class="more">
             First launch: macOS will say it cannot verify the developer. Open System Settings › Privacy &amp; Security and click Open Anyway. Or, once <span class="name">Goop.app</span> is in Applications, clear the quarantine flag and skip the dialog:
           </p>
@@ -157,19 +160,19 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           </p>
         </DownloadPanel>
 
-        <DownloadPanel id="windows" name="Windows" {release} {tagline} {footnote} note="unsigned, SmartScreen will warn">
+        <DownloadPanel id="windows" name="Windows" {release} {tagline} {footnote} note="unsigned, SmartScreen will warn" active={initial === 'windows'}>
           <p class="more">
             First launch: SmartScreen shows “Windows protected your PC”. Pick More info, then Run anyway.
           </p>
         </DownloadPanel>
 
-        <DownloadPanel id="linux" name="Linux" {release} {tagline} {footnote} note="Flatpak, Snap, or a plain tarball">
+        <DownloadPanel id="linux" name="Linux" {release} {tagline} {footnote} note="Flatpak, Snap, or a plain tarball" active={initial === 'linux'}>
           <p class="more">
             The Snap is not in the store yet. Install with <span class="name">snap install --dangerous --classic goop*.snap</span>.
           </p>
         </DownloadPanel>
 
-        <article id="screenshots" class="panel" hidden>
+        <article id="screenshots" class="panel" hidden={initial !== 'screenshots'}>
           <h1>Screenshots</h1>
           <p class="tagline">Goop {release.version}. More to come.</p>
           {screenshots.map((s) => (
@@ -180,7 +183,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           ))}
         </article>
 
-        <article id="features" class="panel" hidden>
+        <article id="features" class="panel" hidden={initial !== 'features'}>
           <h1>Features</h1>
           <p class="tagline">What Goop does, and what it leaves out.</p>
           <ul class="files links features">
@@ -193,7 +196,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           </p>
         </article>
 
-        <article id="shortcuts" class="panel" hidden>
+        <article id="shortcuts" class="panel" hidden={initial !== 'shortcuts'}>
           <h1>Keyboard shortcuts</h1>
           <p class="tagline">Designed for people who love the keyboard.</p>
           <ul class="files table">
@@ -216,7 +219,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           </p>
         </article>
 
-        <article id="agents" class="panel" hidden>
+        <article id="agents" class="panel" hidden={initial !== 'agents'}>
           <h1>Agents: let your bots DM you</h1>
           <p class="tagline">Get updates from your agents. Reply in Goop.</p>
           <p class="more">
@@ -234,7 +237,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           </p>
         </article>
 
-        <article id="guide" class="panel" hidden>
+        <article id="guide" class="panel" hidden={initial !== 'guide'}>
           <h1>Usage guide</h1>
           <p class="tagline">Setup, shortcuts, agents. All on one page.</p>
           <ul class="files links">
@@ -247,7 +250,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           </p>
         </article>
 
-        <article id="source" class="panel" hidden>
+        <article id="source" class="panel" hidden={initial !== 'source'}>
           <h1>Source on GitHub</h1>
           <p class="tagline">Rust on GPUI. GPL-3.0. Fork of Coop.</p>
           <ul class="files links">
@@ -260,7 +263,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           </p>
         </article>
 
-        <article id="nip17" class="panel" hidden>
+        <article id="nip17" class="panel" hidden={initial !== 'nip17'}>
           <h1>What is NIP-17?</h1>
           <p class="tagline">Private direct messages on Nostr.</p>
           <p class="more">
