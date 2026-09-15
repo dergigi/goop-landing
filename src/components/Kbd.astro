@@ -63,8 +63,8 @@ const label = glyph[k] ?? k;
     margin: 0 0.2em;
     opacity: 0.6;
   }
-  html[data-os='mac'] .key .ctrl,
-  html[data-os='other'] .key .mac {
+  html[data-os='macos'] .key .ctrl,
+  html[data-os]:not([data-os='macos']) .key .mac {
     display: none;
   }
   html[data-os] .key .mac + .ctrl::before {

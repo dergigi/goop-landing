@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { getRelease } from '../lib/release';
+import { getRelease, filesFor, type Platform } from '../lib/release';
 import Kbd from '../components/Kbd.astro';
 import DownloadPanel from '../components/DownloadPanel.astro';
 import Ghost from '../components/Ghost.astro';
@@ -16,7 +16,7 @@ const repo = 'https://github.com/dergigi/goop';
 
 // `alias` holds extra words the filter matches, so "help" finds the guide.
 const commands = [
-  { id: 'screenshots', label: 'Screenshots', alias: 'pictures images look' },
+  { id: 'get', label: 'Get Goop', alias: 'download install screenshots pictures' },
   { id: 'features', label: 'Features', alias: 'what can it do' },
   { id: 'macos', label: 'Download for macOS', alias: 'mac apple dmg brew homebrew cask' },
   { id: 'windows', label: 'Download for Windows', alias: 'win exe' },
@@ -30,6 +30,21 @@ const commands = [
 
 // The first row is highlighted on load, so its panel is the one shown.
 const initial = commands[0].id;
+
+// One big download per platform on the Get Goop panel. The visitor's own OS is
+// picked by data-os; the other two stay in the DOM and are hidden by CSS.
+// Architecture cannot be detected in the browser, so the common one is primary
+// and the other is a plain link next to it.
+const picks: { id: Platform; name: string; file: string; alt?: string; more: string }[] = [
+  { id: 'macos', name: 'macOS', file: 'goop-macos-arm64.dmg', alt: 'goop-macos-x64.dmg', more: 'Homebrew, first launch' },
+  { id: 'windows', name: 'Windows', file: 'goop-windows-x64.exe', alt: 'goop-windows-arm64.exe', more: 'First launch notes' },
+  { id: 'linux', name: 'Linux', file: 'goop-linux-x64.flatpak', more: 'Snap, tarball, arm64' },
+];
+const primary = picks.map((p) => {
+  const files = filesFor(release, p.id);
+  const pick = (name?: string) => files.find((f) => f.name === name);
+  return { ...p, main: pick(p.file) ?? files[0], alt: pick(p.alt) };
+});
 
 // From the README. Mod is Cmd on macOS, Ctrl elsewhere.
 const shortcuts: { keys: string[][]; does: string }[] = [
@@ -111,7 +126,13 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     <meta name="twitter:image" content={new URL('/og.png', Astro.site)} />
     <link rel="preload" href="/fonts/cascadia-code-latin.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline>
-      document.documentElement.dataset.os = /Mac|iPhone|iPad/.test(navigator.platform) ? 'mac' : 'other';
+      // macos | windows | linux | other. Android reports "Linux", so it is checked first.
+      document.documentElement.dataset.os = (function (p, ua) {
+        if (/Mac|iPhone|iPad/.test(p)) return 'macos';
+        if (/Win/.test(p)) return 'windows';
+        if (/Linux|X11/.test(p) && !/Android/.test(ua)) return 'linux';
+        return 'other';
+      })(navigator.platform, navigator.userAgent);
       document.documentElement.classList.add('js');
     </script>
   </head>
@@ -175,15 +196,31 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
           </p>
         </DownloadPanel>
 
-        <article id="screenshots" class="panel" hidden={initial !== 'screenshots'}>
-          <h1>Screenshots</h1>
-          <p class="tagline">Goop {release.version}. More to come.</p>
+        <article id="get" class="panel" hidden={initial !== 'get'}>
+          <h1>Get Goop</h1>
+          <p class="tagline">{tagline}<a class="fn" href="#fn-get" title={footnote} aria-label="footnote">*</a></p>
+          {primary.map((p) => (
+            <div class="get" data-os={p.id}>
+              <a class="button" href={p.main.url} download>
+                <span class="label">Download for {p.name}</span>
+                <span class="meta">v{release.version} · {p.main.arch} · {p.main.size}</span>
+              </a>
+              <p class="note">
+                {p.alt && <>{p.alt.arch}: <a href={p.alt.url} download>{p.alt.name}</a> · </>}
+                <a href={`#${p.id}`}>{p.more}</a>
+              </p>
+            </div>
+          ))}
+          <p class="note get-other">
+            Also for {primary.map((p, i) => <><a href={`#${p.id}`} data-os={p.id}>{p.name}</a>{i < primary.length - 1 && ' '}</>)}
+          </p>
           {screenshots.map((s) => (
             <figure class="shot has-img">
               <img src={s.src} width={s.width} height={s.height} alt={`Goop: ${s.caption}`} loading="lazy" decoding="async" />
               <figcaption>{s.caption}</figcaption>
             </figure>
           ))}
+          <p class="footnote" id="fn-get">* {footnote}</p>
         </article>
 
         <article id="features" class="panel" hidden={initial !== 'features'}>
@@ -544,7 +581,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     font-size: 1.25rem;
     line-height: 1;
   }
-  .panel a:not(.files a) {
+  .panel a:not(.files a, .button) {
     text-decoration: underline;
     text-underline-offset: 0.1875rem;
     text-decoration-color: var(--lilac-dim);
@@ -589,6 +626,60 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     height: 0.625rem;
     border-radius: 50%;
     background: var(--lilac);
+  }
+
+  /* Get Goop: one download button for the visitor's OS, styled like the active row. */
+  .get {
+    margin-top: 1.375rem;
+  }
+  .get + .get {
+    margin-top: 1rem;
+  }
+  .button {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.0625rem 1.25rem;
+    border: 0.125rem solid #f3dafe;
+    border-radius: 0.5rem;
+    background: var(--purple);
+    color: #fff;
+    font-size: 1.4375rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .panel .button {
+    text-decoration: none;
+  }
+  .button:hover {
+    background: var(--brand);
+  }
+  .button .meta {
+    color: #f3dafe;
+    font-size: 1.125rem;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .get .note {
+    line-height: 1.45;
+  }
+  .get-other {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.6ch;
+  }
+  html[data-os='macos'] .get:not([data-os='macos']),
+  html[data-os='windows'] .get:not([data-os='windows']),
+  html[data-os='linux'] .get:not([data-os='linux']),
+  html[data-os='macos'] .get-other a[data-os='macos'],
+  html[data-os='windows'] .get-other a[data-os='windows'],
+  html[data-os='linux'] .get-other a[data-os='linux'],
+  html:not([data-os='macos']):not([data-os='windows']):not([data-os='linux']) .get-other {
+    display: none;
+  }
+  .get ~ .shot:first-of-type {
+    margin-top: 1.75rem;
   }
 
   /* Text beyond the comp: same voice, a size down. */
@@ -845,6 +936,15 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     }
     .shot {
       height: 12.5rem;
+    }
+    .button {
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      padding: 0.875rem 1rem;
+      font-size: 1.125rem;
+    }
+    .button .meta {
+      font-size: 0.875rem;
     }
     .table .shortcut {
       grid-template-columns: 1fr;
