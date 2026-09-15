@@ -9,20 +9,20 @@ const download = (name: string) => `${LATEST}/download/${name}`;
 
 // Used when the GitHub API is unreachable at build time (rate limits, offline).
 const FALLBACK: Release = {
-  version: '2.6.0',
-  publishedAt: '2026-09-15T09:00:10Z',
+  version: '2.7.0',
+  publishedAt: '2026-09-15T16:21:41Z',
   url: LATEST,
   assets: [
-    { name: 'goop-linux-arm64.flatpak', size: 9126520, url: download('goop-linux-arm64.flatpak') },
-    { name: 'goop-linux-arm64.snap', size: 15015936, url: download('goop-linux-arm64.snap') },
-    { name: 'goop-linux-arm64.tar.gz', size: 25472066, url: download('goop-linux-arm64.tar.gz') },
-    { name: 'goop-linux-x64.flatpak', size: 9371704, url: download('goop-linux-x64.flatpak') },
-    { name: 'goop-linux-x64.snap', size: 15249408, url: download('goop-linux-x64.snap') },
-    { name: 'goop-linux-x64.tar.gz', size: 26487442, url: download('goop-linux-x64.tar.gz') },
-    { name: 'goop-macos-arm64.dmg', size: 8930330, url: download('goop-macos-arm64.dmg') },
-    { name: 'goop-macos-x64.dmg', size: 9885517, url: download('goop-macos-x64.dmg') },
-    { name: 'goop-windows-arm64.exe', size: 7160297, url: download('goop-windows-arm64.exe') },
-    { name: 'goop-windows-x64.exe', size: 7584671, url: download('goop-windows-x64.exe') },
+    { name: 'goop-linux-arm64.flatpak', size: 9370032, url: download('goop-linux-arm64.flatpak') },
+    { name: 'goop-linux-arm64.snap', size: 15380480, url: download('goop-linux-arm64.snap') },
+    { name: 'goop-linux-arm64.tar.gz', size: 26147573, url: download('goop-linux-arm64.tar.gz') },
+    { name: 'goop-linux-x64.flatpak', size: 9629296, url: download('goop-linux-x64.flatpak') },
+    { name: 'goop-linux-x64.snap', size: 15634432, url: download('goop-linux-x64.snap') },
+    { name: 'goop-linux-x64.tar.gz', size: 27227146, url: download('goop-linux-x64.tar.gz') },
+    { name: 'goop-macos-arm64.dmg', size: 9283749, url: download('goop-macos-arm64.dmg') },
+    { name: 'goop-macos-x64.dmg', size: 10277549, url: download('goop-macos-x64.dmg') },
+    { name: 'goop-windows-arm64.exe', size: 7369646, url: download('goop-windows-arm64.exe') },
+    { name: 'goop-windows-x64.exe', size: 7826563, url: download('goop-windows-x64.exe') },
     { name: 'SHA256SUMS', size: 880, url: download('SHA256SUMS') },
   ],
 };
