@@ -28,7 +28,7 @@ Goop is a desktop client for NIP-17 private messaging on Nostr. It exists so tha
 
 - Native desktop app, no web or mobile version.
 - Downloads per platform from GitHub Releases: macOS (.dmg, arm64 and x64), Windows (.exe, arm64 and x64), Linux (.tar.gz, .flatpak, .snap, arm64 and x64). `SHA256SUMS` published with every release.
-- Releases follow Semantic Versioning and Keep a Changelog. Releases come fast (2.1.0 to 2.3.0 within two days in September 2026); the page reads the latest release from the GitHub API at build time, never hardcodes it.
+- Releases follow Semantic Versioning and Keep a Changelog. Releases come fast (2.1.0 to 2.5.0 within two days in September 2026); the page reads the latest release from the GitHub API at build time, never hardcodes it.
 - Usage guide (keyboard shortcuts, agent setup) lives at https://dergigi.com/goop/ and must remain the canonical docs destination.
 - Source: https://github.com/dergigi/goop. Upstream: https://git.reya.info/reya/coop.
 
