@@ -111,6 +111,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     <link rel="preload" href="/fonts/cascadia-code-latin.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline>
       document.documentElement.dataset.os = /Mac|iPhone|iPad/.test(navigator.platform) ? 'mac' : 'other';
+      document.documentElement.classList.add('js');
     </script>
   </head>
   <body>
@@ -423,11 +424,12 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     scrollbar-gutter: stable;
     mask-image: linear-gradient(to bottom, #000 calc(100% - 2.5rem), transparent);
   }
-  /* Without JS, the hash picks the panel. */
-  .preview:has(.panel:target) .panel:not(:target) {
+  /* Without JS, the hash picks the panel. With JS the script owns visibility;
+     :target must not interfere since it ignores history.replaceState. */
+  html:not(.js) .preview:has(.panel:target) .panel:not(:target) {
     display: none;
   }
-  .panel[hidden]:target {
+  html:not(.js) .panel[hidden]:target {
     display: block;
   }
   .panel {
