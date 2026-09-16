@@ -14,6 +14,7 @@ const tagline = 'A native NIP-17 client for you and your agents.';
 const description = `${tagline} Free software for macOS, Windows, and Linux.`;
 const guide = 'https://dergigi.com/goop/';
 const repo = 'https://github.com/dergigi/goop';
+const goopProfile = 'https://njump.to/npub1vnl7t2z4vy28lwthaavlpsxq67qnwqss0jz2t9jg3ealzjs43y6q5hwqec';
 
 // `alias` holds extra words the filter matches, so "help" finds the guide.
 const commands = [
@@ -333,7 +334,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       <footer class="status">
         <a href={release.url}>goop v{release.version}</a>
         <span>
-          <a href={links.nip17[0].url}>NIP-17</a> · <a href={`${repo}/blob/master/LICENSE`}>GPL-3.0</a> · <a href="#macos">macOS</a> <a href="#windows">Windows</a> <a href="#linux">Linux</a>
+          <a href={goopProfile} title="Goop’s Nostr profile">Message Goop</a> · <a href={links.nip17[0].url}>NIP-17</a> · <a href={`${repo}/blob/master/LICENSE`}>GPL-3.0</a> · <a href="#macos">macOS</a> <a href="#windows">Windows</a> <a href="#linux">Linux</a>
         </span>
         <a class="hint-link" href="#shortcuts">? for shortcuts</a>
       </footer>
