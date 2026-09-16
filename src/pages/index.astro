@@ -196,6 +196,12 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
         </DownloadPanel>
 
         <DownloadPanel id="linux" name="Linux" {release} {tagline} note="Flatpak, Snap, or a plain tarball" active={initial === 'linux'}>
+          <p class="more">Ubuntu / Debian: paste this into a Bash terminal, without sudo:</p>
+          <p class="shell">
+            <code id="linux-install">bash &lt;(curl -fsSL https://goop.dergigi.com/install.sh)</code>
+            <button type="button" class="copy" data-copy="linux-install">copy</button>
+          </p>
+          <p class="more">Installs Flatpak, the matching runtime, and the latest Goop release. Then open Goop from the app launcher.</p>
           <p class="more">
             The Snap is not in the store yet. Install with <span class="name">snap install --dangerous --classic goop*.snap</span>.
           </p>
