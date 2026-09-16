@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/install.sh",
+      "destination": "https://raw.githubusercontent.com/dergigi/goop/master/script/install-linux",
+      "permanent": false
+    }
+  ]
+}
