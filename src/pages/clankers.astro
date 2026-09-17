@@ -43,16 +43,13 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
         <h1><span>Clankers</span><br />&amp; friends.</h1>
         <p class="intro">Filter your chats by bots or people.</p>
         <div class="filter-demo">
-          <div class="demo-controls" role="group" aria-label="Try the chat filter" hidden>
-            <button type="button" data-filter="all" aria-pressed="true" aria-controls="filter-preview">Show all</button>
-            <button type="button" data-filter="bots" aria-pressed="false" aria-controls="filter-preview">Clankers only</button>
-          </div>
-          <div class="filter-preview" id="filter-preview" aria-live="polite">
+          <button class="filter-preview" id="filter-preview" type="button" aria-label="Clankers only" aria-pressed="false">
             <svg data-preview="all" viewBox="2 2 564 304" role="img" aria-label="All pinned chats: Note to self, Goop, and Boris.">
               <image href="/clankers-all.png" width="568" height="306" />
             </svg>
             <img data-preview="bots" hidden src="/clankers-filter.png" width="564" height="228" alt="Clankers only: Goop and Boris. The robot filter is selected." />
-          </div>
+          </button>
+          <p class="demo-hint">Hover or tap to try the clanker filter.</p>
         </div>
         <p class="explanation">Tap a filter in your chat list. Tap it again to see everyone, including groups.</p>
         <section class="details" aria-labelledby="how-it-works">
@@ -68,18 +65,23 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
 </html>
 
 <script>
-  const controls = document.querySelector<HTMLElement>('.demo-controls');
-  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const demo = document.querySelector<HTMLButtonElement>('#filter-preview');
   const previews = document.querySelectorAll<HTMLElement | SVGElement>('[data-preview]');
-  buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-      previews.forEach((preview) => {
-        preview.toggleAttribute('hidden', preview.dataset.preview !== button.dataset.filter);
-      });
+  let selected = false;
+  function show(bots: boolean) {
+    demo?.setAttribute('aria-pressed', String(bots));
+    previews.forEach((preview) => {
+      preview.toggleAttribute('hidden', preview.dataset.preview !== (bots ? 'bots' : 'all'));
     });
+  }
+  demo?.addEventListener('pointerenter', (event) => {
+    if (event.pointerType === 'mouse') show(true);
   });
-  if (controls) controls.hidden = false;
+  demo?.addEventListener('pointerleave', () => show(selected));
+  demo?.addEventListener('click', () => {
+    selected = !selected;
+    show(selected);
+  });
 </script>
 
 <style>
@@ -92,12 +94,8 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
   h1 span { color: #b77aeb; }
   .intro { font-size: 1rem; color: var(--lilac); line-height: 1.5; }
   .filter-demo { max-width: 564px; margin: 1.5rem 0; }
-  .demo-controls { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
-  .demo-controls[hidden], [data-preview][hidden] { display: none; }
-  .demo-controls button { padding: .5rem .75rem; border: 1px solid var(--purple); border-radius: .5rem; background: transparent; color: var(--lilac); font: inherit; font-size: .8rem; cursor: pointer; }
-  .demo-controls button[aria-pressed="true"] { background: var(--purple); color: var(--text); }
-  .demo-controls button:hover { border-color: var(--lilac); }
-  .filter-preview { aspect-ratio: 564 / 304; overflow: hidden; border-radius: .75rem; background: #f8f8f8; }
+  .filter-preview { display: block; width: 100%; padding: 0; border: 0; aspect-ratio: 564 / 304; overflow: hidden; border-radius: .75rem; background: #f8f8f8; cursor: pointer; }
+  .demo-hint { margin-top: .6rem; color: var(--lilac-dim); font-size: .7rem; line-height: 1.5; }
   .filter-preview > svg, .filter-preview > img { display: block; width: 100%; height: auto; }
   .filter-preview > [hidden] { display: none; }
   .explanation { max-width: 34rem; font-size: .9rem; line-height: 1.7; }
