@@ -9,9 +9,9 @@ import { allScreenshots } from '../lib/screenshots';
 const release = await getRelease();
 const screenshots = allScreenshots();
 
-const tagline = 'A native NIP-17 client for you and your agents.';
+const tagline = 'A native NIP-17 client to chat with your clankers (and friends)';
 // Shared by the meta description and the social cards; kept under 125 characters.
-const description = `${tagline} Free software for macOS, Windows, and Linux.`;
+const description = `${tagline}. Free software for macOS, Windows, and Linux.`;
 const guide = 'https://dergigi.com/goop/';
 const repo = 'https://github.com/dergigi/goop';
 const goopProfile = 'https://njump.to/npub1vnl7t2z4vy28lwthaavlpsxq67qnwqss0jz2t9jg3ealzjs43y6q5hwqec';
@@ -125,7 +125,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     <meta property="og:image" content={new URL('/og.png', Astro.site)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="The Goop command palette: goop, A native NIP-17 client for you and your agents. Get Goop, Features, Download for macOS/Linux/Windows" />
+    <meta property="og:image:alt" content="The Goop command palette: goop, A native NIP-17 client to chat with your clankers (and friends). Get Goop, Features, Download for macOS/Linux/Windows" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Get Goop" />
     <meta name="twitter:description" content={description} />
