@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+import Ghost from '../components/Ghost.astro';
+
+const title = 'Clankers & friends — Goop';
+const description = 'Filter your chats by bots or people. New in Goop 2.11.0, a native NIP-17 client for macOS, Windows, and Linux.';
+const canonical = new URL('/clankers', Astro.site);
+const image = new URL('/clankers-og.png', Astro.site);
+const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filters.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/goop.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Goop" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <link rel="preload" href="/fonts/cascadia-code-latin.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <div class="page">
+      <header><a class="brand" href="/" aria-label="Goop home"><Ghost class="ghost" />Goop</a></header>
+      <main>
+        <p class="eyebrow">New in Goop 2.11.0</p>
+        <h1><span>Clankers</span><br />&amp; friends.</h1>
+        <p class="intro">Your chats. Your bots. Your people.</p>
+        <ul class="filters" aria-label="Chat filters">
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5" y="7" width="14" height="13" rx="3"/>
+    <path d="M12 7V4M3 12v4M21 12v4M9 16h6"/>
+    <circle cx="12" cy="3" r="1"/>
+    <path d="M9 11v1M15 11v1"/>
+  </g>
+</svg>
+<span>Show bots</span></li>
+          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+<circle cx="12" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/>
+<path d="M4.93 18.114C5.95 14.981 8.552 12.75 12 12.75S18.05 14.981 19.07 18.114C19.433 19.23 18.491 20.25 17.317 20.25H6.683C5.509 20.25 4.567 19.23 4.93 18.114Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<span>Show people</span></li>
+        </ul>
+        <p class="explanation">Tap a filter in your chat list. Tap it again to see everyone, including groups.</p>
+        <p class="note">Bot status is self-declared.</p>
+        <a class="download" href="/#get">Get Goop <span aria-hidden="true">→</span></a>
+        <p class="platforms">macOS · Windows · Linux</p>
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+  .page { width: min(100%, 42rem); min-height: 100svh; margin: 0 auto; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2.5rem; }
+  .brand { display: inline-flex; align-items: center; gap: .5rem; font-size: 1rem; font-weight: 600; }
+  .brand :global(.ghost) { width: 1.5rem; height: 1.75rem; }
+  p { margin: 0; }
+  .eyebrow { color: var(--lilac-dim); font-size: .75rem; }
+  h1 { margin: 1rem 0; font-size: clamp(2.4rem, 7vw, 3.8rem); font-weight: 600; line-height: 1.06; letter-spacing: -.06em; }
+  h1 span { color: #b77aeb; }
+  .intro { font-size: 1rem; color: var(--lilac); line-height: 1.5; }
+  .filters { list-style: none; padding: 0; margin: 2rem 0 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
+  .filters li { display: flex; align-items: center; gap: .6rem; font-size: 1rem; }
+  .filters svg { width: 1.5rem; height: 1.5rem; color: var(--lilac); flex-shrink: 0; }
+  .explanation { max-width: 34rem; font-size: .9rem; line-height: 1.7; }
+  .note { margin-top: .6rem; color: var(--lilac-dim); font-size: .75rem; line-height: 1.6; }
+  .download { margin-top: 2rem; display: inline-flex; align-items: center; gap: 2rem; padding: .8rem 1rem; border-radius: var(--radius); background: var(--purple); color: var(--text); font-size: 1rem; }
+  .download:hover { background: var(--brand); }
+  .platforms { margin-top: .8rem; color: var(--lilac-dim); font-size: .7rem; line-height: 1.5; }
+</style>

@@ -19,6 +19,8 @@ Download links go through GitHub's `releases/latest/download/<file>` redirect, s
 
 `public/og.png` is rendered from the `/og` route. With the dev server running, `pnpm og` regenerates it.
 
+The simple `/clankers` feature page uses `public/clankers-og.png` (1200 × 630) as its dedicated social preview.
+
 ## Screenshots
 
 Drop real app screenshots at `public/screenshots/macos.png`, `windows.png`, and `linux.png`. Each download panel shows its screenshot when the file exists and an outlined placeholder otherwise.
