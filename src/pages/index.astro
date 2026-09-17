@@ -569,14 +569,14 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     color: var(--lilac);
   }
   .note {
-    margin: 0.9375rem 0 0 0.3125rem;
+    margin: 1.25rem 0 0 0.3125rem;
     color: var(--lilac);
     font-size: 1.25rem;
-    line-height: 1;
+    line-height: 1.6;
   }
   .panel a:not(.files a, .button) {
     text-decoration: underline;
-    text-underline-offset: 0.1875rem;
+    text-underline-offset: 0.25rem;
     text-decoration-color: var(--lilac-dim);
   }
   .shot {
@@ -658,7 +658,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     margin-block: 1.75rem;
   }
   .get .note {
-    line-height: 1.45;
+    line-height: 1.6;
   }
   .get-other {
     display: flex;
@@ -676,6 +676,30 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
   }
   .get ~ .shot:first-of-type {
     margin-top: 1.75rem;
+  }
+
+  .install-commands {
+    margin-block: 2rem;
+  }
+  .install-commands > .more:first-child {
+    margin-top: 0;
+  }
+  .install-commands > .shell + .more {
+    margin-top: 2rem;
+  }
+  .install-commands > .note {
+    margin-top: 1.25rem;
+  }
+  .install-commands .shell {
+    margin-top: 1rem;
+    padding-block: 1rem;
+    line-height: 1.5;
+  }
+  .get-other {
+    margin-top: 1.5rem;
+  }
+  .panel > .shot {
+    margin-top: 2rem;
   }
 
   /* Text beyond the comp: same voice, a size down. */
@@ -837,7 +861,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       white-space: nowrap;
     }
     .note {
-      line-height: 1.4;
+      line-height: 1.6;
     }
     .panel h1 {
       font-size: 1.875rem;
@@ -927,7 +951,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     .more {
       margin-left: 0;
       font-size: 1rem;
-      line-height: 1.45;
+      line-height: 1.6;
     }
     .shot {
       height: 12.5rem;
