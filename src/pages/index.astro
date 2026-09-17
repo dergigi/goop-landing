@@ -22,7 +22,7 @@ const commands = [
   { id: 'features', label: 'Features', alias: 'what can it do' },
   { id: 'macos', label: 'Download for macOS', alias: 'mac apple dmg brew homebrew cask' },
   { id: 'windows', label: 'Download for Windows', alias: 'win exe' },
-  { id: 'linux', label: 'Download for Linux', alias: 'flatpak snap tarball' },
+  { id: 'linux', label: 'Download for Linux', alias: 'flatpak snap tarball arch aur omarchy' },
   { id: 'agents', label: 'Agents: let your bots DM you', alias: 'ai openclaw hermes nullclaw' },
   { id: 'guide', label: 'Usage guide', alias: 'help docs manual how to' },
   { id: 'source', label: 'Source on GitHub', alias: 'code repo git changelog releases' },
@@ -197,6 +197,11 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
         </DownloadPanel>
 
         <DownloadPanel id="linux" name="Linux" {release} {tagline} note="Flatpak, Snap, or a plain tarball" active={initial === 'linux'}>
+          <p class="more">Arch / Omarchy (x86_64): install <a href="https://aur.archlinux.org/packages/goop-bin">goop-bin from AUR</a>:</p>
+          <p class="shell">
+            <code id="linux-aur">yay -S goop-bin</code>
+            <button type="button" class="copy" data-copy="linux-aur">copy</button>
+          </p>
           <p class="more">Ubuntu / Debian: paste this into a Bash terminal, without sudo:</p>
           <p class="shell">
             <code id="linux-install">bash &lt;(curl -fsSL https://goop.dergigi.com/install.sh)</code>
