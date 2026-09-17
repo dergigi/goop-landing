@@ -1,5 +1,6 @@
 ---
 import { filesFor, checksumsUrl, type Platform, type Release } from '../lib/release';
+import DownloadIcon from './DownloadIcon.astro';
 import InstallCommands from './InstallCommands.astro';
 import { screenshot } from '../lib/screenshots';
 
@@ -26,7 +27,7 @@ const shot = screenshot(id) ?? screenshot('goop');
   <p class="tagline">{tagline}</p>
   <InstallCommands platform={id} prefix={id} />
   <p class="more">Direct downloads</p>
-  <ul class="files">
+  <ul class="files downloads">
     {
       files.map((f) => (
         <li>
@@ -34,6 +35,7 @@ const shot = screenshot(id) ?? screenshot('goop');
             <span class="name">{f.name}</span>
             <span class="size">{f.size}</span>
             <span class="arch">{f.arch}</span>
+            <DownloadIcon />
           </a>
         </li>
       ))

@@ -2,7 +2,7 @@
 interface Props { target: string }
 const { target } = Astro.props;
 ---
-<button type="button" class="copy" data-copy={target} aria-label="Copy to clipboard" title="Copy to clipboard">
+<button type="button" class="copy action-icon" data-copy={target} aria-label="Copy to clipboard" title="Copy to clipboard">
   <svg class="clipboard-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <rect x="8" y="3" width="8" height="4" rx="1" />
     <path d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
@@ -12,7 +12,6 @@ const { target } = Astro.props;
   </svg>
 </button>
 <style>
-  .copy { display: inline-grid; place-items: center; flex: 0 0 auto; width: 2.5rem; height: 2.5rem; padding: 0; }
   .check-icon, .copy[data-copied] .clipboard-icon { display: none; }
   .copy[data-copied] .check-icon { display: block; }
 </style>
