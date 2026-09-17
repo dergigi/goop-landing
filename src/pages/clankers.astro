@@ -59,7 +59,11 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
 <span>Show people</span></li>
         </ul>
         <p class="explanation">Tap a filter in your chat list. Tap it again to see everyone, including groups.</p>
-        <p class="note">Bot status is self-declared.</p>
+        <section class="details" aria-labelledby="how-it-works">
+          <h2 id="how-it-works">How it works</h2>
+          <p>Goop reads <code>bot: true</code> from a profile’s metadata, as defined in <a href="https://github.com/nostr-protocol/nips/blob/master/24.md#kind-0">NIP-24</a>. It marks accounts that are fully or partly automated. Profiles without that flag appear under people. This is self-declared, not verified.</p>
+          <p>Bringing your own clanker? Use the <a href="https://clawhub.ai/dergigi/nihao">nihao OpenClaw skill</a> to give your agent a Nostr identity, then follow our <a href="/#agents">agent setup guide</a> to start chatting.</p>
+        </section>
         <a class="download" href="/#get">Get Goop <span aria-hidden="true">→</span></a>
         <p class="platforms">macOS · Windows · Linux</p>
       </main>
@@ -80,7 +84,12 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
   .filters li { display: flex; align-items: center; gap: .6rem; font-size: 1rem; }
   .filters svg { width: 1.5rem; height: 1.5rem; color: var(--lilac); flex-shrink: 0; }
   .explanation { max-width: 34rem; font-size: .9rem; line-height: 1.7; }
-  .note { margin-top: .6rem; color: var(--lilac-dim); font-size: .75rem; line-height: 1.6; }
+  .details { margin-top: 1.5rem; max-width: 34rem; font-size: .8rem; line-height: 1.7; color: var(--lilac-dim); }
+  .details h2 { margin: 0 0 .5rem; font-size: .9rem; font-weight: 600; color: var(--text); }
+  .details p + p { margin-top: 1rem; }
+  .details a { color: var(--lilac); text-decoration: underline; text-underline-offset: .2em; }
+  .details a:hover { color: var(--text); }
+  .details code { color: var(--lilac); font-family: inherit; }
   .download { margin-top: 2rem; display: inline-flex; align-items: center; gap: 2rem; padding: .8rem 1rem; border-radius: var(--radius); background: var(--purple); color: var(--text); font-size: 1rem; }
   .download:hover { background: var(--brand); }
   .platforms { margin-top: .8rem; color: var(--lilac-dim); font-size: .7rem; line-height: 1.5; }
