@@ -94,9 +94,9 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
   h1 span { color: #b77aeb; }
   .intro { font-size: 1rem; color: var(--lilac); line-height: 1.5; }
   .filter-demo { max-width: 564px; margin: 1.5rem 0; }
-  .filter-preview { display: block; width: 100%; padding: 0; border: 0; aspect-ratio: 564 / 304; overflow: hidden; border-radius: .75rem; background: #f8f8f8; cursor: pointer; }
+  .filter-preview { position: relative; display: block; width: 100%; padding: 0; border: 0; aspect-ratio: 564 / 304; overflow: hidden; border-radius: .75rem; background: #f8f8f8; cursor: pointer; }
   .demo-hint { margin-top: .6rem; color: var(--lilac-dim); font-size: .7rem; line-height: 1.5; }
-  .filter-preview > svg, .filter-preview > img { display: block; width: 100%; height: auto; }
+  .filter-preview > svg, .filter-preview > img { position: absolute; top: 0; left: 0; display: block; width: 100%; height: auto; }
   .filter-preview > [hidden] { display: none; }
   .explanation { max-width: 34rem; font-size: .9rem; line-height: 1.7; }
   .details { margin-top: 1.5rem; max-width: 34rem; font-size: .8rem; line-height: 1.7; color: var(--lilac-dim); }
