@@ -42,22 +42,7 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
         <p class="eyebrow">New in Goop 2.11.0</p>
         <h1><span>Clankers</span><br />&amp; friends.</h1>
         <p class="intro">Filter your chats by bots or people.</p>
-        <ul class="filters" aria-label="Chat filters">
-          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-  <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="5" y="7" width="14" height="13" rx="3"/>
-    <path d="M12 7V4M3 12v4M21 12v4M9 16h6"/>
-    <circle cx="12" cy="3" r="1"/>
-    <path d="M9 11v1M15 11v1"/>
-  </g>
-</svg>
-<span>Show bots</span></li>
-          <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-<circle cx="12" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/>
-<path d="M4.93 18.114C5.95 14.981 8.552 12.75 12 12.75S18.05 14.981 19.07 18.114C19.433 19.23 18.491 20.25 17.317 20.25H6.683C5.509 20.25 4.567 19.23 4.93 18.114Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-<span>Show people</span></li>
-        </ul>
+        <img class="filter-preview" src="/clankers-filter.png" width="564" height="228" alt="Goop’s chat list with the robot filter selected, showing Goop and Boris. The person filter sits beside it." />
         <p class="explanation">Tap a filter in your chat list. Tap it again to see everyone, including groups.</p>
         <section class="details" aria-labelledby="how-it-works">
           <h2 id="how-it-works">How it works</h2>
@@ -80,9 +65,7 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
   h1 { margin: 1rem 0; font-size: clamp(2.4rem, 7vw, 3.8rem); font-weight: 600; line-height: 1.06; letter-spacing: -.06em; }
   h1 span { color: #b77aeb; }
   .intro { font-size: 1rem; color: var(--lilac); line-height: 1.5; }
-  .filters { list-style: none; padding: 0; margin: 2rem 0 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
-  .filters li { display: flex; align-items: center; gap: .6rem; font-size: 1rem; }
-  .filters svg { width: 1.5rem; height: 1.5rem; color: var(--lilac); flex-shrink: 0; }
+  .filter-preview { display: block; width: 100%; max-width: 564px; height: auto; margin: 1.5rem 0; border-radius: .75rem; }
   .explanation { max-width: 34rem; font-size: .9rem; line-height: 1.7; }
   .details { margin-top: 1.5rem; max-width: 34rem; font-size: .8rem; line-height: 1.7; color: var(--lilac-dim); }
   .details h2 { margin: 0 0 .5rem; font-size: .9rem; font-weight: 600; color: var(--text); }
