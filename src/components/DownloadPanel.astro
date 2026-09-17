@@ -1,5 +1,6 @@
 ---
 import { filesFor, checksumsUrl, type Platform, type Release } from '../lib/release';
+import InstallCommands from './InstallCommands.astro';
 import { screenshot } from '../lib/screenshots';
 
 interface Props {
@@ -23,6 +24,8 @@ const shot = screenshot(id) ?? screenshot('goop');
 <article id={id} class="panel" hidden={!active}>
   <h1>Download for {name}</h1>
   <p class="tagline">{tagline}</p>
+  <InstallCommands platform={id} prefix={id} />
+  <p class="more">Direct downloads</p>
   <ul class="files">
     {
       files.map((f) => (

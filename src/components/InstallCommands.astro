@@ -1,0 +1,23 @@
+---
+interface Props { platform: string; prefix: string }
+const { platform, prefix } = Astro.props;
+const commands = platform === 'macos' ? [
+  { label: 'Install with Homebrew', command: 'brew install --cask dergigi/goop/goop' },
+] : platform === 'linux' ? [
+  { label: 'Arch / Omarchy (x86_64)', command: 'yay -S goop-bin' },
+  { label: 'Other Linux desktops', command: 'bash <(curl -fsSL https://goop.dergigi.com/install.sh)' },
+] : [
+  { label: 'Install with PowerShell', command: 'irm https://goop.dergigi.com/install.ps1 | iex' },
+];
+---
+<div class="install-commands">
+  {commands.map((item, i) => <>
+    <p class="more">{item.label}</p>
+    <p class="shell">
+      <code id={`${prefix}-install-${i}`}>{item.command}</code>
+      <button type="button" class="copy" data-copy={`${prefix}-install-${i}`}>copy</button>
+    </p>
+  </>)}
+  {platform === 'macos' && <p class="note">No Homebrew yet? <a href="https://brew.sh">Install Homebrew</a>, or use the download below.</p>}
+  {platform === 'linux' && <p class="note"><a href="https://aur.archlinux.org/packages/goop-bin">AUR package</a> · The installer uses yay/paru on Arch, or Flatpak. Run without sudo.</p>}
+</div>
