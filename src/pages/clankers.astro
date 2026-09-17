@@ -42,7 +42,18 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
         <p class="eyebrow">New in Goop 2.11.0</p>
         <h1><span>Clankers</span><br />&amp; friends.</h1>
         <p class="intro">Filter your chats by bots or people.</p>
-        <img class="filter-preview" src="/clankers-filter.png" width="564" height="228" alt="Goop’s chat list with the robot filter selected, showing Goop and Boris. The person filter sits beside it." />
+        <div class="filter-demo">
+          <div class="demo-controls" role="group" aria-label="Try the chat filter" hidden>
+            <button type="button" data-filter="all" aria-pressed="true" aria-controls="filter-preview">Show all</button>
+            <button type="button" data-filter="bots" aria-pressed="false" aria-controls="filter-preview">Clankers only</button>
+          </div>
+          <div class="filter-preview" id="filter-preview" aria-live="polite">
+            <svg data-preview="all" viewBox="2 2 564 304" role="img" aria-label="All pinned chats: Note to self, Goop, and Boris.">
+              <image href="/clankers-all.png" width="568" height="306" />
+            </svg>
+            <img data-preview="bots" hidden src="/clankers-filter.png" width="564" height="228" alt="Clankers only: Goop and Boris. The robot filter is selected." />
+          </div>
+        </div>
         <p class="explanation">Tap a filter in your chat list. Tap it again to see everyone, including groups.</p>
         <section class="details" aria-labelledby="how-it-works">
           <h2 id="how-it-works">How it works</h2>
@@ -56,6 +67,21 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
   </body>
 </html>
 
+<script>
+  const controls = document.querySelector<HTMLElement>('.demo-controls');
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const previews = document.querySelectorAll<HTMLElement | SVGElement>('[data-preview]');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      previews.forEach((preview) => {
+        preview.toggleAttribute('hidden', preview.dataset.preview !== button.dataset.filter);
+      });
+    });
+  });
+  if (controls) controls.hidden = false;
+</script>
+
 <style>
   .page { width: min(100%, 42rem); min-height: 100svh; margin: 0 auto; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2.5rem; }
   .brand { display: inline-flex; align-items: center; gap: .5rem; font-size: 1rem; font-weight: 600; }
@@ -65,7 +91,15 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
   h1 { margin: 1rem 0; font-size: clamp(2.4rem, 7vw, 3.8rem); font-weight: 600; line-height: 1.06; letter-spacing: -.06em; }
   h1 span { color: #b77aeb; }
   .intro { font-size: 1rem; color: var(--lilac); line-height: 1.5; }
-  .filter-preview { display: block; width: 100%; max-width: 564px; height: auto; margin: 1.5rem 0; border-radius: .75rem; }
+  .filter-demo { max-width: 564px; margin: 1.5rem 0; }
+  .demo-controls { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
+  .demo-controls[hidden], [data-preview][hidden] { display: none; }
+  .demo-controls button { padding: .5rem .75rem; border: 1px solid var(--purple); border-radius: .5rem; background: transparent; color: var(--lilac); font: inherit; font-size: .8rem; cursor: pointer; }
+  .demo-controls button[aria-pressed="true"] { background: var(--purple); color: var(--text); }
+  .demo-controls button:hover { border-color: var(--lilac); }
+  .filter-preview { aspect-ratio: 564 / 304; overflow: hidden; border-radius: .75rem; background: #f8f8f8; }
+  .filter-preview > svg, .filter-preview > img { display: block; width: 100%; height: auto; }
+  .filter-preview > [hidden] { display: none; }
   .explanation { max-width: 34rem; font-size: .9rem; line-height: 1.7; }
   .details { margin-top: 1.5rem; max-width: 34rem; font-size: .8rem; line-height: 1.7; color: var(--lilac-dim); }
   .details h2 { margin: 0 0 .5rem; font-size: .9rem; font-weight: 600; color: var(--text); }
