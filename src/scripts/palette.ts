@@ -127,12 +127,24 @@ document.addEventListener('click', (e) => {
 });
 
 for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-copy]')) {
+  let resetTimer: ReturnType<typeof setTimeout>;
   btn.addEventListener('click', async () => {
     const text = document.getElementById(btn.dataset.copy!)?.textContent ?? '';
-    await navigator.clipboard.writeText(text.trim());
-    const was = btn.textContent;
-    btn.textContent = 'copied';
-    setTimeout(() => (btn.textContent = was), 1200);
+    try {
+      await navigator.clipboard.writeText(text.trim());
+      clearTimeout(resetTimer);
+      btn.dataset.copied = '';
+      btn.setAttribute('aria-label', 'Copied');
+      btn.title = 'Copied';
+      resetTimer = setTimeout(() => {
+        delete btn.dataset.copied;
+        btn.setAttribute('aria-label', 'Copy to clipboard');
+        btn.title = 'Copy to clipboard';
+      }, 1200);
+    } catch {
+      btn.setAttribute('aria-label', 'Copy failed. Try again');
+      btn.title = 'Copy failed. Try again';
+    }
   });
 }
 

@@ -1,4 +1,5 @@
 ---
+import CopyButton from './CopyButton.astro';
 interface Props { platform: string; prefix: string }
 const { platform, prefix } = Astro.props;
 const commands = platform === 'macos' ? [
@@ -15,7 +16,7 @@ const commands = platform === 'macos' ? [
     <p class="more">{item.label}</p>
     <p class="shell">
       <code id={`${prefix}-install-${i}`}>{item.command}</code>
-      <button type="button" class="copy" data-copy={`${prefix}-install-${i}`}>copy</button>
+      <CopyButton target={`${prefix}-install-${i}`} />
     </p>
   </>)}
   {platform === 'macos' && <p class="note">No Homebrew yet? <a href="https://brew.sh">Install Homebrew</a>, or use the download below.</p>}
