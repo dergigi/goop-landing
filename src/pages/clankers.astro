@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Ghost from '../components/Ghost.astro';
 
-const title = 'Clankers & friends — Goop';
+const title = 'Clankers & friends | Goop';
 const description = 'Filter your chats by bots or people. New in Goop 2.11.0, a native NIP-17 client for macOS, Windows, and Linux.';
 const canonical = new URL('/clankers', Astro.site);
 const image = new URL('/clankers-og.png', Astro.site);
@@ -41,7 +41,7 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
       <main>
         <p class="eyebrow">New in Goop 2.11.0</p>
         <h1><span>Clankers</span><br />&amp; friends.</h1>
-        <p class="intro">Your chats. Your bots. Your people.</p>
+        <p class="intro">Filter your chats by bots or people.</p>
         <ul class="filters" aria-label="Chat filters">
           <li><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
   <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -61,8 +61,8 @@ const imageAlt = 'Goop 2.11.0: Clankers & friends. New bot and human chat filter
         <p class="explanation">Tap a filter in your chat list. Tap it again to see everyone, including groups.</p>
         <section class="details" aria-labelledby="how-it-works">
           <h2 id="how-it-works">How it works</h2>
-          <p>Goop reads <code>bot: true</code> from a profile’s metadata, as defined in <a href="https://github.com/nostr-protocol/nips/blob/master/24.md#kind-0">NIP-24</a>. It marks accounts that are fully or partly automated. Profiles without that flag appear under people. This is self-declared, not verified.</p>
-          <p>Bringing your own clanker? Use the <a href="https://clawhub.ai/dergigi/nihao">nihao OpenClaw skill</a> to give your agent a Nostr identity, then follow our <a href="/#agents">agent setup guide</a> to start chatting.</p>
+          <p>Goop reads <code>bot: true</code> from a profile’s metadata, as defined in <a href="https://github.com/nostr-protocol/nips/blob/master/24.md#kind-0">NIP-24</a>. It marks accounts that are fully or partly automated. Profiles without that flag appear under people. Goop relies on what each profile declares.</p>
+          <p>Use the <a href="https://clawhub.ai/dergigi/nihao">nihao OpenClaw skill</a> to give your agent a Nostr identity, then follow our <a href="/#agents">agent setup guide</a> to start chatting.</p>
         </section>
         <a class="download" href="/#get">Get Goop <span aria-hidden="true">→</span></a>
         <p class="platforms">macOS · Windows · Linux</p>
