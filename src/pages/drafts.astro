@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import Ghost from '../components/Ghost.astro';
+import DraftNote from '../components/DraftNote.astro';
+
+const title = 'Finish it later | Goop';
+const description = 'Saved drafts, a persistent send queue, and a way to pick up where you left off. New in Goop 2.12.0.';
+const canonical = new URL('/drafts', Astro.site);
+const image = new URL('/drafts-og.png', Astro.site);
+const imageAlt = 'Goop 2.12.0. Finish it later. Your draft will be here.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/goop.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Goop" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <link rel="preload" href="/fonts/cascadia-code-latin.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <div class="page">
+      <header><a class="brand" href="/" aria-label="Goop home"><Ghost class="ghost" />Goop</a></header>
+      <main>
+        <p class="eyebrow">New in Goop 2.12.0</p>
+        <h1>Finish it<br /><span>later.</span></h1>
+        <p class="intro">Close a chat or quit Goop. Your draft will be here when you come back.</p>
+        <div class="draft-note"><DraftNote /></div>
+        <section class="details" aria-labelledby="drafts-heading">
+          <h2 id="drafts-heading">Find your unfinished thoughts</h2>
+          <p>Goop saves your text and replies locally as you write. A pencil marks chats with a draft. Tap the pencil filter to find the ones you left in other chats.</p>
+        </section>
+        <section class="details" aria-labelledby="sending-heading">
+          <h2 id="sending-heading">Keep what you send, too</h2>
+          <p>Pressing Send saves your message to a local queue before clearing the composer. If saving fails, your text stays put.</p>
+          <p>When your signer or a relay needs attention, the queued message stays available for another attempt. Check its status and retry right on the message.</p>
+        </section>
+        <a class="download" href="/#get">Get Goop <span aria-hidden="true">→</span></a>
+        <p class="platforms">macOS · Windows · Linux</p>
+        <p class="fine-print">Drafts stay on this device. Unsent attachments are not restored after a restart. A sudden crash or power loss can still interrupt the latest save. <a href="https://dergigi.com/goop/#message-drafts">How drafts work</a>.</p>
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+  .page { width: min(100%, 42rem); min-height: 100svh; margin: 0 auto; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2.5rem; }
+  .brand { display: inline-flex; align-items: center; gap: .5rem; font-size: 1rem; font-weight: 600; }
+  .brand :global(.ghost) { width: 1.5rem; height: 1.75rem; }
+  p { margin: 0; }
+  .eyebrow { color: var(--lilac-dim); font-size: .75rem; }
+  h1 { margin: 1rem 0; font-size: clamp(2.4rem, 7vw, 3.8rem); font-weight: 600; line-height: 1.06; letter-spacing: -.06em; }
+  h1 span { color: #b77aeb; }
+  .intro { font-size: 1rem; color: var(--lilac); line-height: 1.5; }
+  .draft-note { margin: 2rem 0; }
+  .details { margin-top: 1.75rem; max-width: 34rem; font-size: .85rem; line-height: 1.7; color: var(--lilac-dim); }
+  .details h2 { margin: 0 0 .5rem; font-size: 1rem; font-weight: 600; color: var(--text); }
+  .details p + p { margin-top: .85rem; }
+  .details a { color: var(--lilac); text-decoration: underline; text-underline-offset: .2em; }
+  .download { margin-top: 2rem; display: inline-flex; align-items: center; gap: 2rem; padding: .8rem 1rem; border-radius: var(--radius); background: var(--purple); color: var(--text); font-size: 1rem; }
+  .download:hover { background: var(--brand); }
+  .platforms { margin-top: .8rem; color: var(--lilac-dim); font-size: .7rem; line-height: 1.5; }
+  .fine-print a { text-decoration: underline; text-underline-offset: .2em; }
+  .fine-print { margin-top: 1.75rem; max-width: 34rem; font-size: .7rem; line-height: 1.7; color: var(--lilac-dim); }
+</style>
