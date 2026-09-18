@@ -171,7 +171,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
         <Ghost class="ghost" />
         <label class="query">
           <span class="sr-only">Filter commands</span>
-          <input id="query" type="text" placeholder="goop" autocomplete="off" spellcheck="false" autofocus />
+          <input id="query" type="text" placeholder="goop" autocomplete="off" spellcheck="false" />
           <span class="caret" aria-hidden="true"></span>
         </label>
         <span class="hint">esc to clear</span>
@@ -899,14 +899,17 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     }
   }
 
-  /* Phones and small tablets: one column, list first, preview below. */
+  /* Phones and small tablets: content first, full menu below. */
   @media (max-width: 980px) {
     .palette {
-      display: block;
+      display: flex;
+      flex-direction: column;
       height: auto;
       min-height: 100dvh;
     }
     .bar {
+      order: 1;
+      flex-shrink: 0;
       height: 3.75rem;
       margin: 0.5rem 0.5rem 0;
       padding: 0 1rem 0 0.625rem;
@@ -927,6 +930,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       display: none;
     }
     .commands {
+      order: 2;
       padding: 0.5rem 0.5rem 0.5rem;
       border-right: 0;
       border-bottom: var(--rule);
@@ -946,6 +950,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       padding: 1.5rem 1rem 0;
       overflow: visible;
       scrollbar-gutter: auto;
+      mask-image: none;
     }
     .panel {
       scroll-margin-top: 1rem;
@@ -1003,6 +1008,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       font-size: 0.9375rem;
     }
     .status {
+      order: 3;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;

@@ -8,13 +8,14 @@ const visible = () => rows.filter((r) => !r.hidden);
 const activeRow = () => rows.find((r) => r.classList.contains('active'));
 
 const stacked = matchMedia('(max-width: 980px)');
+if (!stacked.matches) input.focus();
 
 function select(id: string, { focusPanel = false, user = false } = {}) {
   for (const r of rows) {
     const on = idOf(r) === id;
     r.classList.toggle('active', on);
     r.setAttribute('aria-selected', String(on));
-    if (on) r.scrollIntoView({ block: 'nearest' });
+    if (on && !stacked.matches) r.scrollIntoView({ block: 'nearest' });
   }
   for (const p of panels) p.hidden = p.id !== id;
   const preview = document.querySelector<HTMLElement>('.preview')!;
