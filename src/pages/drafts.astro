@@ -3,11 +3,11 @@ import '../styles/global.css';
 import Ghost from '../components/Ghost.astro';
 import DraftNote from '../components/DraftNote.astro';
 
-const title = 'Finish it later | Goop';
-const description = 'Saved drafts, a persistent send queue, and a way to pick up where you left off. New in Goop 2.12.0.';
+const title = 'Start here. Finish there. | Goop';
+const description = 'Never lose a message. Never lose a thought. Goop saves your drafts, keeps sent messages queued, and syncs encrypted drafts across compatible apps with NIP-37.';
 const canonical = new URL('/drafts', Astro.site);
-const image = new URL('/drafts-og.png', Astro.site);
-const imageAlt = 'Goop 2.12.0. Finish it later. Your draft will be here.';
+const image = new URL('/drafts-og.png?v=2.13.0', Astro.site);
+const imageAlt = 'Goop 2.13.0. Start here. Finish there. Never lose a message. Never lose a thought.';
 ---
 
 <!doctype html>
@@ -40,9 +40,9 @@ const imageAlt = 'Goop 2.12.0. Finish it later. Your draft will be here.';
     <div class="page">
       <header><a class="brand" href="/" aria-label="Goop home"><Ghost class="ghost" />Goop</a></header>
       <main>
-        <p class="eyebrow">New in Goop 2.12.0</p>
-        <h1>Finish it<br /><span>later.</span></h1>
-        <p class="intro">Close a chat or quit Goop. Your draft will be here when you come back.</p>
+        <p class="eyebrow">New in Goop 2.13.0</p>
+        <h1>Start here.<br /><span>Finish there.</span></h1>
+        <p class="intro">Never lose a message. Never lose a thought.</p>
         <div class="draft-note"><DraftNote /></div>
         <section class="details" aria-labelledby="drafts-heading">
           <h2 id="drafts-heading">Find your unfinished thoughts</h2>
@@ -53,9 +53,14 @@ const imageAlt = 'Goop 2.12.0. Finish it later. Your draft will be here.';
           <p>Pressing Send saves your message to a local queue before clearing the composer. If saving fails, your text stays put.</p>
           <p>When your signer or a relay needs attention, the queued message stays available for another attempt. Check its status and retry right on the message.</p>
         </section>
+        <section class="details" aria-labelledby="sync-heading">
+          <h2 id="sync-heading">Take your drafts with you</h2>
+          <p>Goop uses <a href="https://github.com/nostr-protocol/nips/blob/master/37.md">NIP-37: Draft Wraps</a>, the nostr spec for storing encrypted, unfinished events. Your text and reply targets are encrypted to your own identity and saved on your private-storage relays. Compatible apps can pick them up.</p>
+          <p>Open <strong>Relays → Private Storage Relays</strong> to set up sync. Use the same nostr identity and relay list in your other app. Sync has been tested both ways with <a href="https://amethyst.social/">Amethyst</a>, where automatic draft saving needs to be enabled.</p>
+        </section>
         <a class="download" href="/#get">Get Goop <span aria-hidden="true">→</span></a>
         <p class="platforms">macOS · Windows · Linux</p>
-        <p class="fine-print">Drafts stay on this device. Unsent attachments are not restored after a restart. A sudden crash or power loss can still interrupt the latest save. <a href="https://dergigi.com/goop/#message-drafts">How drafts work</a>.</p>
+        <p class="fine-print">Without private-storage relays, drafts stay on this device. Unsent attachments are not restored after a restart. A sudden crash or power loss can still interrupt the latest save. <a href="https://dergigi.com/goop/#message-drafts">How drafts work</a>.</p>
       </main>
     </div>
   </body>
