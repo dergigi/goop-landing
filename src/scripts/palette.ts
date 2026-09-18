@@ -2,6 +2,7 @@ const input = document.getElementById('query') as HTMLInputElement;
 const rows = [...document.querySelectorAll<HTMLLIElement>('.row')];
 const panels = [...document.querySelectorAll<HTMLElement>('.panel')];
 const empty = document.querySelector<HTMLElement>('.no-match');
+const palette = document.querySelector<HTMLElement>('.palette')!;
 
 const idOf = (row: HTMLLIElement) => row.querySelector('a')!.dataset.id!;
 const visible = () => rows.filter((r) => !r.hidden);
@@ -21,7 +22,13 @@ function select(id: string, { focusPanel = false, user = false } = {}) {
   const preview = document.querySelector<HTMLElement>('.preview')!;
   preview.scrollTop = 0;
   // One column: bring the panel into view when the visitor picks a command.
-  if (user && stacked.matches) preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if ((user || focusPanel) && stacked.matches) {
+    input.value = '';
+    fit();
+    filter();
+    input.blur();
+    preview.scrollIntoView({ block: 'start' });
+  }
   history.replaceState(null, '', `#${id}`);
   if (focusPanel) document.getElementById(id)?.querySelector<HTMLElement>('a, button')?.focus();
 }
@@ -30,7 +37,7 @@ function move(delta: number) {
   const list = visible();
   if (!list.length) return;
   const i = list.indexOf(activeRow()!);
-  select(idOf(list[(i + delta + list.length) % list.length]), { user: true });
+  select(idOf(list[(i + delta + list.length) % list.length]), { user: !stacked.matches });
 }
 
 // Subsequence match: "dlw" finds "Download for Windows".
@@ -52,6 +59,7 @@ function score(row: HTMLLIElement, q: string) {
 
 function filter() {
   const q = input.value.trim().toLowerCase();
+  palette.classList.toggle('is-filtering', q.length > 0);
   const scores = new Map(rows.map((r) => [r, score(r, q)]));
   for (const r of rows) r.hidden = scores.get(r) === 0;
   const list = visible();
@@ -89,12 +97,13 @@ document.addEventListener('keydown', (e) => {
       if (inInput) {
         e.preventDefault();
         const a = activeRow();
-        if (a) select(idOf(a), { focusPanel: true });
+        if (a && !a.hidden) select(idOf(a), { focusPanel: true });
       }
       return;
     case 'Escape':
       e.preventDefault();
       input.value = '';
+      fit();
       filter();
       input.focus();
       return;

@@ -899,7 +899,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
     }
   }
 
-  /* Phones and small tablets: content first, full menu below. */
+  /* Mobile: search above content, full navigation below until filtering. */
   @media (max-width: 980px) {
     .palette {
       display: flex;
@@ -908,7 +908,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       min-height: 100dvh;
     }
     .bar {
-      order: 1;
+      order: -2;
       flex-shrink: 0;
       height: 3.75rem;
       margin: 0.5rem 0.5rem 0;
@@ -935,6 +935,9 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
       border-right: 0;
       border-bottom: var(--rule);
       overflow: visible;
+    }
+    .palette.is-filtering .commands {
+      order: -1;
     }
     .row {
       height: 3rem;
