@@ -58,20 +58,33 @@ const shortcuts: { keys: string[][]; does: string }[] = [
   { keys: [['Mod', 'P']], does: 'Search profiles by name, address, or public key' },
   { keys: [['Up'], ['Down'], ['Enter'], ['Esc']], does: 'Pick a result, open it, go back' },
   { keys: [['Mod', 'F']], does: 'Find in the current chat' },
-  { keys: [['Mod', '1'], ['Mod', '2'], ['Mod', '3']], does: 'Inbox, Requests, message box' },
+  { keys: [['Mod', '1']], does: 'Inbox' },
+  { keys: [['Mod', '2']], does: 'Requests' },
+  { keys: [['Mod', '3']], does: 'Focus message box' },
   { keys: [['Mod', 'N'], ['Mod', 'T']], does: 'New chat' },
   { keys: [['Mod', 'Shift', 'N']], does: 'New group' },
   { keys: [['Mod', 'Shift', 'S']], does: 'Note to self' },
   { keys: [['Mod', 'B']], does: 'Show or hide the sidebar' },
-  { keys: [['Mod', 'W'], ['Mod', 'Shift', 'T']], does: 'Close tab, restore a closed tab' },
+  { keys: [['Mod', 'W']], does: 'Close tab' },
+  { keys: [['Mod', 'Shift', 'W']], does: 'Close all tabs' },
+  { keys: [['Mod', 'Shift', 'T']], does: 'Reopen closed tab' },
   { keys: [['Ctrl', 'Tab']], does: 'Next tab, on every platform' },
-  { keys: [['Mod', 'R']], does: 'Reload messaging and rescan history' },
+  { keys: [['Ctrl', 'Shift', 'Tab']], does: 'Previous tab, on every platform' },
+  { keys: [['Mod', 'R']], does: 'Reload history and retry sends / decryption' },
   { keys: [['Mod', 'Shift', 'C']], does: 'Contacts' },
   { keys: [['Mod', 'Shift', 'P']], does: 'Your profile' },
   { keys: [['Mod', 'Shift', 'M']], does: 'Messaging relays' },
   { keys: [['Mod', 'Shift', 'G']], does: 'Gossip relays' },
+  { keys: [['Mod', 'Shift', 'D']], does: 'Connection status' },
   { keys: [['Mod', 'Comma']], does: 'Settings' },
-  { keys: [['Enter'], ['Shift', 'Enter']], does: 'Send, or insert a newline' },
+  { keys: [['Enter']], does: 'Send message (in the message box)' },
+  { keys: [['Shift', 'Enter']], does: 'Insert a newline (in the message box)' },
+  { keys: [['Enter']], does: 'Next match (in chat find)' },
+  { keys: [['Shift', 'Enter']], does: 'Previous match (in chat find)' },
+  { keys: [['Left'], ['Right']], does: 'Previous / next image (in the gallery)' },
+  { keys: [['Esc']], does: 'Close the gallery' },
+  { keys: [['Cmd', 'Q']], does: 'Quit Goop (macOS)' },
+  { keys: [['Super', 'Q']], does: 'Quit Goop (Linux / Windows)' },
 ];
 
 // From README.md and CHANGELOG.md; nothing here that Goop does not ship.
@@ -262,7 +275,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
             ))}
           </ul>
           <p class="note">
-            Mod is <Kbd k="Mod" class="inline" /> on this machine. Press <Kbd k="?" class="inline" /> inside Goop for the full list.
+            Mod means Command on macOS and Ctrl on Linux / Windows. Super is the Windows or logo key. Press <Kbd k="?" class="inline" /> inside Goop for the full list.
           </p>
         </article>
 
