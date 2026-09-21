@@ -3,6 +3,7 @@ const rows = [...document.querySelectorAll<HTMLLIElement>('.row')];
 const panels = [...document.querySelectorAll<HTMLElement>('.panel')];
 const empty = document.querySelector<HTMLElement>('.no-match');
 const palette = document.querySelector<HTMLElement>('.palette')!;
+const preview = document.querySelector<HTMLElement>('.preview')!;
 
 const idOf = (row: HTMLLIElement) => row.querySelector('a')!.dataset.id!;
 const visible = () => rows.filter((r) => !r.hidden);
@@ -19,7 +20,6 @@ function select(id: string, { focusPanel = false, user = false } = {}) {
     if (on && !stacked.matches) r.scrollIntoView({ block: 'nearest' });
   }
   for (const p of panels) p.hidden = p.id !== id;
-  const preview = document.querySelector<HTMLElement>('.preview')!;
   preview.scrollTop = 0;
   // One column: bring the panel into view when the visitor picks a command.
   if ((user || focusPanel) && stacked.matches) {
@@ -30,7 +30,7 @@ function select(id: string, { focusPanel = false, user = false } = {}) {
     preview.scrollIntoView({ block: 'start' });
   }
   history.replaceState(null, '', `#${id}`);
-  if (focusPanel) document.getElementById(id)?.querySelector<HTMLElement>('a, button')?.focus();
+  if (focusPanel) preview.focus({ preventScroll: true });
 }
 
 function move(delta: number) {
@@ -84,12 +84,27 @@ input.addEventListener('input', () => {
 document.addEventListener('keydown', (e) => {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   const inInput = e.target === input;
-  const typing = e.target instanceof HTMLElement && e.target.matches('textarea, [contenteditable]');
+  const inPreview = e.target instanceof Node && preview.contains(e.target);
+  const typing = e.target instanceof HTMLElement && (e.target.isContentEditable || e.target.matches('textarea, select, input:not(#query)'));
   if (typing) return;
 
   switch (e.key) {
+    case 'ArrowRight':
+      // Keep caret movement and text selection while editing the search.
+      if (!stacked.matches && !inPreview && !e.shiftKey && (!inInput || input.value === '')) {
+        e.preventDefault();
+        preview.focus({ preventScroll: true });
+      }
+      return;
+    case 'ArrowLeft':
+      if (!stacked.matches && inPreview && !e.shiftKey) {
+        e.preventDefault();
+        input.focus({ preventScroll: true });
+      }
+      return;
     case 'ArrowDown':
     case 'ArrowUp':
+      if (inPreview) return; // Let the browser scroll the focused content.
       e.preventDefault();
       move(e.key === 'ArrowDown' ? 1 : -1);
       return;
@@ -122,7 +137,7 @@ document.addEventListener('keydown', (e) => {
   }
 
   // Any other printable key starts filtering.
-  if (!inInput && e.key.length === 1) input.focus();
+  if (!inInput && !inPreview && e.key.length === 1) input.focus();
 });
 
 // Any in-page link to a panel (command rows, footer) switches the palette.
