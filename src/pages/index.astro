@@ -60,7 +60,9 @@ const shortcuts: { keys: string[][]; does: string }[] = [
   { keys: [['Mod', 'F']], does: 'Find in the current chat' },
   { keys: [['Mod', '1']], does: 'Inbox' },
   { keys: [['Mod', '2']], does: 'Requests' },
-  { keys: [['Mod', '3']], does: 'Focus message box' },
+  { keys: [['Mod', 'L'], ['Mod', '3']], does: 'Focus message box' },
+  { keys: [['Mod', 'Alt', 'Up']], does: 'Recall an older sent message in the message box' },
+  { keys: [['Mod', 'Alt', 'Down']], does: 'Recall a newer sent message, then return to your draft' },
   { keys: [['Mod', 'N'], ['Mod', 'T']], does: 'New chat' },
   { keys: [['Mod', 'Shift', 'N']], does: 'New group' },
   { keys: [['Mod', 'Shift', 'S']], does: 'Note to self' },
@@ -277,7 +279,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
             ))}
           </ul>
           <p class="note">
-            Mod means Command on macOS and Ctrl on Linux / Windows. Super is the Windows or logo key. Press <Kbd k="?" class="inline" /> inside Goop for the full list.
+            Mod means Command on macOS and Ctrl on Linux / Windows. Alt means Option on macOS. Super is the Windows or logo key. Press <Kbd k="?" class="inline" /> inside Goop for the full list.
           </p>
         </article>
 
