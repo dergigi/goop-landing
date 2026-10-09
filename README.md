@@ -19,6 +19,8 @@ Download links go through GitHub's `releases/latest/download/<file>` redirect, s
 
 `public/og.png` is rendered from the `/og` route. With the dev server running, `pnpm og` regenerates it.
 
+The `/dictation` page includes a sample-text composer demo and credits Paseo. Render `/dictation-og` at 1200 × 630 to regenerate `public/dictation-og.png`. The demo never accesses the microphone.
+
 The simple `/clankers` feature page uses `public/clankers-og.png` (1200 × 630) as its dedicated social preview.
 
 ## Screenshots

@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import Ghost from '../components/Ghost.astro';
+import DictationDemo from '../components/DictationDemo.astro';
+const title = 'Talk to your agents. | Goop';
+const description = 'Think out loud. Send it over Nostr. Local voice dictation in Goop, powered by Parakeet v3. 25 languages. Your audio stays on your device.';
+const canonical = new URL('/dictation', Astro.site);
+const image = new URL('/dictation-og.png', Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title><meta name="description" content={description} />
+    <link rel="canonical" href={canonical} /><link rel="icon" href="/goop.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" /><meta property="og:site_name" content="Goop" />
+    <meta property="og:title" content={title} /><meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} /><meta property="og:image" content={image} />
+    <meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Talk to your agents. Local voice dictation over Nostr, in Goop." />
+    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content="Talk to your agents. Local voice dictation over Nostr, in Goop." />
+    <link rel="preload" href="/fonts/cascadia-code-latin.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <div class="page">
+      <header><a class="brand" href="/" aria-label="Goop home"><Ghost class="ghost" />Goop</a><a class="header-link" href="/#get">Get Goop <span aria-hidden="true">↗</span></a></header>
+      <main>
+        <section class="hero" aria-labelledby="title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span> LOCAL DICTATION / GOOP 2.15.0</p>
+            <h1 id="title">Talk to<br />your <em>agents.</em></h1>
+            <p class="intro">Think out loud.<br />Send it over Nostr.</p>
+            <p class="lead">Give your agent the whole thought. Goop turns your voice into text, right on your device, and sends it as an encrypted message.</p>
+            <a class="download" href="/#get">Get Goop <span aria-hidden="true">↗</span></a>
+            <p class="platforms">Free software · macOS / Windows / Linux</p>
+          </div>
+          <div class="hero-demo"><DictationDemo /></div>
+        </section>
+        <section class="flow" aria-label="Dictation shortcuts">
+          <div><kbd><span data-mod>⌘</span> D</kbd><h2>Start talking.</h2><p>Open a chat. Hit the shortcut.<br />Let the thought run.</p></div>
+          <div><kbd>Enter ↵</kbd><h2>Send the thought.</h2><p>Goop transcribes locally,<br />then sends your message.</p></div>
+          <div><kbd>Esc</kbd><h2>Or sleep on it.</h2><p>Keep the words as a draft.<br />Edit them when you're ready.</p></div>
+        </section>
+        <section class="engine" aria-labelledby="engine-heading">
+          <div><p class="eyebrow">UNDER THE HOOD</p><h2 id="engine-heading">A little Parakeet.<br /><span>A lot to say.</span></h2><p><a href="https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3">NVIDIA's Parakeet v3</a> recognizes 25 European languages automatically, with punctuation and capitalization. Goop runs its 600-million-parameter INT8 model on your CPU through <a href="https://github.com/k2-fsa/sherpa-onnx">sherpa-onnx</a>.</p><p>Download the speech model once, about 487 MB. After that, transcription works offline. Remove it in Settings whenever you want.</p></div>
+          <div class="facts"><div><strong>25</strong><span>languages, automatically</span></div><div><strong>Local</strong><span>audio stays on your device</span></div><div><strong>NIP-17</strong><span>encrypted text to your recipient</span></div></div>
+        </section>
+        <section class="closing" aria-labelledby="closing-heading"><p class="eyebrow">FOR CLANKERS. AND FRIENDS.</p><h2 id="closing-heading">Less typing.<br /><span>More talking.</span></h2><p>Brief an agent. Leave yourself a thought.<br />Tell a friend the long version.</p><div class="closing-links"><a class="download" href="/#get">Get Goop <span aria-hidden="true">↗</span></a><a class="text-link" href="/#agents">Connect your agent →</a></div></section>
+        <footer><p>A tip of the hat to <a href="https://paseo.sh/docs/voice">Paseo</a>. Its local dictation experience inspired this one.</p><p>Your recording stays in memory on this device. Transcribed text follows your <a href="/drafts">draft sync</a> settings. Sending a message needs a connection and may need approval from your signer.</p><a class="home" href="/">← Back to Goop</a></footer>
+      </main>
+    </div>
+    <script>if (!/Mac|iPhone|iPad/.test(navigator.platform)) document.querySelectorAll('[data-mod]').forEach(el => el.textContent = 'Ctrl');</script>
+  </body>
+</html>
+<style>
+  body { background:radial-gradient(ellipse at 80% 20%,#8e4ec612,transparent 45%),var(--ink); }
+  .page { max-width:72rem; margin:0 auto; padding:2rem 3rem; }
+  header { display:flex; align-items:center; justify-content:space-between; }
+  .brand { display:inline-flex; align-items:center; gap:.55rem; font-size:1rem; font-weight:600; }
+  .brand :global(.ghost) { width:1.5rem; height:1.75rem; }
+  .header-link { font-size:.75rem; color:var(--lilac); }
+  .hero { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; padding:6rem 0 5rem; }
+  .eyebrow { font-size:.6rem; letter-spacing:.12em; color:var(--lilac-dim); line-height:1.7; margin:0 0 1.5rem; }
+  .eyebrow span { display:inline-block; width:6px; height:6px; background:#b77aeb; border-radius:50%; margin-right:.4rem; }
+  h1 { font-size:clamp(3.2rem,6.2vw,5rem); letter-spacing:-.075em; font-weight:600; line-height:1.02; margin:0 0 1.7rem; }
+  h1 em { font-style:normal; background:linear-gradient(110deg,#dab0ff,#a35ddb); background-clip:text; color:transparent; }
+  .intro { font-size:1.2rem; line-height:1.5; color:var(--lilac); margin:0 0 1rem; letter-spacing:-.03em; }
+  .lead { font-size:.875rem; line-height:1.8; color:var(--lilac-dim); max-width:27rem; margin:0 0 1.7rem; }
+  .download { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; padding:.8rem 1rem; background:var(--purple); color:var(--text); border:1px solid #d5a1ff55; border-radius:.5rem; font-size:.85rem; transition:background .2s,box-shadow .2s; }
+  .download:hover { background:var(--brand); box-shadow:0 0 2rem #8e4ec644; }
+  .platforms { font-size:.55rem; line-height:1.7; color:var(--lilac-dim); margin:1rem 0 0; }
+  .flow { border-top:1px solid #b77aeb30; border-bottom:1px solid #b77aeb30; padding:2.5rem 0; display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+  .flow kbd { display:inline-flex; align-items:center; gap:.3rem; font-size:.8rem; padding:.4rem .65rem; border:1px solid #b77aeb55; border-bottom-width:3px; border-radius:.4rem; color:var(--lilac); background:#b77aeb0b; }
+  .flow h2 { font-size:.9rem; margin:1.1rem 0 .5rem; font-weight:500; }
+  .flow p { font-size:.8rem; color:var(--lilac-dim); line-height:1.8; margin:0; }
+  .engine { display:grid; grid-template-columns:1.2fr 1fr; gap:5rem; padding:6rem 0; }
+  h2 { font-size:clamp(1.8rem,3vw,2.5rem); line-height:1.15; font-weight:500; letter-spacing:-.05em; margin:0 0 1.5rem; }
+  h2 span { color:#b77aeb; }
+  .engine p:not(.eyebrow) { color:var(--lilac-dim); font-size:.875rem; line-height:1.9; margin:1rem 0 0; }
+  .engine a,footer a:not(.home) { color:var(--lilac); text-decoration:underline; text-underline-offset:.2em; }
+  .facts { display:flex; flex-direction:column; justify-content:center; }
+  .facts div { padding:1.5rem 0; border-bottom:1px solid #b77aeb30; }
+  .facts strong { display:block; font-weight:400; font-size:2rem; color:var(--lilac); letter-spacing:-.05em; }
+  .facts span { display:block; font-size:.65rem; color:var(--lilac-dim); margin-top:.4rem; }
+  .closing { text-align:center; padding:4rem 1rem; border:1px solid #b77aeb25; border-radius:1rem; background:radial-gradient(ellipse at bottom,#8e4ec61f,transparent 70%); }
+  .closing h2 { font-size:clamp(2.2rem,5vw,3.5rem); }
+  .closing p:not(.eyebrow) { font-size:.8rem; line-height:1.8; color:var(--lilac-dim); }
+  .closing-links { display:flex; justify-content:center; align-items:center; gap:1.5rem; margin-top:1.75rem; flex-wrap:wrap; }
+  .text-link { font-size:.7rem; color:var(--lilac); }
+  footer { padding:3rem 0 1rem; font-size:.7rem; line-height:1.8; color:var(--lilac-dim); max-width:38rem; }
+  footer p { margin:0 0 1rem; }
+  .home { display:inline-block; margin-top:.8rem; }
+  @media(max-width:900px) { .page { padding:1.5rem; } .hero { gap:2rem; padding:4rem 0; } .hero-demo { min-width:0; } .engine { gap:3rem; } }
+  @media(max-width:700px) { .page { padding:1.25rem; } .hero { grid-template-columns:1fr; padding:3rem 0; gap:2.5rem; } h1 { font-size:clamp(3rem,12vw,4.8rem); } .hero-copy { max-width:30rem; } .hero-demo { max-width:32rem; width:100%; } .flow { grid-template-columns:1fr; gap:2rem; } .flow br { display:none; } .engine { grid-template-columns:1fr; padding:3.5rem 0; gap:1.5rem; } .facts { display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; } .facts strong { font-size:1.35rem; } .facts span { font-size:.55rem; line-height:1.6; } .closing { padding:3rem 1rem; } }
+  @media(prefers-reduced-motion:reduce) { .download { transition:none; } }
+</style>

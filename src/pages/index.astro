@@ -61,6 +61,9 @@ const shortcuts: { keys: string[][]; does: string }[] = [
   { keys: [['Mod', '1']], does: 'Inbox' },
   { keys: [['Mod', '2']], does: 'Requests' },
   { keys: [['Mod', 'L'], ['Mod', '3']], does: 'Focus message box' },
+  { keys: [['Mod', 'D']], does: 'Start dictation; press again to transcribe and send' },
+  { keys: [['Enter']], does: 'Transcribe and send (while recording)' },
+  { keys: [['Esc']], does: 'Transcribe into the draft without sending (while recording)' },
   { keys: [['Mod', 'Alt', 'Up']], does: 'Recall an older sent message in the message box' },
   { keys: [['Mod', 'Alt', 'Down']], does: 'Recall a newer sent message, then return to your draft' },
   { keys: [['Mod', 'N'], ['Mod', 'T']], does: 'New chat' },
@@ -93,6 +96,7 @@ const shortcuts: { keys: string[][]; does: string }[] = [
 // From README.md and CHANGELOG.md; nothing here that Goop does not ship.
 const features = [
   { name: 'Keyboard first', desc: '? lists every shortcut' },
+  { name: 'Local dictation', desc: 'Parakeet v3, 25 languages, audio stays on your device' },
   { name: 'NIP-17 only', desc: 'gift-wrapped DMs and groups' },
   { name: 'External signer', desc: 'your key stays in your signer' },
   { name: 'Encrypted attachments', desc: 'encrypted before upload' },
@@ -255,7 +259,7 @@ My nostr identity is PASTE_YOUR_NPUB_HERE`;
             ))}
           </ul>
           <p class="more">
-            <a href="/drafts">Saved drafts</a> · <a href="/clankers">Clankers &amp; friends</a><br />
+            <a href="/dictation">Talk to your agents</a> · <a href="/drafts">Saved drafts</a> · <a href="/clankers">Clankers &amp; friends</a><br />
             Goop skips NIP-04 and read receipts. The <a href={`${repo}/blob/master/CHANGELOG.md`}>changelog</a> has the details for each release.
           </p>
         </article>

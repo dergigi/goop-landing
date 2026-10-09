@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # impeccable engine binary (downloaded on first run)
 .cursor/skills/impeccable/scripts/bin/
+.vercel

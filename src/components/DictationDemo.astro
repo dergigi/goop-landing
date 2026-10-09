@@ -1,0 +1,88 @@
+---
+const { still = false } = Astro.props;
+const heights = Array.from({ length: 45 }, (_, i) => 12 + Math.abs(Math.sin(i * 1.9) * Math.cos(i * .37)) * 65);
+---
+<div class:list={['dictation-demo', { still }]} data-demo data-state="recording">
+  <div class="demo-top"><span class="agent-icon" aria-hidden="true"><svg aria-hidden="true" width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5" y="7" width="14" height="13" rx="3"/>
+    <path d="M12 7V4M3 12v4M21 12v4M9 16h6"/>
+    <circle cx="12" cy="3" r="1"/>
+    <path d="M9 11v1M15 11v1"/>
+  </g>
+</svg></span><div>Your agent<small>Private conversation · Nostr</small></div><span class="demo-label">DEMO</span></div>
+  <div class="message-space"><p class="spoken">“Take a look at the open issues.<br class="wide" /> What should we work on next?”</p><p class="result" hidden></p></div>
+  <div class="composer">
+    <div class="wave" aria-hidden="true">{heights.map((height, i) => <i style={`--height:${height}%;--delay:${-i * .13}s`} />)}</div>
+    <div class="demo-status"><span class="record-dot"></span><span data-status>Thinking out loud</span><span class="local">ON DEVICE</span></div>
+  </div>
+  {!still && <div class="demo-actions"><button type="button" data-action="draft"><kbd>Esc</kbd> Keep as draft</button><button type="button" data-action="send"><kbd>Enter ↵</kbd> Send to agent</button><button type="button" data-action="reset" hidden>Play again <span aria-hidden="true">↻</span></button></div>}
+  <p class="demo-caption">{still ? 'Voice → text → encrypted message' : 'Try the flow. This demo uses sample text, not your microphone.'}</p>
+  <span class="sr-only" data-announcement aria-live="polite"></span>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-demo]:not(.still)').forEach((demo) => {
+    const status = demo.querySelector<HTMLElement>('[data-status]')!;
+    const result = demo.querySelector<HTMLElement>('.result')!;
+    const spoken = demo.querySelector<HTMLElement>('.spoken')!;
+    const announcement = demo.querySelector<HTMLElement>('[data-announcement]')!;
+    const buttons = [...demo.querySelectorAll<HTMLButtonElement>('[data-action]')];
+    let timer: ReturnType<typeof setTimeout>;
+    function act(action: string) {
+      clearTimeout(timer);
+      if (action === 'reset') {
+        demo.dataset.state = 'recording';
+        status.textContent = 'Thinking out loud';
+        result.hidden = true; spoken.hidden = false;
+        buttons.forEach(b => { b.hidden = b.dataset.action === 'reset'; b.disabled = false; });
+        announcement.textContent = 'Demo restarted.';
+        buttons[0].focus({ preventScroll: true });
+        return;
+      }
+      if (demo.dataset.state !== 'recording') return;
+      demo.dataset.state = 'processing'; status.textContent = 'Transcribing locally';
+      buttons.forEach(b => { b.disabled = true; });
+      timer = setTimeout(() => {
+        demo.dataset.state = action === 'send' ? 'sent' : 'draft';
+        spoken.hidden = true; result.hidden = false;
+        result.textContent = 'Take a look at the open issues. What should we work on next?';
+        status.textContent = action === 'send' ? 'Sent as an encrypted DM ✓' : 'Saved as a draft ✎';
+        announcement.textContent = `Demo: ${status.textContent}.`;
+        buttons.forEach(b => { b.hidden = b.dataset.action !== 'reset'; b.disabled = false; });
+        buttons[2].focus({ preventScroll: true });
+      }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 850);
+    }
+    buttons.forEach(button => button.addEventListener('click', () => act(button.dataset.action!)));
+  });
+</script>
+<style>
+  .dictation-demo { border: 1px solid #b77aeb40; border-radius: 1.2rem; background: linear-gradient(145deg,#20152c,#100d15 65%); box-shadow: 0 2rem 6rem #0005,0 0 6rem #8e4ec615; padding: 1.6rem; text-align: left; }
+  .demo-top { display:flex; align-items:center; gap:.7rem; font-size:.85rem; }
+  .agent-icon { display:grid; place-items:center; width:2.5rem; height:2.5rem; border-radius:.8rem; background:#b77aeb20; color:#d9b1fa; font-size:1.5rem; }
+  small { display:block; margin-top:.25rem; color:var(--lilac-dim); font-size:.6rem; }
+  .demo-label { margin-left:auto; color:var(--lilac-dim); font-size:.5rem; letter-spacing:.12em; }
+  .message-space { min-height:10rem; display:flex; align-items:center; padding:1rem 0; }
+  .spoken { font-size:clamp(1rem,2vw,1.35rem); line-height:1.7; letter-spacing:-.03em; color:var(--lilac); margin:0; }
+  .result { font-size:1rem; line-height:1.6; padding:1rem 1.15rem; border-radius:.8rem .8rem .15rem .8rem; background:var(--purple); margin:0 0 0 auto; max-width:90%; }
+  [data-state="draft"] .result { background:#ffffff09; border:1px dashed #b77aeb66; }
+  .composer { border-radius:.8rem; background:#09070d90; padding:1rem; border:1px solid #b77aeb20; }
+  .wave { height:4.3rem; display:flex; align-items:center; justify-content:center; gap:4px; }
+  .wave i { display:block; flex:1; max-width:6px; height:var(--height); min-height:5px; border-radius:8px; background:linear-gradient(#ead5f9,#8e4ec6); animation:voice 1.2s ease-in-out infinite alternate; animation-delay:var(--delay); }
+  @keyframes voice { from { transform:scaleY(.3); opacity:.5; } to { transform:scaleY(1); opacity:1; } }
+  .demo-status { display:flex; align-items:center; gap:.5rem; margin-top:.75rem; font-size:.65rem; color:var(--lilac); min-height:1.1rem; }
+  .record-dot { width:6px; height:6px; border-radius:50%; background:#b77aeb; flex-shrink:0; }
+  .local { margin-left:auto; font-size:.45rem; letter-spacing:.08em; color:var(--lilac-dim); }
+  .demo-actions { display:flex; justify-content:space-between; gap:.75rem; margin-top:1rem; min-height:44px; }
+  button { font:inherit; font-size:.7rem; min-height:44px; color:var(--lilac); border:1px solid #b77aeb40; background:#b77aeb0a; padding:.65rem .7rem; border-radius:.45rem; cursor:pointer; }
+  button:hover { background:#b77aeb22; border-color:#b77aeb; }
+  button:disabled { opacity:.5; cursor:wait; }
+  kbd { color:var(--text); margin-right:.3rem; }
+  .demo-caption { margin:1rem 0 0; font-size:.55rem; line-height:1.6; color:var(--lilac-dim); }
+  [hidden] { display:none !important; }
+  [data-state="processing"] .wave i { animation-duration:.35s; }
+  [data-state="sent"] .wave i,[data-state="draft"] .wave i { animation:none; height:3px; opacity:.4; }
+  .still .wave i { animation:none; }
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  @media(max-width:540px) { .dictation-demo { padding:1.15rem; } .wide { display:none; } .local { display:none; } .wave { gap:3px; } button { font-size:.6rem; } }
+  @media(prefers-reduced-motion:reduce) { .wave i { animation:none !important; } }
+</style>
